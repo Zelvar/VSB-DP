@@ -61,5 +61,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VirusTotalNet\VirusTotalNet.csproj">
+      <Project>{38f569a8-0ec8-4295-9303-1e151d140baf}</Project>
+      <Name>VirusTotalNet</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

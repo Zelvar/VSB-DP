@@ -8,11 +8,11 @@ using VirusTotalNet.Results;
 
 namespace VirusTotalNet.Examples
 {
-    internal class Program
+    class Program
     {
-        private static async Task Main(string[] args)
+        static void Main(string[] args)
         {
-            VirusTotal virusTotal = new VirusTotal("YOUR API KEY HERE");
+            VirusTotal virusTotal = new VirusTotal("-- API KEY --");
 
             //Use HTTPS instead of HTTP
             virusTotal.UseTLS = true;
@@ -21,7 +21,8 @@ namespace VirusTotalNet.Examples
             byte[] eicar = Encoding.ASCII.GetBytes(@"X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*");
 
             //Check if the file has been scanned before.
-            FileReport fileReport = await virusTotal.GetFileReportAsync(eicar);
+            var task = virusTotal.GetFileReportAsync(eicar);
+            FileReport fileReport = task.Result;
 
             bool hasFileBeenScannedBefore = fileReport.ResponseCode == FileReportResponseCode.Present;
 
@@ -34,7 +35,8 @@ namespace VirusTotalNet.Examples
             }
             else
             {
-                ScanResult fileResult = await virusTotal.ScanFileAsync(eicar, "EICAR.txt");
+                var task2 = virusTotal.ScanFileAsync(eicar, "EICAR.txt");
+                ScanResult fileResult = task2.Result;
                 PrintScan(fileResult);
             }
 
@@ -42,7 +44,8 @@ namespace VirusTotalNet.Examples
 
             string scanUrl = "http://www.google.com/";
 
-            UrlReport urlReport = await virusTotal.GetUrlReportAsync(scanUrl);
+            var task3 = virusTotal.GetUrlReportAsync(scanUrl);
+            UrlReport urlReport = task3.Result;
 
             bool hasUrlBeenScannedBefore = urlReport.ResponseCode == UrlReportResponseCode.Present;
             Console.WriteLine("URL has been scanned before: " + (hasUrlBeenScannedBefore ? "Yes" : "No"));
@@ -54,9 +57,12 @@ namespace VirusTotalNet.Examples
             }
             else
             {
-                UrlScanResult urlResult = await virusTotal.ScanUrlAsync(scanUrl);
+                var task4 = virusTotal.ScanUrlAsync(scanUrl);
+                UrlScanResult urlResult = task4.Result;
                 PrintScan(urlResult);
             }
+
+            Console.ReadLine();
         }
 
         private static void PrintScan(UrlScanResult scanResult)

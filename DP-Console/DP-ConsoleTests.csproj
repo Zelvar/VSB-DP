@@ -8,11 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="VirusTotalNet" Version="2.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\StaticAnalysisProject\StaticAnalysisProject.csproj" />
+    <ProjectReference Include="..\VirusTotalNet\VirusTotalNet.csproj" />
   </ItemGroup>
 
 </Project>
