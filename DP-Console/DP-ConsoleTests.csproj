@@ -1,15 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>DP_Console</RootNamespace>
     <AssemblyName>DP-ConsoleTests</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StaticAnalysisProject\StaticAnalysisProject.csproj" />
-    <ProjectReference Include="..\VirusTotalNet\VirusTotalNet.csproj" />
+    <ProjectReference Include="..\StaticAnalysisProjectCore\StaticAnalysisProjectCore.csproj" />
   </ItemGroup>
 
 </Project>

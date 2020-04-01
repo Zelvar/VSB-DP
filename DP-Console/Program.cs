@@ -2,14 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using VirusTotalNet;
-using VirusTotalNet.Objects;
-using VirusTotalNet.ResponseCodes;
-using VirusTotalNet.Results;
 
 using StaticAnalysisProject;
-
-
+using StaticAnalysisProject.Modules;
 
 namespace DP_Console
 {
@@ -17,16 +12,14 @@ namespace DP_Console
        public static void Main(string[] args)
         {
             //VirusTotalAsync().Wait();
-            var a = new AFile(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\App.exe");
-            /*foreach(var b in a.GetHashes())
-            {
-                Console.WriteLine("{0}", b);
-            }*/
-
+            //var a = new AFile(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\App.exe");
             Console.ReadLine();
+            //new Hashes(File.ReadAllBytes(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\App.exe"));
+            Console.ReadLine();
+
         }
 
-        #region TESTS
+        /*#region TESTS
         private static async System.Threading.Tasks.Task VirusTotalAsync()
         {
             VirusTotal virusTotal = new VirusTotal("f22b0933cc2a457845ea9f3a00245a9e1fba87d5adaf81b0a367629205bbdf9d");
@@ -93,6 +86,6 @@ namespace DP_Console
 
             Console.WriteLine();
         }
-        #endregion TESTS
+        #endregion TESTS*/
     }
 }

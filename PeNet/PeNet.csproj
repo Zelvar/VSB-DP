@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CA7B69BB-DAB3-4F0A-ABF7-2F68D70CB2A1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PeNet</RootNamespace>
+    <AssemblyName>PeNet</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <LangVersion>8.0</LangVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PeNet.Asn1, Version=1.3.3.0, Culture=neutral, PublicKeyToken=1e2e3568f0050bf5, processorArchitecture=MSIL">
+      <HintPath>..\packages\PeNet.Asn1.1.3.3\lib\net461\PeNet.Asn1.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Pkcs, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Pkcs.4.7.0\lib\net461\System.Security.Cryptography.Pkcs.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="FileParser\BufferFile.cs" />
+    <Compile Include="FileParser\IRawFile.cs" />
+    <Compile Include="FileParser\StreamFile.cs" />
+    <Compile Include="HeaderParser\Authenticode\AuthenticodeParser.cs" />
+    <Compile Include="HeaderParser\Net\DotNetStructureParsers.cs" />
+    <Compile Include="HeaderParser\Net\MetaDataHdrParser.cs" />
+    <Compile Include="HeaderParser\Net\MetaDataStreamBlobParser.cs" />
+    <Compile Include="HeaderParser\Net\MetaDataStreamGUIDParser.cs" />
+    <Compile Include="HeaderParser\Net\MetaDataStreamStringParser.cs" />
+    <Compile Include="HeaderParser\Net\MetaDataStreamTablesHeaderParser.cs" />
+    <Compile Include="HeaderParser\Net\MetaDataStreamUSParser.cs" />
+    <Compile Include="HeaderParser\Pe\DataDirectoryParsers.cs" />
+    <Compile Include="HeaderParser\Pe\ExportedFunctionsParser.cs" />
+    <Compile Include="HeaderParser\Pe\ImageBaseRelocationsParser.cs" />
+    <Compile Include="HeaderParser\Pe\ImageBoundImportDescriptorParser.cs" />
+    <Compile Include="HeaderParser\Pe\ImageCor20HeaderParser.cs" />
+    <Compile Include="HeaderParser\Pe\ImageDebugDirectoryParser.cs" />
+    <Compile Include="HeaderParser\Pe\ImageDelayImportDescriptorParser.cs" />
+    <Compile Include="HeaderParser\Pe\ImageDosHeaderParser.cs" />
+    <Compile Include="HeaderParser\Pe\ImageExportDirectoriesParser.cs" />
+    <Compile Include="HeaderParser\Pe\ImageImportDescriptorsParser.cs" />
+    <Compile Include="HeaderParser\Pe\ImageLoadConfigDirectoryParser.cs" />
+    <Compile Include="HeaderParser\Pe\ImageNtHeadersParser.cs" />
+    <Compile Include="HeaderParser\Pe\ImageResourceDirectoryParser.cs" />
+    <Compile Include="HeaderParser\Pe\ImageSectionHeadersParser.cs" />
+    <Compile Include="HeaderParser\Pe\ImageTlsDirectoryParser.cs" />
+    <Compile Include="HeaderParser\Pe\ImportedFunctionsParser.cs" />
+    <Compile Include="HeaderParser\Pe\NativeStructureParsers.cs" />
+    <Compile Include="HeaderParser\Pe\RuntimeFunctionsParser.cs" />
+    <Compile Include="HeaderParser\Pe\WinCertificateParser.cs" />
+    <Compile Include="HeaderParser\Resource\ResourcesParser.cs" />
+    <Compile Include="HeaderParser\SafeParser.cs" />
+    <Compile Include="Header\AbstractStructure.cs" />
+    <Compile Include="Header\Authenticode\AuthenticodeInfo.cs" />
+    <Compile Include="Header\Authenticode\CrlUrlList.cs" />
+    <Compile Include="Header\Authenticode\X509AuthentiCodeInfo.cs" />
+    <Compile Include="Header\ImpHash\ImportHash.cs" />
+    <Compile Include="Header\ImpHash\OrdinalSymbolMapping.cs" />
+    <Compile Include="Header\Net\CodedIndex.cs" />
+    <Compile Include="Header\Net\HeapSizes.cs" />
+    <Compile Include="Header\Net\MetaDataHdr.cs" />
+    <Compile Include="Header\Net\MetaDataStreamGuid.cs" />
+    <Compile Include="Header\Net\MetaDataStreamHdr.cs" />
+    <Compile Include="Header\Net\MetaDataStreamString.cs" />
+    <Compile Include="Header\Net\MetaDataStreamUs.cs" />
+    <Compile Include="Header\Net\MetaDataTablesHdr.cs" />
+    <Compile Include="Header\Net\MetaDataTables\AbstractTable.cs" />
+    <Compile Include="Header\Net\MetaDataTables\Assembly.cs" />
+    <Compile Include="Header\Net\MetaDataTables\AssemblyOS.cs" />
+    <Compile Include="Header\Net\MetaDataTables\AssemblyProcessor.cs" />
+    <Compile Include="Header\Net\MetaDataTables\AssemblyRef.cs" />
+    <Compile Include="Header\Net\MetaDataTables\AssemblyRefOS.cs" />
+    <Compile Include="Header\Net\MetaDataTables\AssemblyRefProcessor.cs" />
+    <Compile Include="Header\Net\MetaDataTables\ClassLayout.cs" />
+    <Compile Include="Header\Net\MetaDataTables\Constant.cs" />
+    <Compile Include="Header\Net\MetaDataTables\CustomAttribute.cs" />
+    <Compile Include="Header\Net\MetaDataTables\DeclSecurity.cs" />
+    <Compile Include="Header\Net\MetaDataTables\Event.cs" />
+    <Compile Include="Header\Net\MetaDataTables\EventMap.cs" />
+    <Compile Include="Header\Net\MetaDataTables\ExportedType.cs" />
+    <Compile Include="Header\Net\MetaDataTables\Field.cs" />
+    <Compile Include="Header\Net\MetaDataTables\FieldLayout.cs" />
+    <Compile Include="Header\Net\MetaDataTables\FieldMarshal.cs" />
+    <Compile Include="Header\Net\MetaDataTables\FieldRVA.cs" />
+    <Compile Include="Header\Net\MetaDataTables\File.cs" />
+    <Compile Include="Header\Net\MetaDataTables\GenericParam.cs" />
+    <Compile Include="Header\Net\MetaDataTables\GenericParamConstraint.cs" />
+    <Compile Include="Header\Net\MetaDataTables\ImplMap.cs" />
+    <Compile Include="Header\Net\MetaDataTables\InterfaceImpl.cs" />
+    <Compile Include="Header\Net\MetaDataTables\ManifestResource.cs" />
+    <Compile Include="Header\Net\MetaDataTables\MemberRef.cs" />
+    <Compile Include="Header\Net\MetaDataTables\MethodDef.cs" />
+    <Compile Include="Header\Net\MetaDataTables\MethodImpl.cs" />
+    <Compile Include="Header\Net\MetaDataTables\MethodSemantics.cs" />
+    <Compile Include="Header\Net\MetaDataTables\Module.cs" />
+    <Compile Include="Header\Net\MetaDataTables\ModuleRef.cs" />
+    <Compile Include="Header\Net\MetaDataTables\NestedClass.cs" />
+    <Compile Include="Header\Net\MetaDataTables\Param.cs" />
+    <Compile Include="Header\Net\MetaDataTables\Property.cs" />
+    <Compile Include="Header\Net\MetaDataTables\PropertyMap.cs" />
+    <Compile Include="Header\Net\MetaDataTables\StandAloneSig.cs" />
+    <Compile Include="Header\Net\MetaDataTables\Tables.cs" />
+    <Compile Include="Header\Net\MetaDataTables\TypeDef.cs" />
+    <Compile Include="Header\Net\MetaDataTables\TypeRef.cs" />
+    <Compile Include="Header\Net\MetaDataTables\TypeSpec.cs" />
+    <Compile Include="Header\Net\NetGuids.cs" />
+    <Compile Include="Header\Pe\Copyright.cs" />
+    <Compile Include="Header\Pe\ExportFunction.cs" />
+    <Compile Include="Header\Pe\ImageBaseRelocation.cs" />
+    <Compile Include="Header\Pe\ImageBoundImportDescriptor.cs" />
+    <Compile Include="Header\Pe\ImageCor20Header.cs" />
+    <Compile Include="Header\Pe\ImageDataDirectory.cs" />
+    <Compile Include="Header\Pe\ImageDebugDirectory.cs" />
+    <Compile Include="Header\Pe\ImageDelayImportDescriptor.cs" />
+    <Compile Include="Header\Pe\ImageDosHeader.cs" />
+    <Compile Include="Header\Pe\ImageExportDirectory.cs" />
+    <Compile Include="Header\Pe\ImageFileHeader.cs" />
+    <Compile Include="Header\Pe\ImageImportByName.cs" />
+    <Compile Include="Header\Pe\ImageImportDescriptor.cs" />
+    <Compile Include="Header\Pe\ImageLoadConfigDirectory.cs" />
+    <Compile Include="Header\Pe\ImageNtHeaders.cs" />
+    <Compile Include="Header\Pe\ImageOptionalHeader.cs" />
+    <Compile Include="Header\Pe\ImageResourceDataEntry.cs" />
+    <Compile Include="Header\Pe\ImageResourceDirectory.cs" />
+    <Compile Include="Header\Pe\ImageResourceDirectoryEntry.cs" />
+    <Compile Include="Header\Pe\ImageResourceDirStringU.cs" />
+    <Compile Include="Header\Pe\ImageSectionHeader.cs" />
+    <Compile Include="Header\Pe\ImageThunkData.cs" />
+    <Compile Include="Header\Pe\ImageTlsCallback.cs" />
+    <Compile Include="Header\Pe\ImageTlsDirectory.cs" />
+    <Compile Include="Header\Pe\ImportFunction.cs" />
+    <Compile Include="Header\Pe\RuntimeFunction.cs" />
+    <Compile Include="Header\Pe\UnwindCode.cs" />
+    <Compile Include="Header\Pe\UnwindInfo.cs" />
+    <Compile Include="Header\Pe\WinCertificate.cs" />
+    <Compile Include="Header\Resource\CvInfoPdb70.cs" />
+    <Compile Include="Header\Resource\Resources.cs" />
+    <Compile Include="Header\Resource\StringFileInfo.cs" />
+    <Compile Include="Header\Resource\StringTable.cs" />
+    <Compile Include="Header\Resource\TString.cs" />
+    <Compile Include="Header\Resource\Var.cs" />
+    <Compile Include="Header\Resource\VarFileInfo.cs" />
+    <Compile Include="Header\Resource\VsFixedFileInfo.cs" />
+    <Compile Include="Header\Resource\VsVersionInfo.cs" />
+    <Compile Include="PeFile.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="PeNet.snk" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
