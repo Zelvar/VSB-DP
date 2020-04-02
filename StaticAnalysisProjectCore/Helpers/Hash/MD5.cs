@@ -18,5 +18,16 @@ namespace StaticAnalysisProject.Helpers.Hash
 
             return sb.ToString();
         }
+
+        public string GetHash(byte[] file)
+        {
+            StringBuilder sb = new StringBuilder();
+            using (var md5 = System.Security.Cryptography.MD5.Create())
+            {
+                foreach (byte b in md5.ComputeHash(file)) sb.AppendFormat("{0:x2}", b);
+            }
+
+            return sb.ToString();
+        }
     }
 }

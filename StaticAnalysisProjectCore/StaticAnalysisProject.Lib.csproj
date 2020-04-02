@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>StaticAnalysisProject</RootNamespace>
-    <AssemblyName>StaticAnalysisProject</AssemblyName>
+    <AssemblyName>StaticAnalysisProject.Lib</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

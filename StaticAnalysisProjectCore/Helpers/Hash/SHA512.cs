@@ -8,12 +8,23 @@ namespace StaticAnalysisProject.Helpers.Hash
         public string GetHash(string filePath)
         {
             StringBuilder sb = new StringBuilder();
-            using (var md5 = System.Security.Cryptography.SHA512.Create())
+            using (var sha512 = System.Security.Cryptography.SHA512.Create())
             {
                 using (var stream = File.OpenRead(filePath))
                 {
-                    foreach (byte b in md5.ComputeHash(stream)) sb.AppendFormat("{0:x2}", b);
+                    foreach (byte b in sha512.ComputeHash(stream)) sb.AppendFormat("{0:x2}", b);
                 }
+            }
+
+            return sb.ToString();
+        }
+
+        public string GetHash(byte[] file)
+        {
+            StringBuilder sb = new StringBuilder();
+            using (var sha512 = System.Security.Cryptography.SHA512.Create())
+            {
+                foreach (byte b in sha512.ComputeHash(file)) sb.AppendFormat("{0:x2}", b);
             }
 
             return sb.ToString();

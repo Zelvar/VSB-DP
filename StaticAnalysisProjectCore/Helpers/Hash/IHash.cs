@@ -6,5 +6,6 @@ namespace StaticAnalysisProject.Helpers.Hash
 {
     interface IHash{
         string GetHash(string filePath);
+        string GetHash(byte[] file);
     }
 }

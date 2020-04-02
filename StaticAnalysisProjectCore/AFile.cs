@@ -1,11 +1,8 @@
 ﻿using System.IO;
-using StaticAnalysisProject.Classes;
-using StaticAnalysisProject.Modules;
-using StaticAnalysisProject.Output;
-using StaticAnalysisProject.Helpers.Hash;
-using System.Diagnostics;
 using System;
 using System.Collections.Generic;
+
+using StaticAnalysisProject.Modules;
 
 namespace StaticAnalysisProject
 {
@@ -14,31 +11,19 @@ namespace StaticAnalysisProject
         private string filePath = null;
         private byte[] fileLoaded = null;
 
+        private Hashes hashesInstance = null;
+
         /// <summary>
-        /// 
+        /// Constructor that load file
         /// </summary>
         /// <param name="filePath">File path for analysis</param>
-        public AFile(string filePath)
+        public AFile(string filePath) : this(File.ReadAllBytes(filePath))
         {
             this.filePath = filePath;
-
-            if (File.Exists(filePath)) //Check if file exists on HDD
-            {
-                fileLoaded = File.ReadAllBytes(filePath);
-            } else {
-                throw new Exception("File not found");
-            }
-
-            if(fileLoaded.Length < 0 && fileLoaded != null) //Check if file is not empty
-            {
-
-            } else {
-                throw new Exception("File is empty");
-            }
         }
 
         /// <summary>
-        /// 
+        /// Constructur that load byte array of file
         /// </summary>
         /// <param name="file">File </param>
         public AFile(byte[] file)
@@ -50,13 +35,12 @@ namespace StaticAnalysisProject
             }
         }
 
-
         public IDictionary<string, string> GetHashes()
         {
-            new Hashes(this.fileLoaded);
+            if(hashesInstance == null)
+                hashesInstance = new Hashes(this.fileLoaded);
 
-
-            return null;
+            return hashesInstance.GetHashes();
         }
 
     }
