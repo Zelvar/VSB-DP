@@ -25,5 +25,19 @@ namespace StaticAnalysisProject.Helpers
                 sb.AppendFormat("{0}: {1}\n", elm.Key, elm.Value);
             return sb.ToString();
         }
+
+        public static IDictionary<string, IList<string>> AddToListValue(this IDictionary<string, IList<string>> dict, string key, string value)
+        {
+            IList<string> existingKey = null;
+
+            if (!dict.TryGetValue(key, out existingKey))
+            {
+                existingKey = dict[key] = new List<string>();
+            }
+
+            existingKey.Add(value);
+
+            return dict;
+        }
     }
 }

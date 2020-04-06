@@ -13,6 +13,7 @@ namespace DP.Tests
             Console.Write(new Hashes(File.ReadAllBytes(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\App.exe")).ToString());
             Console.WriteLine();
             Console.Write(new PE(@"D:\SW\Arduino\Arduino.exe").ToString());
+            Console.Write(new PE(@"E:\SW\RadioDJv2\bass.dll").ToString());
 
         }
     }

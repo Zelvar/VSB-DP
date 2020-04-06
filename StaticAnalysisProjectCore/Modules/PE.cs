@@ -3,6 +3,7 @@ using PeNet;
 using PeNet.Header;
 using PeNet.Header.Pe;
 using StaticAnalysisProject.Helpers;
+using StaticAnalysisProject.Modules.Subclasses;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,10 +16,22 @@ namespace StaticAnalysisProject.Modules
 {
     public class PE : IModul
     {
-        private string filename = null;
-        private byte[] file = null;
+        #region DATA
+        private string _filename = null;
+        private byte[] _file = null;
 
-        private PeFile pefile = null;
+        //private IDictionary<string, IList<string>> _imports = new Dictionary<string, IList<string>>();  
+        private HashSet<ImportLibrary> _imports = new HashSet<ImportLibrary>();
+        private HashSet<string> _exports = new HashSet<string>();
+        private HashSet<string> _directories = new HashSet<string>();
+        private IDictionary<
+            uint, Tuple<string, uint, IList<string>>> _sections = new Dictionary<uint, Tuple<string, uint, IList<string>>>();
+
+        /// <summary>
+        /// Interface that workin with loaded PE file
+        /// </summary>
+        private PeFile _pefile = null;
+        #endregion
 
         #region Default props
         public string GetModulDescription() => "";
@@ -26,91 +39,175 @@ namespace StaticAnalysisProject.Modules
         public string GetModulName() => "PE Analysis";
         #endregion
         #region Constructors
-        public PE(string filename) 
-            : this(File.ReadAllBytes(filename))
+        public PE(string _filename) 
+            : this(File.ReadAllBytes(_filename))
         {
-            this.filename = filename;
+            this._filename = _filename;
         }
 
         public PE(byte[] file)
         {
-            this.file = file;
-            this.pefile = new PeFile(file);
+            this._file = file;
+            this._pefile = new PeFile(file);
+
+            LoadImports();      //Load list of imports
+            LoadExports();      //Load list of exports
+            LoadDirectories();  //Load list of directories
+            LoadSections();     //Import sections
         }
         #endregion
         #region Getters
-        public long GetFileSize() => pefile.FileSize;
+        /// <summary>
+        /// Returns size of the file
+        /// </summary>
+        public long GetFileSize() => _pefile.FileSize;
 
-        public ulong GetImageBase() => pefile.ImageNtHeaders.OptionalHeader.ImageBase;
-        public uint GetEntryPoint() => pefile.ImageNtHeaders.OptionalHeader.AddressOfEntryPoint;
+        /// <summary>
+        /// Image base of file
+        /// </summary>
+        public ulong GetImageBase() => _pefile.ImageNtHeaders.OptionalHeader.ImageBase;
 
-        public string GetImportHash() => pefile.ImpHash;
+        /// <summary>
+        /// Entry point of the file
+        /// </summary>
+        public uint GetEntryPoint() => _pefile.ImageNtHeaders.OptionalHeader.AddressOfEntryPoint;
 
-        public uint GetTimeDateStamp() => pefile.ImageNtHeaders.FileHeader.TimeDateStamp;
+        /// <summary>
+        /// Calculated has of imports
+        /// </summary>
+        public string GetImportHash() => _pefile.ImpHash;
 
+        /// <summary>
+        /// Original time stamp from PE file 
+        /// </summary>
+        public uint GetTimeDateStamp() => _pefile.ImageNtHeaders.FileHeader.TimeDateStamp;
+
+        /// <summary>
+        /// Convert time stamp to .NET DateTime
+        /// </summary>
         public DateTime GetDateTime() {
             DateTime returnValue = new DateTime(1970, 1, 1, 0, 0, 0);
-            returnValue = returnValue.AddSeconds(pefile.ImageNtHeaders.FileHeader.TimeDateStamp);
+            returnValue = returnValue.AddSeconds(_pefile.ImageNtHeaders.FileHeader.TimeDateStamp);
             returnValue += TimeZoneInfo.Local.GetUtcOffset(returnValue);
 
             return returnValue;
         }
 
-        public string GetMachine() => pefile.ImageNtHeaders.FileHeader.Machine.ToString();
+        /// <summary>
+        /// Returns type of cpu that is file intended for.
+        /// </summary>
+        public string GetMachine() => _pefile.ImageNtHeaders.FileHeader.Machine.ToString();
 
-        public string GetFileName() => (filename == null) ? "" : filename;
+        /// <summary>
+        /// Returns _filename if file was loaded by this class
+        /// </summary>
+        public string Get_filename() => (_filename == null) ? "" : _filename;
 
-        public bool IsDll() => pefile.IsDll;
-        public bool IsExe() => pefile.IsExe;
-        public bool IsDriver() => pefile.IsDriver;
-        public bool Is32b() => pefile.Is32Bit;
-        public bool Is64b() => pefile.Is64Bit;
-        public bool IsDotNet() => pefile.IsDotNet;
+        /// <summary>
+        /// Dll boolean flag
+        /// </summary>
+        public bool IsDll() => _pefile.IsDll;
 
-        public IList<string> GetSections()
+        /// <summary>
+        /// Executable boolean flag
+        /// </summary>
+        public bool IsExe() => _pefile.IsExe;
+
+        /// <summary>
+        /// Driver boolean flag
+        /// </summary>
+        public bool IsDriver() => _pefile.IsDriver;
+
+        /// <summary>
+        /// 32-bit platform boolean flag
+        /// </summary>
+        public bool Is32b() => _pefile.Is32Bit;
+
+        /// <summary>
+        /// 64-bit platform boolean flag
+        /// </summary>
+        public bool Is64b() => _pefile.Is64Bit;
+
+        /// <summary>
+        /// .NET boolean flag
+        /// </summary>
+        public bool IsDotNet() => _pefile.IsDotNet;
+
+        /// <summary>
+        /// Returns list of sections
+        /// </summary>
+        public IList<string> GetSections() => new List<string>(_sections.Values.Select(x => x.Item1));
+
+        /// <summary>
+        /// Returns list of imported dlls
+        /// </summary>
+        public IList<string> GetImportedDlls() => new List<string>(_imports.Keys);
+
+        /// <summary>
+        /// Returns list of exported functions
+        /// </summary>
+        public IList<string> GetExports() => _exports.ToList();
+
+        /// <summary>
+        /// Returns list of used data directories
+        /// </summary>
+        public IList<string> GetDirectories() => _directories.ToList();
+        #endregion
+
+        #region Other functions
+        /// <summary>
+        /// Load imports DLL and functions
+        /// </summary>
+        private void LoadImports()
         {
-            IList<string> sections = new List<string>();
-            foreach (var section in pefile.ImageSectionHeaders) {
-                sections.Add(section.Name);
-            }
-
-            return sections;
-        }
-
-        public IList<string> GetImportedDlls()
-        {
-            HashSet<string> imports = new HashSet<string>();
-            if(pefile.ImportedFunctions != null)
-                foreach (var import in pefile.ImportedFunctions)
+            if (_pefile.ImportedFunctions != null)
+                foreach (var import in _pefile.ImportedFunctions)
                 {
-                    imports.Add(import.DLL.ToString());
+                    //_imports.AddToListValue(import.DLL.ToString(), import.Name.ToString());
+                    //new ImportLibrary(import);
                 }
-
-            return imports.ToList();
         }
 
-        public IList<string> GetExports()
+        /// <summary>
+        /// Load exports of PE file
+        /// </summary>
+        private void LoadExports()
         {
-            HashSet<string> exports = new HashSet<string>();
-            if (pefile.ExportedFunctions != null)
-                foreach (var export in pefile.ExportedFunctions)
+            if (_pefile.ExportedFunctions != null)
+                foreach (var export in _pefile.ExportedFunctions)
                 {
-                    exports.Add(export.Name.ToString());
+                    _exports.Add(export.Name.ToString());
                 }
-
-            return exports.ToList();
         }
 
-        public IList<string> GetDirectories()
+        /// <summary>
+        /// List directories of PE file
+        /// </summary>
+        private void LoadDirectories()
         {
-            IList<string> directories = new List<string>();
-            for(int i = 0; i < pefile.ImageNtHeaders.OptionalHeader.DataDirectory.Length; i++)
+            for (int i = 0; i < _pefile.ImageNtHeaders.OptionalHeader.DataDirectory.Length; i++)
             {
-                if(pefile.ImageNtHeaders.OptionalHeader.DataDirectory[i].Size != 0)
-                    directories.Add(Enum.GetName(typeof(DataDirectoryType), i));
+                if (_pefile.ImageNtHeaders.OptionalHeader.DataDirectory[i].Size != 0)
+                    _directories.Add(Enum.GetName(typeof(DataDirectoryType), i));
             }
+        }
 
-            return directories;
+        /// <summary>
+        /// Load sections of PE file
+        /// </summary>
+        private void LoadSections()
+        {
+            foreach (var section in _pefile.ImageSectionHeaders)
+            {
+                _sections.Add(
+                    section.VirtualAddress, 
+                    new Tuple<string, uint, IList<string>>(
+                        section.Name != "" ? section.Name.ToString() : string.Format("N/A"),
+                        section.VirtualSize, 
+                        section.CharacteristicsResolved
+                    )
+                );
+            }
         }
         #endregion
 
