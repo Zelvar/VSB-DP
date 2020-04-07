@@ -1,11 +1,12 @@
 ﻿using PeNet.Header.Pe;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace StaticAnalysisProject.Modules.Subclasses
 {
-    class ImportLibrary
+    class ImportLibrary : IPESubclass
     {
         /// <summary>
         /// List of imported functions
@@ -13,9 +14,9 @@ namespace StaticAnalysisProject.Modules.Subclasses
         private IList<ImportFunction> _importFunction = new List<ImportFunction>();
 
         /// <summary>
-        /// DLL name
+        /// Library name
         /// </summary>
-        public string DLL { get; private set; }
+        public string Name { get; private set; }
 
         /// <summary>
         /// List of used functions
@@ -23,7 +24,7 @@ namespace StaticAnalysisProject.Modules.Subclasses
         public IList<string> Functions { get; private set; }
 
         public ImportLibrary( string name , IList<string> list = null) {
-            this.DLL = name;
+            this.Name = name;
             this.Functions = (list != null ? list : new List<string>());
         }
 
@@ -44,8 +45,28 @@ namespace StaticAnalysisProject.Modules.Subclasses
         }
 
         /// <summary>
-        /// Returns DLL name
+        /// Returns Name of library
         /// </summary>
-        public string ToString() => DLL.ToString();
+        public override string ToString() => Name.ToString();
+
+        /// <summary>
+        /// Override default method GetHashCode
+        /// </summary>
+        public override int GetHashCode()
+        {
+            return BitConverter.ToInt32(
+                SHA256.Create().ComputeHash(
+                    Encoding.UTF8.GetBytes(this.Name)
+                    ),
+                0);
+        }
+
+        /// <summary>
+        /// Check if library exists
+        /// </summary>
+        public override bool Equals(object obj)
+        {
+            return this.Name.Equals(((ImportLibrary)obj).Name);
+        }
     }
 }

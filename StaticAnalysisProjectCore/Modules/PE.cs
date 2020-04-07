@@ -20,12 +20,10 @@ namespace StaticAnalysisProject.Modules
         private string _filename = null;
         private byte[] _file = null;
 
-        //private IDictionary<string, IList<string>> _imports = new Dictionary<string, IList<string>>();  
         private HashSet<ImportLibrary> _imports = new HashSet<ImportLibrary>();
-        private HashSet<string> _exports = new HashSet<string>();
-        private HashSet<string> _directories = new HashSet<string>();
-        private IDictionary<
-            uint, Tuple<string, uint, IList<string>>> _sections = new Dictionary<uint, Tuple<string, uint, IList<string>>>();
+        private HashSet<Section> _sections = new HashSet<Section>();
+        private HashSet<Export> _exports = new HashSet<Export>();
+        private HashSet<Subclasses.Directory> _directories = new HashSet<Subclasses.Directory>();
 
         /// <summary>
         /// Interface that workin with loaded PE file
@@ -136,22 +134,22 @@ namespace StaticAnalysisProject.Modules
         /// <summary>
         /// Returns list of sections
         /// </summary>
-        public IList<string> GetSections() => new List<string>(_sections.Values.Select(x => x.Item1));
+        public IList<string> GetSections() => _sections.GetList();
 
         /// <summary>
         /// Returns list of imported dlls
         /// </summary>
-        public IList<string> GetImportedDlls() => new List<string>(_imports.Keys);
+        public IList<string> GetImportedDlls() => _imports.GetList();
 
         /// <summary>
         /// Returns list of exported functions
         /// </summary>
-        public IList<string> GetExports() => _exports.ToList();
+        public IList<string> GetExports() => _exports.GetList();
 
         /// <summary>
         /// Returns list of used data directories
         /// </summary>
-        public IList<string> GetDirectories() => _directories.ToList();
+        public IList<string> GetDirectories() => _directories.GetList();
         #endregion
 
         #region Other functions
@@ -163,8 +161,20 @@ namespace StaticAnalysisProject.Modules
             if (_pefile.ImportedFunctions != null)
                 foreach (var import in _pefile.ImportedFunctions)
                 {
-                    //_imports.AddToListValue(import.DLL.ToString(), import.Name.ToString());
-                    //new ImportLibrary(import);
+                    if(!_imports.Contains(new ImportLibrary(import.DLL)))
+                    {
+                        var list = new List<string>();
+                        list.Add(import.Name);
+                        _imports.Add(new ImportLibrary(import.DLL, list));
+                    }
+                    else
+                    {
+                        ImportLibrary val;
+                        if(_imports.TryGetValue(new ImportLibrary(import.DLL), out val))
+                        {
+                            val.Functions.Add(import.Name);
+                        }
+                    }
                 }
         }
 
@@ -176,7 +186,7 @@ namespace StaticAnalysisProject.Modules
             if (_pefile.ExportedFunctions != null)
                 foreach (var export in _pefile.ExportedFunctions)
                 {
-                    _exports.Add(export.Name.ToString());
+                    _exports.Add(new Export(export));
                 }
         }
 
@@ -187,8 +197,13 @@ namespace StaticAnalysisProject.Modules
         {
             for (int i = 0; i < _pefile.ImageNtHeaders.OptionalHeader.DataDirectory.Length; i++)
             {
-                if (_pefile.ImageNtHeaders.OptionalHeader.DataDirectory[i].Size != 0)
-                    _directories.Add(Enum.GetName(typeof(DataDirectoryType), i));
+                if(_pefile.ImageNtHeaders.OptionalHeader.DataDirectory[i].Size != 0)
+                    _directories.Add(
+                        new Subclasses.Directory(
+                            _pefile.ImageNtHeaders.OptionalHeader.DataDirectory[i],
+                            (DataDirectoryType)i
+                        )
+                     );
             }
         }
 
@@ -199,14 +214,7 @@ namespace StaticAnalysisProject.Modules
         {
             foreach (var section in _pefile.ImageSectionHeaders)
             {
-                _sections.Add(
-                    section.VirtualAddress, 
-                    new Tuple<string, uint, IList<string>>(
-                        section.Name != "" ? section.Name.ToString() : string.Format("N/A"),
-                        section.VirtualSize, 
-                        section.CharacteristicsResolved
-                    )
-                );
+                _sections.Add(new Section(section));
             }
         }
         #endregion
