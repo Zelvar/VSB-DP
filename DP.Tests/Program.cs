@@ -32,11 +32,11 @@ namespace DP.Tests
         static void Main(string[] args)
         {
             //var a = new AFile(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\App.exe");
-            Console.Write(new Hashes(File.ReadAllBytes(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\App.exe")).ToString());
-            Console.WriteLine();
-            Console.Write(new PE(@"D:\SW\Arduino\Arduino.exe").ToString());
-            Console.WriteLine();
-            Console.Write(new PE(@"E:\SW\RadioDJv2\bass.dll").ToString());
+            //Console.Write(new Hashes(File.ReadAllBytes(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\App.exe")).ToString());
+            //Console.WriteLine();
+            //Console.Write(new PE(@"D:\SW\Arduino\Arduino.exe").ToString());
+            //Console.WriteLine();
+            //Console.Write(new PE(@"E:\SW\RadioDJv2\bass.dll").ToString());
 
             /*HashSet<A> abc = new HashSet<A>();
             var a = new A();
@@ -54,6 +54,12 @@ namespace DP.Tests
                 Console.WriteLine("{0} {1}", obj.GetHashCode(), obj.Name);
             
             }*/
+
+            //////////////////////////////////////////////
+
+            //new Strings(@"D:\SW\Arduino\Arduino.exe");
+            new Strings(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\App.exe");
+
         }
     }
 }
