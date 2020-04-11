@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -8,7 +7,6 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using StaticAnalysisProject.Helpers;
-using StaticAnalysisProject.Modules.Subclasses;
 
 namespace StaticAnalysisProject.Modules
 {
@@ -75,6 +73,8 @@ namespace StaticAnalysisProject.Modules
         #endregion
         public override string ToString()
         {
+            ///OUTPUT TODO
+
             return this.ConvertToString(this._rawFile);
         }
 
