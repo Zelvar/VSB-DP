@@ -58,8 +58,48 @@ namespace DP.Tests
             //////////////////////////////////////////////
 
             //new Strings(@"D:\SW\Arduino\Arduino.exe");
-            new Strings(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\App.exe");
+            //var a = new Strings(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\App.exe");
+            var a = new Strings(@"D:\SW\Arduino\Arduino.exe");
 
+            //Console.WriteLine(a.ContainsIP("10.0.0.1"));
+            //Console.WriteLine(a.ContainsIP("FFFF::"));
+            //Console.WriteLine(a.ContainsIP("10.A.0.1"));
+            //Console.WriteLine(a.ContainsIP("10.0.0.1"));
+            //Console.WriteLine(a.ContainsIP("FFFF::"));
+
+            //Console.WriteLine(a.ContainsURL("http://10.A.0.1"));
+            //Console.WriteLine(a.ContainsURL("http://blabla.com"));
+
+            //Console.WriteLine(a.ContainsEmail("tralala zelvar@zelvar.cz"));
+
+            //Console.WriteLine(a.ContainsFileName("soubor.dll"));
+            //Console.WriteLine(a.ContainsFileName("Tralala soubor.rar"));
+            //Console.WriteLine(a.ContainsFileName("Tralala"));
+
+            foreach (var ip in a.ExtractIP())
+            {
+                Console.WriteLine("IP: {0}", ip.ToString());
+            }
+            
+            foreach (var mail in a.ExtractMail())
+            {
+                Console.WriteLine("Mail: {0}", mail.ToString());
+            }
+            
+            foreach (var url in a.ExtractURL())
+            {
+                Console.WriteLine("Url: {0}", url.ToString());
+            }
+
+            foreach (var file in a.ExtractFiles())
+            {
+                Console.WriteLine("File: {0}", file.ToString());
+            }
+
+            foreach (var file in a.ExtractKnownMethods())
+            {
+                Console.WriteLine("Known methods: {0}", file.ToString());
+            }
         }
     }
 }
