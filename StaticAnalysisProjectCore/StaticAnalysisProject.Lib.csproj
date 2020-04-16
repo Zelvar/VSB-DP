@@ -21,8 +21,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="dnYara" Version="1.0.3.4" />
     <PackageReference Include="PeNet" Version="2.0.0" />
     <PackageReference Include="VirusTotalNet" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Data\Yara\antidebug_antivm.yara">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\Yara\packer.yara">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

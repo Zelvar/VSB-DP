@@ -151,7 +151,6 @@ namespace StaticAnalysisProject.Modules
         /// </summary>
         public IList<string> GetDirectories() => _directories.GetList();
         #endregion
-
         #region Other functions
         /// <summary>
         /// Load imports DLL and functions
@@ -219,7 +218,10 @@ namespace StaticAnalysisProject.Modules
         }
         #endregion
 
-        public string ToString()
+        /// <summary>
+        /// Overrided ToString method to get report simply
+        /// </summary>
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
 

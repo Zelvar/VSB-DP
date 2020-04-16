@@ -10,8 +10,9 @@ using StaticAnalysisProject.Helpers;
 
 namespace StaticAnalysisProject.Modules
 {
+    #region Regex attributes for String analysis
     //Static data holding regex attributes
-    public static class StringRegex
+    internal static class StringRegex
     {
         //IP addresses
         //IPV4 regex source: https://ipregex.com/ https://stackoverflow.com/questions/4890789/regex-for-an-ip-address
@@ -25,7 +26,7 @@ namespace StaticAnalysisProject.Modules
         //URL regex source: https://urlregex.com/
         public const string Url = @"((smb)|(ssh)|(file)|(ht|f)tp(s?))\:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&%\$#_]*)?";
     }
-
+    #endregion
     public class Strings : IModul
     {
         /// <summary>
@@ -38,8 +39,7 @@ namespace StaticAnalysisProject.Modules
         /// - Filter non asci characters - https://gist.githubusercontent.com/splorp/5177956/raw/84486959671c265ce25cf9ed6fb6da1a10302e88/ascii.txt - DONE
         /// </summary>
 
-
-        #region VARIABLES
+        #region DATA
         //Settings
         private const uint MIN_LENGTH = 3;
         private const string READABLE_ASCII_CHARS = "!\"#$%&()*+'-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„…†‡ˆ‰Š‹ŒŽ“”•–—˜™š›œžŸ¡¢£¤¥¦§¨©ª«¬®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ\t\n\r ";
@@ -65,19 +65,14 @@ namespace StaticAnalysisProject.Modules
         private IList<string> _mails = null;
         private IList<string> _files = null;
         private IList<string> _knownmethods = null;
+        private string _filteredstring = "";
         #endregion
         #region Default props
         public string GetModulDescription() => "Loads and filter strings of executable file";
 
         public string GetModulName() => "Strings";
         #endregion
-        public override string ToString()
-        {
-            ///OUTPUT TODO
-
-            return this.ConvertToString(this._rawFile);
-        }
-
+        #region Helpers
         /// <summary>
         /// Converts byte array to UTF8 string
         /// </summary>
@@ -85,7 +80,7 @@ namespace StaticAnalysisProject.Modules
         {
             return string.Format("{0}", Encoding.UTF8.GetString(file, 0, file.Length));
         }
-
+        #endregion
         #region Search for important content
         /// <summary>
         /// Loads file extensions from json file
@@ -299,6 +294,7 @@ namespace StaticAnalysisProject.Modules
             this._rawFile = fileArray;
             List<byte[]> separetedFile = new List<byte[]>();
             _rawFileString = ConvertToString(_rawFile);
+            StringBuilder sb = new StringBuilder();
 
             //First basic analysis
             foreach (var item in _rawFile.Split(new byte[] { 0 }))
@@ -324,6 +320,7 @@ namespace StaticAnalysisProject.Modules
                     if (add)
                     {
                         separetedFile.Add(item);
+                        sb.AppendLine(ConvertToString(item));
                     }
                 }
             }
@@ -335,7 +332,138 @@ namespace StaticAnalysisProject.Modules
             this._mails = this.ExtractMail();
             this._urls = this.ExtractURL();
             this._knownmethods = this.ExtractKnownMethods();
+            this._filteredstring = sb.ToString();
         }
         #endregion
+        #region Getters
+        /// <summary>
+        /// Getter for list of found IPs
+        /// </summary>
+        /// <returns></returns>
+        public IList<string> GetIPs()
+        {
+            if (_ips == null) _ips = this.ExtractIP();
+
+            return this._ips;
+        }
+
+        /// <summary>
+        /// Getter for list of found URL addresses
+        /// </summary>
+        public IList<string> GetURLs()
+        {
+            if (_urls == null) _urls = this.ExtractURL();
+
+            return this._urls;
+        }
+
+        /// <summary>
+        /// Getter for list of found mails
+        /// </summary>
+        public IList<string> GetMails()
+        {
+            if (_mails == null) _mails = this.ExtractMail();
+
+            return this._mails;
+        }
+
+        /// <summary>
+        /// Getter for list of found files
+        /// </summary>
+        public IList<string> GetFiles()
+        {
+            if (_files == null) _files = this.ExtractFiles();
+
+            return this._files;
+
+        }
+
+        /// <summary>
+        /// Getter for list of used known methods
+        /// </summary>
+        public IList<string> GetKnownMethods()
+        {
+            if (_knownmethods == null) _knownmethods = this.ExtractKnownMethods();
+
+            return this._knownmethods;
+        }
+
+        /// <summary>
+        /// Getter for filtred string
+        /// </summary>
+        public string GetFilteredString() => _filteredstring;
+        #endregion
+
+        /// <summary>
+        /// Overrided ToString method to get report simply
+        /// </summary>
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            //List of IPs
+            if (this.GetIPs() != null 
+                && this.GetIPs().Count > 0)
+            {
+                sb.AppendLine("Found IP addreses:");
+                foreach (var ip in this.GetIPs())
+                {
+                    sb.AppendLine(string.Format("IP: {0}", ip.ToString()));
+                }
+            }
+
+            //List of Mails
+            if (this.GetMails() != null 
+                && this.GetMails().Count > 0)
+            {
+                sb.AppendLine("Found mail addreses:");
+                foreach (var mail in this.GetMails())
+                {
+                    sb.AppendLine(string.Format("Mail: {0}", mail.ToString()));
+                }
+            }
+
+            //List of URLs
+            if (this.GetURLs() != null 
+                && this.GetURLs().Count > 0)
+            {
+                sb.AppendLine("Found url addreses:");
+                foreach (var url in this.GetURLs())
+                {
+                    sb.AppendLine(string.Format("Url: {0}", url.ToString()));
+                }
+            }
+
+            //List of files
+            if (this.GetFiles() != null 
+                && this.GetFiles().Count > 0)
+            {
+                sb.AppendLine("Found files:");
+                foreach (var file in this.GetFiles())
+                {
+                    sb.AppendLine(string.Format("File: {0}", file.ToString()));
+                }
+            }
+
+            //List of known methhods
+            if (this.GetKnownMethods() != null 
+                && this.GetKnownMethods().Count > 0)
+            {
+                sb.AppendLine("Found known methods:");
+                foreach (var file in this.GetKnownMethods())
+                {
+                    sb.AppendLine(string.Format("Known methods: {0}", file.ToString()));
+                }
+            }
+
+            //Filtered string
+            if(this.GetFilteredString() != "")
+            {
+                sb.AppendLine("Filtered string:");
+                sb.AppendLine(this.GetFilteredString());
+            }
+
+            return sb.ToString();//this.ConvertToString(this._rawFile);
+        }
     }
 }

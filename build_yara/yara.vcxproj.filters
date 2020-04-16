@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="W:\DP-Vystup\SW\DP\libs\args.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="W:\DP-Vystup\SW\DP\libs\yara.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="W:\DP-Vystup\SW\DP\libs\threading.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="W:\DP-Vystup\SW\DP\libs\args.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="W:\DP-Vystup\SW\DP\libs\common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="W:\DP-Vystup\SW\DP\libs\threading.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="W:\DP-Vystup\SW\DP\libs\cmake\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{4A1F50B4-E301-38A6-A765-393CEBA00AD2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{A646BC9E-B6EA-3958-BBD0-1B2DCCD01BE5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

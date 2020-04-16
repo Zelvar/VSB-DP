@@ -102,7 +102,10 @@ namespace DP.Tests
                 Console.WriteLine("Known methods: {0}", file.ToString());
             }*/
 
-            new VirusTotal(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\App.exe");
+            //Console.WriteLine(new VirusTotal(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\App.exe").ToString());
+            //Console.WriteLine(new Strings(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\App.exe"));
+
+            Console.WriteLine(new DetectWithYara(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\App.exe"));
         }
     }
 }

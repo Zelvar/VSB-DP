@@ -9,7 +9,7 @@ namespace StaticAnalysisProject.Modules
         public string GetModulDescription() => "Basic info about executable file";
         public string GetModulName() => "Info";
 
-        public string ToString() {
+        public override string ToString() {
             throw new NotImplementedException();
         }
     }

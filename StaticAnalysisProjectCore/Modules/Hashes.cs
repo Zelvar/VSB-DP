@@ -69,7 +69,7 @@ namespace StaticAnalysisProject.Modules
         /// <returns>Returns type of hash and calculated hash for byte array of file</returns>
         public IDictionary<string, string> GetHashes() => hashes;
 
-        public string ToString()
+        public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             foreach(var hash in this.GetHashes())

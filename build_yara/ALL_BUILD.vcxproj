@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6F0E2B0C-EE86-35C4-9F56-40C8FD098756}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="W:\DP-Vystup\SW\DP\libs\cmake\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule W:/DP-Vystup/SW/DP/libs/cmake/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SW:/DP-Vystup/SW/DP/libs/cmake -BW:/DP-Vystup/SW/DP/build_yara --check-stamp-file W:/DP-Vystup/SW/DP/build_yara/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeCInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeCommonLanguageInclude.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeGenericSystem.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeInitializeConfigs.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeLanguageInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeRCInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeSystemSpecificInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeSystemSpecificInitialize.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Compiler\MSVC-C.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\GNUInstallDirs.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC-C.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\Windows.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\WindowsPaths.cmake;W:\DP-Vystup\SW\DP\build_yara\CMakeFiles\3.16.19112601-MSVC_2\CMakeCCompiler.cmake;W:\DP-Vystup\SW\DP\build_yara\CMakeFiles\3.16.19112601-MSVC_2\CMakeRCCompiler.cmake;W:\DP-Vystup\SW\DP\build_yara\CMakeFiles\3.16.19112601-MSVC_2\CMakeSystem.cmake;W:\DP-Vystup\SW\DP\libs\cmake\libyara.cmake;W:\DP-Vystup\SW\DP\libs\cmake\yara.cmake;W:\DP-Vystup\SW\DP\libs\cmake\yara.pc.in;W:\DP-Vystup\SW\DP\libs\cmake\yarac.cmake;W:\DP-Vystup\SW\DP\libs\cmake\yaratest.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">W:\DP-Vystup\SW\DP\build_yara\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule W:/DP-Vystup/SW/DP/libs/cmake/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SW:/DP-Vystup/SW/DP/libs/cmake -BW:/DP-Vystup/SW/DP/build_yara --check-stamp-file W:/DP-Vystup/SW/DP/build_yara/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeCInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeCommonLanguageInclude.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeGenericSystem.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeInitializeConfigs.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeLanguageInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeRCInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeSystemSpecificInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeSystemSpecificInitialize.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Compiler\MSVC-C.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\GNUInstallDirs.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC-C.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\Windows.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\WindowsPaths.cmake;W:\DP-Vystup\SW\DP\build_yara\CMakeFiles\3.16.19112601-MSVC_2\CMakeCCompiler.cmake;W:\DP-Vystup\SW\DP\build_yara\CMakeFiles\3.16.19112601-MSVC_2\CMakeRCCompiler.cmake;W:\DP-Vystup\SW\DP\build_yara\CMakeFiles\3.16.19112601-MSVC_2\CMakeSystem.cmake;W:\DP-Vystup\SW\DP\libs\cmake\libyara.cmake;W:\DP-Vystup\SW\DP\libs\cmake\yara.cmake;W:\DP-Vystup\SW\DP\libs\cmake\yara.pc.in;W:\DP-Vystup\SW\DP\libs\cmake\yarac.cmake;W:\DP-Vystup\SW\DP\libs\cmake\yaratest.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">W:\DP-Vystup\SW\DP\build_yara\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule W:/DP-Vystup/SW/DP/libs/cmake/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SW:/DP-Vystup/SW/DP/libs/cmake -BW:/DP-Vystup/SW/DP/build_yara --check-stamp-file W:/DP-Vystup/SW/DP/build_yara/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeCInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeCommonLanguageInclude.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeGenericSystem.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeInitializeConfigs.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeLanguageInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeRCInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeSystemSpecificInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeSystemSpecificInitialize.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Compiler\MSVC-C.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\GNUInstallDirs.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC-C.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\Windows.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\WindowsPaths.cmake;W:\DP-Vystup\SW\DP\build_yara\CMakeFiles\3.16.19112601-MSVC_2\CMakeCCompiler.cmake;W:\DP-Vystup\SW\DP\build_yara\CMakeFiles\3.16.19112601-MSVC_2\CMakeRCCompiler.cmake;W:\DP-Vystup\SW\DP\build_yara\CMakeFiles\3.16.19112601-MSVC_2\CMakeSystem.cmake;W:\DP-Vystup\SW\DP\libs\cmake\libyara.cmake;W:\DP-Vystup\SW\DP\libs\cmake\yara.cmake;W:\DP-Vystup\SW\DP\libs\cmake\yara.pc.in;W:\DP-Vystup\SW\DP\libs\cmake\yarac.cmake;W:\DP-Vystup\SW\DP\libs\cmake\yaratest.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">W:\DP-Vystup\SW\DP\build_yara\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule W:/DP-Vystup/SW/DP/libs/cmake/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SW:/DP-Vystup/SW/DP/libs/cmake -BW:/DP-Vystup/SW/DP/build_yara --check-stamp-file W:/DP-Vystup/SW/DP/build_yara/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeCInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeCommonLanguageInclude.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeGenericSystem.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeInitializeConfigs.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeLanguageInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeRCInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeSystemSpecificInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeSystemSpecificInitialize.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Compiler\MSVC-C.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\GNUInstallDirs.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC-C.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\Windows.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\WindowsPaths.cmake;W:\DP-Vystup\SW\DP\build_yara\CMakeFiles\3.16.19112601-MSVC_2\CMakeCCompiler.cmake;W:\DP-Vystup\SW\DP\build_yara\CMakeFiles\3.16.19112601-MSVC_2\CMakeRCCompiler.cmake;W:\DP-Vystup\SW\DP\build_yara\CMakeFiles\3.16.19112601-MSVC_2\CMakeSystem.cmake;W:\DP-Vystup\SW\DP\libs\cmake\libyara.cmake;W:\DP-Vystup\SW\DP\libs\cmake\yara.cmake;W:\DP-Vystup\SW\DP\libs\cmake\yara.pc.in;W:\DP-Vystup\SW\DP\libs\cmake\yarac.cmake;W:\DP-Vystup\SW\DP\libs\cmake\yaratest.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">W:\DP-Vystup\SW\DP\build_yara\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="W:\DP-Vystup\SW\DP\build_yara\ZERO_CHECK.vcxproj">
+      <Project>{8AB86FA6-6D9E-35D0-B90F-922FC7D0DB60}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="W:\DP-Vystup\SW\DP\build_yara\alignment.vcxproj">
+      <Project>{8365BA50-49AB-3A4C-97EC-ACB1CB0A5582}</Project>
+      <Name>alignment</Name>
+    </ProjectReference>
+    <ProjectReference Include="W:\DP-Vystup\SW\DP\build_yara\api.vcxproj">
+      <Project>{8DBAECCB-B3E6-3736-A3EF-B8B8C8C9F9D4}</Project>
+      <Name>api</Name>
+    </ProjectReference>
+    <ProjectReference Include="W:\DP-Vystup\SW\DP\build_yara\atoms.vcxproj">
+      <Project>{A3886A43-3935-3E86-99E5-87D1E632E694}</Project>
+      <Name>atoms</Name>
+    </ProjectReference>
+    <ProjectReference Include="W:\DP-Vystup\SW\DP\build_yara\bitmask.vcxproj">
+      <Project>{EBC13ED6-0B83-3FB7-A6BC-9A2B48E9E716}</Project>
+      <Name>bitmask</Name>
+    </ProjectReference>
+    <ProjectReference Include="W:\DP-Vystup\SW\DP\build_yara\elf.vcxproj">
+      <Project>{CA0D0231-E728-39E6-8D3F-7DFC6CA0CC34}</Project>
+      <Name>elf</Name>
+    </ProjectReference>
+    <ProjectReference Include="W:\DP-Vystup\SW\DP\build_yara\libyara.vcxproj">
+      <Project>{CEC76E5E-FBE2-3B99-84B8-DABC234B9080}</Project>
+      <Name>libyara</Name>
+    </ProjectReference>
+    <ProjectReference Include="W:\DP-Vystup\SW\DP\build_yara\math.vcxproj">
+      <Project>{137FFAFA-00CA-31C4-B1DB-BC135AE7E48D}</Project>
+      <Name>math</Name>
+    </ProjectReference>
+    <ProjectReference Include="W:\DP-Vystup\SW\DP\build_yara\pe.vcxproj">
+      <Project>{074F9C47-0F5B-316E-B12B-581AE8DBC393}</Project>
+      <Name>pe</Name>
+    </ProjectReference>
+    <ProjectReference Include="W:\DP-Vystup\SW\DP\build_yara\stack.vcxproj">
+      <Project>{3E9B33A3-CC29-3D43-81C9-2C3BF10407D3}</Project>
+      <Name>stack</Name>
+    </ProjectReference>
+    <ProjectReference Include="W:\DP-Vystup\SW\DP\build_yara\version.vcxproj">
+      <Project>{E0B65429-AC2E-3985-A3BE-1E821462C09E}</Project>
+      <Name>version</Name>
+    </ProjectReference>
+    <ProjectReference Include="W:\DP-Vystup\SW\DP\build_yara\yara.vcxproj">
+      <Project>{5C2AC99C-6353-35A1-AB33-747DAEBB9B58}</Project>
+      <Name>yara</Name>
+    </ProjectReference>
+    <ProjectReference Include="W:\DP-Vystup\SW\DP\build_yara\yarac.vcxproj">
+      <Project>{28662F4E-E0EA-373E-B098-6F7D10D63031}</Project>
+      <Name>yarac</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
