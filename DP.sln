@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StaticAnalysisProject.Lib",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DP-Tests", "DP.Tests\DP-Tests.csproj", "{92DF56B3-E029-4271-9408-5020A4D34475}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaticAnalysisProject.Web", "StaticAnalysisProject.Web\StaticAnalysisProject.Web.csproj", "{5E1D8603-DF48-497C-A551-FC52B78BF187}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StaticAnalysisProject.Web", "StaticAnalysisProject.Web\StaticAnalysisProject.Web.csproj", "{5E1D8603-DF48-497C-A551-FC52B78BF187}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
