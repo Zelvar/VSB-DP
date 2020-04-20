@@ -6,7 +6,7 @@ using StaticAnalysisProject.Modules;
 
 namespace StaticAnalysisProject
 {
-    public class AFile
+    public class FileReport
     {
         private string filePath = null;
         private byte[] fileLoaded = null;
@@ -17,7 +17,7 @@ namespace StaticAnalysisProject
         /// Constructor that load file
         /// </summary>
         /// <param name="filePath">File path for analysis</param>
-        public AFile(string filePath) : this(File.ReadAllBytes(filePath))
+        public FileReport(string filePath) : this(File.ReadAllBytes(filePath))
         {
             this.filePath = filePath;
         }
@@ -26,7 +26,7 @@ namespace StaticAnalysisProject
         /// Constructur that load byte array of file
         /// </summary>
         /// <param name="file">File </param>
-        public AFile(byte[] file)
+        public FileReport(byte[] file)
         {
             if (file != null) {
                 fileLoaded = file;
@@ -34,6 +34,7 @@ namespace StaticAnalysisProject
                 throw new Exception("File is empty");
             }
         }
+
 
         public IDictionary<string, string> GetHashes()
         {

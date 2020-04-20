@@ -63,7 +63,7 @@ namespace StaticAnalysisProject.Modules
         {
             var task = virusTotal.GetFileReportAsync(this._file);
             task.Wait();
-            FileReport fr = task.Result;
+            VirusTotalNet.Results.FileReport fr = task.Result;
 
             if(fr.ResponseCode == FileReportResponseCode.Present) // File was allready scaned
             {

@@ -105,12 +105,13 @@ namespace DP.Tests
             //Console.WriteLine(new VirusTotal(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\App.exe").ToString());
             //Console.WriteLine(new Strings(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\App.exe"));
 
-            Console.WriteLine("%%%%%% Keylogger");
-            new DetectWithYara(@"KeyLogger.ps1");
-            Console.WriteLine("%%%%%% Ransom");
-            new DetectWithYara(@"Ransomware_Encrypt.ps1");
-            Console.WriteLine("%%%%%% Botnet");
-            new DetectWithYara(@"Botnet_Slave.ps1");
+            //Console.WriteLine("%%%%%% Keylogger");
+            //new DetectWithYara(@"KeyLogger.ps1");
+            //Console.WriteLine("%%%%%% Ransom");
+            //new DetectWithYara(@"Ransomware_Encrypt.ps1");
+            //Console.WriteLine("%%%%%% Botnet");
+            //new DetectWithYara(@"Botnet_Slave.ps1");3
+            new DetectWithYara(@"E:\Steam\steamapps\common\Grand Theft Auto V\GTA5.exe");
         }
     }
 }
