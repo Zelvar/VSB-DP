@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\dump.c">
+      <Filter>Library Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\error.c">
+      <Filter>Library Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\hashtable.c">
+      <Filter>Library Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\hashtable_seed.c">
+      <Filter>Library Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\load.c">
+      <Filter>Library Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\memory.c">
+      <Filter>Library Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\pack_unpack.c">
+      <Filter>Library Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\strbuffer.c">
+      <Filter>Library Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\strconv.c">
+      <Filter>Library Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\utf.c">
+      <Filter>Library Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\value.c">
+      <Filter>Library Sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\hashtable.h">
+      <Filter>Library Private Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\jansson_private.h">
+      <Filter>Library Private Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\strbuffer.h">
+      <Filter>Library Private Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\utf.h">
+      <Filter>Library Private Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\private_include\jansson_private_config.h">
+      <Filter>Library Private Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\include\jansson_config.h">
+      <Filter>Library Public Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\jansson.h">
+      <Filter>Library Public Headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Library Private Headers">
+      <UniqueIdentifier>{38CFD092-EA36-3FB3-8568-6789CF716FE5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library Public Headers">
+      <UniqueIdentifier>{023C166F-3D89-325A-A930-ECC322C8CB2D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Library Sources">
+      <UniqueIdentifier>{E93CC0CE-96D3-39E5-B6C2-FEC7F48AC3F3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

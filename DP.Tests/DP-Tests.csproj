@@ -6,9 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StaticAnalysisProjectCore\StaticAnalysisProject.Lib.csproj">
-      <Private>true</Private>
-    </ProjectReference>
+    <PackageReference Include="Microsoft.ML.AutoML" Version="0.16.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StaticAnalysisProject.Lib\StaticAnalysisProject.Lib.csproj" />
   </ItemGroup>
 
 </Project>

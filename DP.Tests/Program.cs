@@ -31,6 +31,7 @@ namespace DP.Tests
 
         static void Main(string[] args)
         {
+            #region TEST
             //var a = new AFile(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\App.exe");
             //Console.Write(new Hashes(File.ReadAllBytes(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\App.exe")).ToString());
             //Console.WriteLine();
@@ -112,6 +113,12 @@ namespace DP.Tests
             //Console.WriteLine("%%%%%% Botnet");
             //new DetectWithYara(@"Botnet_Slave.ps1");3
             new DetectWithYara(@"E:\Steam\steamapps\common\Grand Theft Auto V\GTA5.exe");
+
+
+
+            #endregion
+
+            new FileReport(@"E:\Steam\steamapps\common\Grand Theft Auto V\GTA5.exe");
         }
     }
 }

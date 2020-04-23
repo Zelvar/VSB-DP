@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2D6FEDF5-5064-3C20-99B7-5339D601C1BE}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>jansson</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\lib\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">jansson.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">janssonv</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\lib\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">jansson.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">janssonv</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\lib\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">jansson.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">jansson</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\lib\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">jansson.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">jansson</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\include;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\private_include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsC</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4005;4996</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;JANSSON_USING_CMAKE;HAVE_CONFIG_H;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;JANSSON_USING_CMAKE;HAVE_CONFIG_H;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\include;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\private_include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\include;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\private_include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\include;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\private_include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsC</CompileAs>
+      <DisableSpecificWarnings>4005;4996</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;JANSSON_USING_CMAKE;HAVE_CONFIG_H;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;JANSSON_USING_CMAKE;HAVE_CONFIG_H;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\include;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\private_include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\include;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\private_include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\include;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\private_include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsC</CompileAs>
+      <DisableSpecificWarnings>4005;4996</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;JANSSON_USING_CMAKE;HAVE_CONFIG_H;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;JANSSON_USING_CMAKE;HAVE_CONFIG_H;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\include;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\private_include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\include;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\private_include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\include;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\private_include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsC</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4005;4996</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;JANSSON_USING_CMAKE;HAVE_CONFIG_H;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;JANSSON_USING_CMAKE;HAVE_CONFIG_H;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\include;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\private_include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\include;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\private_include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule W:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson-prefix/src/jansson/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SW:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson-prefix/src/jansson -BW:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson-prefix/src/jansson-build --check-stamp-file W:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson-prefix/src/jansson-build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\BasicConfigVersion-ExactVersion.cmake.in;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeCInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeCommonLanguageInclude.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeGenericSystem.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeInitializeConfigs.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeLanguageInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakePackageConfigHelpers.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeRCInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeSystemSpecificInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeSystemSpecificInitialize.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CheckCSourceCompiles.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CheckFunctionExists.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CheckIncludeFile.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CheckIncludeFileCXX.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CheckIncludeFiles.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CheckTypeSize.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Compiler\MSVC-C.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC-C.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\Windows.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\WindowsPaths.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\WriteBasicConfigVersionFile.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\CMakeFiles\3.16.19112601-MSVC_2\CMakeCCompiler.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\CMakeFiles\3.16.19112601-MSVC_2\CMakeRCCompiler.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\CMakeFiles\3.16.19112601-MSVC_2\CMakeSystem.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\cmake\CheckFunctionKeywords.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\cmake\janssonConfig.cmake.in;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\cmake\jansson_config.h.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\cmake\jansson_private_config.h.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\jansson.pc.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule W:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson-prefix/src/jansson/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SW:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson-prefix/src/jansson -BW:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson-prefix/src/jansson-build --check-stamp-file W:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson-prefix/src/jansson-build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\BasicConfigVersion-ExactVersion.cmake.in;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeCInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeCommonLanguageInclude.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeGenericSystem.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeInitializeConfigs.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeLanguageInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakePackageConfigHelpers.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeRCInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeSystemSpecificInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeSystemSpecificInitialize.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CheckCSourceCompiles.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CheckFunctionExists.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CheckIncludeFile.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CheckIncludeFileCXX.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CheckIncludeFiles.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CheckTypeSize.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Compiler\MSVC-C.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC-C.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\Windows.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\WindowsPaths.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\WriteBasicConfigVersionFile.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\CMakeFiles\3.16.19112601-MSVC_2\CMakeCCompiler.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\CMakeFiles\3.16.19112601-MSVC_2\CMakeRCCompiler.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\CMakeFiles\3.16.19112601-MSVC_2\CMakeSystem.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\cmake\CheckFunctionKeywords.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\cmake\janssonConfig.cmake.in;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\cmake\jansson_config.h.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\cmake\jansson_private_config.h.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\jansson.pc.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule W:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson-prefix/src/jansson/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SW:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson-prefix/src/jansson -BW:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson-prefix/src/jansson-build --check-stamp-file W:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson-prefix/src/jansson-build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\BasicConfigVersion-ExactVersion.cmake.in;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeCInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeCommonLanguageInclude.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeGenericSystem.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeInitializeConfigs.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeLanguageInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakePackageConfigHelpers.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeRCInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeSystemSpecificInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeSystemSpecificInitialize.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CheckCSourceCompiles.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CheckFunctionExists.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CheckIncludeFile.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CheckIncludeFileCXX.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CheckIncludeFiles.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CheckTypeSize.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Compiler\MSVC-C.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC-C.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\Windows.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\WindowsPaths.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\WriteBasicConfigVersionFile.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\CMakeFiles\3.16.19112601-MSVC_2\CMakeCCompiler.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\CMakeFiles\3.16.19112601-MSVC_2\CMakeRCCompiler.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\CMakeFiles\3.16.19112601-MSVC_2\CMakeSystem.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\cmake\CheckFunctionKeywords.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\cmake\janssonConfig.cmake.in;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\cmake\jansson_config.h.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\cmake\jansson_private_config.h.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\jansson.pc.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule W:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson-prefix/src/jansson/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SW:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson-prefix/src/jansson -BW:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson-prefix/src/jansson-build --check-stamp-file W:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson-prefix/src/jansson-build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\BasicConfigVersion-ExactVersion.cmake.in;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeCInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeCommonLanguageInclude.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeGenericSystem.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeInitializeConfigs.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeLanguageInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakePackageConfigHelpers.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeRCInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeSystemSpecificInformation.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CMakeSystemSpecificInitialize.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CheckCSourceCompiles.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CheckFunctionExists.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CheckIncludeFile.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CheckIncludeFileCXX.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CheckIncludeFiles.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\CheckTypeSize.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Compiler\MSVC-C.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC-C.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\Windows-MSVC.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\Windows.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\Platform\WindowsPaths.cmake;F:\SW\Visual Studio 2019\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.16\Modules\WriteBasicConfigVersionFile.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\CMakeFiles\3.16.19112601-MSVC_2\CMakeCCompiler.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\CMakeFiles\3.16.19112601-MSVC_2\CMakeRCCompiler.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\CMakeFiles\3.16.19112601-MSVC_2\CMakeSystem.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\cmake\CheckFunctionKeywords.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\cmake\janssonConfig.cmake.in;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\cmake\jansson_config.h.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\cmake\jansson_private_config.h.cmake;W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\jansson.pc.in;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\dump.c" />
+    <ClCompile Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\error.c" />
+    <ClCompile Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\hashtable.c" />
+    <ClCompile Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\hashtable_seed.c" />
+    <ClCompile Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\load.c" />
+    <ClCompile Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\memory.c" />
+    <ClCompile Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\pack_unpack.c" />
+    <ClCompile Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\strbuffer.c" />
+    <ClCompile Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\strconv.c" />
+    <ClCompile Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\utf.c" />
+    <ClCompile Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\value.c" />
+    <ClInclude Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\hashtable.h" />
+    <ClInclude Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\jansson_private.h" />
+    <ClInclude Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\strbuffer.h" />
+    <ClInclude Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\utf.h" />
+    <ClInclude Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\private_include\jansson_private_config.h" />
+    <ClInclude Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\include\jansson_config.h" />
+    <ClInclude Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson\src\jansson.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="W:\DP-Vystup\SW\DP\libs\yara-cmake\build\jansson-prefix\src\jansson-build\ZERO_CHECK.vcxproj">
+      <Project>{28296F2D-BEFD-33BD-8DE6-15D514819274}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

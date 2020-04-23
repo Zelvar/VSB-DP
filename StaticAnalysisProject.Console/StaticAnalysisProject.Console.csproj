@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StaticAnalysisProjectCore\StaticAnalysisProject.Lib.csproj" />
+    <ProjectReference Include="..\StaticAnalysisProject.Lib\StaticAnalysisProject.Lib.csproj" />
   </ItemGroup>
 
 </Project>

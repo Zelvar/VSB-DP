@@ -10,6 +10,25 @@ namespace StaticAnalysisProject.Console
     {
         #region DATA
         private static IList<MethodInfo> _listCommands = new List<MethodInfo>();
+
+        private static string _getHelpInfo(string cmd)
+        {
+            string ret = "";
+            switch (cmd)
+            {
+                case "strings(2)": //Strings options
+                    ret = "filePath (type[all|urls|files|ips])"; 
+                    break;
+                case "hashes(2)":
+                    ret = "filePath (type[md5|sha1|sha384|sha256|sha512])";
+                    break;
+                default:
+                    break;
+            }
+
+            return ret;
+        }
+
         public static string[] commands => _listCommands
             .Select(
                 x => x.Name.ConvertMethodName()
@@ -65,17 +84,27 @@ namespace StaticAnalysisProject.Console
                 .FirstOrDefault();
 
             //IF NULL?!
-            if(cmd == null)
+            if (cmd == null)
                 System.Console.WriteLine("Error! Wrong number of parameters.");
-            else if(cmd.GetParameters().Length == command.Length - 1)
+            else if (cmd.GetParameters().Length == command.Length - 1)
             {
                 IList<object> obj = new List<object>();
-                foreach(var str in command.Skip(1).ToArray())   //Prepare parameters
+                foreach (var str in command.Skip(1).ToArray())   //Prepare parameters
                 {
                     obj.Add(str);
                 }
 
-                cmd.Invoke(null, obj.ToArray());    //Call method
+                try {
+                    cmd.Invoke(null, obj.ToArray());    //Call method
+                } 
+                catch( StaticAnalysisProjectException e )
+                {
+                    System.Console.WriteLine(e.ToString());
+                }
+                catch (Exception e)
+                {
+                    System.Console.WriteLine("Error! Unknown exception.");
+                }
             }
         }
         #endregion
@@ -106,14 +135,32 @@ namespace StaticAnalysisProject.Console
 
             foreach(var method in _listCommands)
             {
-                System.Console.WriteLine("> {0} {1}", method.Name.ConvertMethodName(), string.Join(" ", method.GetParameters().Select(x => x.Name)));
+                string output = _getHelpInfo(string.Format("{0}({1})", method.Name.ConvertMethodName(), method.GetParameters().Length));
+
+                if (output == "") {
+                    System.Console.WriteLine("> {0} {1}",
+                            method.Name.ConvertMethodName(),
+                            string.Join(" ", method.GetParameters().Select(x => x.Name))
+                        );
+                } else {
+                    System.Console.WriteLine("> {0} {1}",
+                            method.Name.ConvertMethodName(),
+                            output
+                        );
+                }
             }
         }
 
         /// <summary>
         /// Extract strings and check for known parameters of strings
         /// </summary>
-        public static void CmdStrings(string filePath) {
+        public static void CmdStrings(string filePath)
+        {
+            System.Console.WriteLine(new Strings(filePath).ToString());
+        }
+
+        public static void CmdStrings(string filePath, string type)
+        {
             System.Console.WriteLine(new Strings(filePath).ToString());
         }
 
@@ -131,6 +178,30 @@ namespace StaticAnalysisProject.Console
         public static void CmdVirusTotal(string filePath)
         {
             System.Console.WriteLine(new VirusTotal(filePath).ToString());
+        }
+
+        /// <summary>
+        /// Get hashes
+        /// </summary>
+        public static void CmdHashes(string filePath)
+        {
+            System.Console.WriteLine(new Hashes(filePath).ToString());
+        }
+
+        /// <summary>
+        /// Get hashes
+        /// </summary>
+        public static void CmdHashes(string filePath, string type)
+        {
+            System.Console.WriteLine(new Hashes(filePath).ToString(type));
+        }
+
+        /// <summary>
+        /// Get full report
+        /// </summary>
+        public static void CmdFullReport(string filePath)
+        {
+            System.Console.WriteLine(new FileReport(filePath).ToString());
         }
         #endregion
     }
