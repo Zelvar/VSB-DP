@@ -195,7 +195,7 @@ namespace StaticAnalysisProject.Modules
                 .Select(m => m.Value)
                 .ToList();
 
-            return ipv4.Concat(ipv6).ToList();
+            return ipv4.Concat(ipv6).Distinct().ToList();
         }
 
         /// <summary>
@@ -221,6 +221,7 @@ namespace StaticAnalysisProject.Modules
             var output = _fileextensionsRegex.Matches(file)
                     .Cast<Match>()
                     .Select(m => m.Value)
+                    .Distinct()
                     .ToList();
 
             return output;
@@ -234,6 +235,7 @@ namespace StaticAnalysisProject.Modules
             var urls = Regex.Matches(_rawFileString, StringRegex.Url)
                 .Cast<Match>()
                 .Select(m => m.Value)
+                .Distinct()
                 .ToList();
 
             return urls;
@@ -248,6 +250,7 @@ namespace StaticAnalysisProject.Modules
             var mails = Regex.Matches(_rawFileString, StringRegex.Email)
                 .Cast<Match>()
                 .Select(m => m.Value)
+                .Distinct()
                 .ToList();
 
             return mails;

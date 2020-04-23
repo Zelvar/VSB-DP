@@ -1,13 +1,12 @@
 ﻿using System.IO;
 using System;
 using System.Collections.Generic;
-
 using StaticAnalysisProject.Modules;
 using System.Text;
 
 namespace StaticAnalysisProject
 {
-    public class FileReport
+    public class FileReport : IFileReport
     {
         #region DATA
         private string _filePath = null;
@@ -21,60 +20,54 @@ namespace StaticAnalysisProject
         #endregion
 
         #region Public DATA
-        #region PE file
-        public IList<string> Exports => peInstance.GetExports();
-        public IList<string> Directories => peInstance.GetDirectories();
-        public IDictionary<string, IList<string>> Imports => peInstance.GetImportedDllsAndFunctions();
-        public IDictionary<string, IList<string>> Sections => peInstance.GetSectionsWithCharacteristics();
+            #region PE file
+            public IList<string> Exports => peInstance.GetExports();
+            public IList<string> Directories => peInstance.GetDirectories();
+            public IDictionary<string, IList<string>> Imports => peInstance.GetImportedDllsAndFunctions();
+            public IDictionary<string, IList<string>> Sections => peInstance.GetSectionsWithCharacteristics();
 
-        public bool Is32b => peInstance.Is32b();
-        public bool Is64b => peInstance.Is64b();
-        public bool IsDotNet => peInstance.IsDotNet();
-        public bool IsDriver => peInstance.IsDriver();
-        public bool IsExe => peInstance.IsExe();
-        public bool IsDll => peInstance.IsDll();
+            public bool Is32b => peInstance.Is32b();
+            public bool Is64b => peInstance.Is64b();
+            public bool IsDotNet => peInstance.IsDotNet();
+            public bool IsDriver => peInstance.IsDriver();
+            public bool IsExe => peInstance.IsExe();
+            public bool IsDll => peInstance.IsDll();
 
-        public string Filename => peInstance.GetFilename();
-        public string Machine => peInstance.GetMachine();
+            public string Filename => peInstance.GetFilename();
+            public string Machine => peInstance.GetMachine();
 
-        public DateTime DateTime => peInstance.GetDateTime();
+            public DateTime DateTime => peInstance.GetDateTime();
 
-        public string ImportHash => peInstance.GetImportHash();
+            public string ImportHash => peInstance.GetImportHash();
 
-        public uint EntryPoint => peInstance.GetEntryPoint();
-        public ulong ImageBase => peInstance.GetImageBase();
+            public uint EntryPoint => peInstance.GetEntryPoint();
+            public ulong ImageBase => peInstance.GetImageBase();
 
-        public long FileSize => peInstance.GetFileSize();
-        #endregion
-        #region Strings
-        public IList<string> IPAddrs => stringsInstance.GetIPs();
-        public IList<string> Urls => stringsInstance.GetURLs();
-        public IList<string> Mails => stringsInstance.GetMails();
-        public IList<string> Files => stringsInstance.GetFiles();
-        public IList<string> KnownMethods => stringsInstance.GetKnownMethods();
-        #endregion
-        #region Hash
-        public string MD5 => hashesInstance.ToString("MD5");
-        public string SHA1 => hashesInstance.ToString("SHA1");
-        public string SHA256 => hashesInstance.ToString("SHA256");
-        public string SHA384 => hashesInstance.ToString("SHA384");
-        public string SHA512 => hashesInstance.ToString("SHA512");
-        #endregion
-        #region Yara
-        public IList<string> AntiDebugVM => null;
-        public IList<string> Packer => null;
-        public IList<string> Network => null;
-
-        public bool ContainsBase64 => false;
-        public bool ContainsXor => false;
-        public bool ContainsMutex => false;
-        #endregion
-        #region VirusTotal
-        public int PositiveTests => virusTotalInstance.GetPositiveTests();
-        public int TotalTests => virusTotalInstance.GetTotalTests();
-        public string ScanId => virusTotalInstance.ScanID;
-        public string Status => virusTotalInstance.GetResponseCode.ToString();
-        #endregion
+            public long FileSize => peInstance.GetFileSize();
+            #endregion
+            #region Strings
+            public IList<string> IPAddrs => stringsInstance.GetIPs();
+            public IList<string> Urls => stringsInstance.GetURLs();
+            public IList<string> Mails => stringsInstance.GetMails();
+            public IList<string> Files => stringsInstance.GetFiles();
+            public IList<string> KnownMethods => stringsInstance.GetKnownMethods();
+            #endregion
+            #region Hash
+            public string MD5 => hashesInstance.ToString("MD5");
+            public string SHA1 => hashesInstance.ToString("SHA1");
+            public string SHA256 => hashesInstance.ToString("SHA256");
+            public string SHA384 => hashesInstance.ToString("SHA384");
+            public string SHA512 => hashesInstance.ToString("SHA512");
+            #endregion
+            #region Yara
+            public IList<string> Behavior => yaraInstance.GetResults();
+            #endregion
+            #region VirusTotal
+            public int PositiveTests => virusTotalInstance.GetPositiveTests();
+            public int TotalTests => virusTotalInstance.GetTotalTests();
+            public string ScanId => virusTotalInstance.ScanID;
+            public string Status => virusTotalInstance.GetResponseCode.ToString();
+            #endregion
         #endregion
 
         #region Constructors

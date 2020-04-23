@@ -1,11 +1,9 @@
 ﻿using StaticAnalysisProject.Helpers.Hash;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.IO;
 using System.Text;
-using StaticAnalysisProject.Helpers;
 
 namespace StaticAnalysisProject.Modules
 {

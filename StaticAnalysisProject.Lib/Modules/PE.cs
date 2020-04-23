@@ -1,15 +1,11 @@
-﻿//using StaticAnalysisProject.Classes; Depracated
-using PeNet;
-using PeNet.Header;
+﻿using PeNet;
 using PeNet.Header.Pe;
 using StaticAnalysisProject.Helpers;
 using StaticAnalysisProject.Modules.Subclasses;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 
 namespace StaticAnalysisProject.Modules

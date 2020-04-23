@@ -24,13 +24,19 @@ namespace StaticAnalysisProject.Modules
 
         //YaraContext ctx = new YaraContext();
         private Rules _compiledRules = null;
+        private IList<string> _results = new List<string>();
         #endregion
         #region Default props
         public string GetModulDescription() => "";
 
         public string GetModulName() => "Yara deep analysis";
         #endregion
-
+        #region Getters
+        /// <summary>
+        /// Returns results of tests
+        /// </summary>
+        public IList<string> GetResults() => this._results;
+        #endregion
         #region Constructors
         public DetectWithYara(string filename) 
             : this(File.ReadAllBytes(filename), filename) {
@@ -45,41 +51,21 @@ namespace StaticAnalysisProject.Modules
             //ScanFile();
         }
 
-        ~DetectWithYara()
+        /*~DetectWithYara()
         {
-            _compiledRules.Dispose();
-        }
+            if(_compiledRules != null)
+                _compiledRules.Dispose();
+        }*/
         #endregion
-
+        #region Methods
+        /// <summary>
+        /// Loads yara rules and run tests
+        /// </summary>
         private void LoadYaraRules()
         {
             //Load rules from files
             this._yaraRules = Directory.GetFiles(this._pathToRules, "*.yara", SearchOption.AllDirectories).ToArray();
-            /*using (YaraContext ctx = new YaraContext())
-            {
-                using (Compiler compiler = new Compiler())
-                {
-                    foreach (var rule in _yaraRules)
-                    {
-                        compiler.AddRuleFile(rule);
-                    }
-
-                    _compiledRules = compiler.Compile();
-                }
-            }*/
-
-            /*using (var ctx = new YaraContext())
-            {
-                    // Rules and Compiler objects must be disposed.
-                using (var compiler = new Compiler())
-                {
-                    foreach (var rule in _yaraRules)
-                    {
-                        compiler.AddRuleFile(rule);
-                    }
-                    _compiledRules = compiler.GetRules();
-                }
-            }*/
+            this._results.Clear();
 
             using (var ctx = new YaraContext())
             {
@@ -105,36 +91,22 @@ namespace StaticAnalysisProject.Modules
 
                 foreach(var a in results)
                 {
-                    Console.WriteLine(a.MatchingRule.Identifier);
+                    //Console.WriteLine(a.MatchingRule.Identifier);
+                    this._results.Add(a.MatchingRule.Identifier.ToString());
                 }
                 // Rules and Compiler objects must be disposed.
                 if (rules != null) rules.Dispose();
             }
-
-            Debug.WriteLine("* Compiled");
-        }
-
-        private void ScanFile()
-        {
-            /*if (_compiledRules != null)
-            {
-                var scanner = new Scanner();
-                List<ScanResult> scanResults = scanner.ScanFile(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\App.exe", _compiledRules);
-                
-                foreach(var a in scanResults)
-                {
-                    Console.WriteLine(a.ToString());
-                }
-            }*/
-
-            // Scanner and ScanResults do not need to be disposed.
-            var scanner = new Scanner();
-            var results = scanner.ScanFile(this._filename, _compiledRules);
         }
 
         public override string ToString()
         {
-            return base.ToString();
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Behavior test with Yara results:");
+            sb.AppendLine(string.Join(", ", this.GetResults().ToArray()));
+
+            return sb.ToString();
         }
+        #endregion
     }
 }

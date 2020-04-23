@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using StaticAnalysisProject.Modules;
 
 namespace StaticAnalysisProject.Console
@@ -41,9 +42,13 @@ namespace StaticAnalysisProject.Console
         /// </summary>
         internal static void ExecuteCommand(string cmd)
         {
-            string[] command = cmd.Trim().Split(" ");
+            //https://stackoverflow.com/questions/14655023/split-a-string-that-has-white-spaces-unless-they-are-enclosed-within-quotes
+            string[] command = Regex.Matches(cmd.Trim(), @"[\""].+?[\""]|[^ ]+")
+                .Cast<Match>()
+                .Select(m => m.Value.Replace("\"", ""))
+                .ToArray();
 
-            if(commands.Length == 0)
+            if (commands.Length == 0)
                 LoadCommands();
 
             //If command exists run command
@@ -202,6 +207,11 @@ namespace StaticAnalysisProject.Console
         public static void CmdFullReport(string filePath)
         {
             System.Console.WriteLine(new FileReport(filePath).ToString());
+        }
+
+        public static void CmdBehavior(string filePath)
+        {
+            System.Console.WriteLine(new DetectWithYara(filePath).ToString());
         }
         #endregion
     }

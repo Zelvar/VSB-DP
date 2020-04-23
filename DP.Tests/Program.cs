@@ -113,9 +113,6 @@ namespace DP.Tests
             //Console.WriteLine("%%%%%% Botnet");
             //new DetectWithYara(@"Botnet_Slave.ps1");3
             new DetectWithYara(@"E:\Steam\steamapps\common\Grand Theft Auto V\GTA5.exe");
-
-
-
             #endregion
 
             new FileReport(@"E:\Steam\steamapps\common\Grand Theft Auto V\GTA5.exe");
