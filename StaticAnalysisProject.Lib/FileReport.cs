@@ -20,6 +20,11 @@ namespace StaticAnalysisProject
         #endregion
 
         #region Public DATA
+            /// <summary>
+            /// Classification informations
+            /// </summary>
+            public string Class { get; private set; }
+
             #region PE file
             public IList<string> Exports => peInstance.GetExports();
             public IList<string> Directories => peInstance.GetDirectories();
@@ -33,7 +38,7 @@ namespace StaticAnalysisProject
             public bool IsExe => peInstance.IsExe();
             public bool IsDll => peInstance.IsDll();
 
-            public string Filename => peInstance.GetFilename();
+            public string Filename => Path.GetFileName(this._filePath);
             public string Machine => peInstance.GetMachine();
 
             public DateTime DateTime => peInstance.GetDateTime();
@@ -50,7 +55,7 @@ namespace StaticAnalysisProject
             public IList<string> Urls => stringsInstance.GetURLs();
             public IList<string> Mails => stringsInstance.GetMails();
             public IList<string> Files => stringsInstance.GetFiles();
-            public IList<string> KnownMethods => stringsInstance.GetKnownMethods();
+            public IDictionary<string, IList<string>> KnownMethods => stringsInstance.GetKnownMethodsInDictionary();
             #endregion
             #region Hash
             public string MD5 => hashesInstance.ToString("MD5");
@@ -67,14 +72,13 @@ namespace StaticAnalysisProject
             public int TotalTests => virusTotalInstance.GetTotalTests();
             public string ScanId => virusTotalInstance.ScanID;
             public string Status => virusTotalInstance.GetResponseCode.ToString();
-            #endregion
+        #endregion
         #endregion
 
         #region Constructors
         /// <summary>
         /// Constructor that load file
         /// </summary>
-        /// <param name="filePath">File path for analysis</param>
         public FileReport(string filePath) 
             : this(File.ReadAllBytes(filePath), filePath)
         {
@@ -82,14 +86,23 @@ namespace StaticAnalysisProject
         }
 
         /// <summary>
+        /// Constructor for training classification
+        /// </summary>
+        public FileReport(string filePath, string className)
+            : this(File.ReadAllBytes(filePath), filePath, className)
+        {
+            this.Class = className;
+        }
+
+        /// <summary>
         /// Constructur that load byte array of file
         /// </summary>
-        /// <param name="file">File </param>
-        public FileReport(byte[] file, string filePath = "")
+        public FileReport(byte[] file, string filePath = "", string className = "")
         {
             if (file != null) {
                 _fileLoaded = file;
                 _filePath = filePath;
+                this.Class = className;
                 LoadInstances();    //Prepare everything
             }else{
                 throw new StaticAnalysisProjectException("File is empty");

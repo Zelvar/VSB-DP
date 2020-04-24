@@ -64,7 +64,8 @@ namespace StaticAnalysisProject.Modules
         private IList<string> _urls = null;
         private IList<string> _mails = null;
         private IList<string> _files = null;
-        private IList<string> _knownmethods = null;
+        private IDictionary<string, IList<string>> _knownmethods = null;
+        private IList<string> _knownmethodslist = null;
         private string _filteredstring = "";
         #endregion
         #region Default props
@@ -259,11 +260,11 @@ namespace StaticAnalysisProject.Modules
         /// <summary>
         /// Extracts all known methods to list
         /// </summary>
-        public IList<string> ExtractKnownMethods()
+        public IDictionary<string, IList<string>> ExtractKnownMethods()
         {
             if (_knownMethods == null) LoadKnownMethods();
 
-            var methods = new List<string>();
+            IDictionary<string, IList<string>> methods = new Dictionary<string, IList<string>>();
 
             foreach (var item in _knownMethods)
             {
@@ -271,7 +272,8 @@ namespace StaticAnalysisProject.Modules
                 {
                     if (_rawFileString.Contains(method))
                     {
-                        methods.Add(string.Format("{0}: {1}", item.Key, method));
+                        //methods.Add(string.Format("{0}: {1}", item.Key, method));
+                        methods.AddToListValue(item.Key, method);
                     }
                 }
             }
@@ -384,13 +386,34 @@ namespace StaticAnalysisProject.Modules
         }
 
         /// <summary>
-        /// Getter for list of used known methods
+        /// Getter for list of used known methods in list
         /// </summary>
         public IList<string> GetKnownMethods()
         {
             if (_knownmethods == null) _knownmethods = this.ExtractKnownMethods();
+            if (_knownmethodslist == null)
+            {
+                _knownmethodslist = new List<string>();
+                foreach (var key in this._knownmethods)
+                {
+                    foreach (var value in this._knownmethods)
+                    {
+                        _knownmethodslist.Add(string.Format("{0}: {1}", key, value));
+                    }
+                }
+            }
 
-            return this._knownmethods;
+            return this._knownmethodslist;
+        }
+
+        /// <summary>
+        /// Getter for formated methods list, similliar to GetKnownMethods()
+        /// </summary>
+        public IDictionary<string, IList<string>> GetKnownMethodsInDictionary() 
+        {
+            if (_knownmethods == null) _knownmethods = this.ExtractKnownMethods();
+
+            return _knownmethods; 
         }
 
         /// <summary>

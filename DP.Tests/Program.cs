@@ -6,6 +6,9 @@ using System.Text;
 using StaticAnalysisProject;
 using StaticAnalysisProject.Modules;
 
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace DP.Tests
 {
     class Program
@@ -112,10 +115,16 @@ namespace DP.Tests
             //new DetectWithYara(@"Ransomware_Encrypt.ps1");
             //Console.WriteLine("%%%%%% Botnet");
             //new DetectWithYara(@"Botnet_Slave.ps1");3
-            new DetectWithYara(@"E:\Steam\steamapps\common\Grand Theft Auto V\GTA5.exe");
+            //new DetectWithYara(@"E:\Steam\steamapps\common\Grand Theft Auto V\GTA5.exe");
             #endregion
 
-            new FileReport(@"E:\Steam\steamapps\common\Grand Theft Auto V\GTA5.exe");
+            //IFileReport a = new FileReport(@"E:\Steam\steamapps\common\Grand Theft Auto V\GTA5.exe");
+            //IFileReport a = new FileReport(@"E:\Steam\steamapps\common\Grand Theft Auto V\GTA5.exe");
+            //IFileReport a = new FileReport(@"E:\Steam\steamapps\common\Grand Theft Auto V\GTA5.exe");
+            IFileReport a = new FileReport(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\HookLibrary.dll", "malware");
+            string json = JsonSerializer.Serialize(a);
+
+            Console.WriteLine(json);
         }
     }
 }

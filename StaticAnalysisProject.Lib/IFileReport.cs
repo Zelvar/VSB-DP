@@ -5,6 +5,14 @@ namespace StaticAnalysisProject
 {
     public interface IFileReport
     {
+        /// <summary>
+        /// Classify
+        /// </summary>
+        public string Class { get; }
+
+        /// <summary>
+        /// Props from static analysis
+        /// </summary>
         #region PE file
         public IList<string> Exports { get; }
         public IList<string> Directories { get; }
@@ -35,7 +43,7 @@ namespace StaticAnalysisProject
         public IList<string> Urls { get; }
         public IList<string> Mails { get; }
         public IList<string> Files { get; }
-        public IList<string> KnownMethods { get; }
+        IDictionary<string, IList<string>> KnownMethods { get; }
         #endregion
         #region Hash
         public string MD5 { get; }
