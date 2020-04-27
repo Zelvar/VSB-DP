@@ -1,14 +1,21 @@
-﻿using System;
+﻿using StaticAnalysisProject.Helpers;
+using System;
 using System.Collections.Generic;
 
 namespace StaticAnalysisProject
 {
-    class FileReportRecovered : IFileReport
+    class FileReportRecovered 
+        : IFileReport
     {
         /// <summary>
         /// Info about classification
         /// </summary>
         public string Class { get; set; }
+
+        /// <summary>
+        /// Mime type
+        /// </summary>
+        public string MimeType { get; set; }
 
         /// <summary>
         /// Getters from static analysis

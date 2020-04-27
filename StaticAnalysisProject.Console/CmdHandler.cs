@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -82,7 +83,7 @@ namespace StaticAnalysisProject.Console
         /// </summary>
         internal static void RunCommand(string[] command)
         {
-            MethodInfo? cmd = _listCommands
+            MethodInfo cmd = _listCommands
                 .Where(x => x.Name.ToLower().Equals(string.Format("{0}{1}", "cmd", command.First())))
                 .Where(x => x.GetParameters().Length == command.Length - 1)
                 .Select(x => x)
@@ -109,6 +110,7 @@ namespace StaticAnalysisProject.Console
                 catch (Exception e)
                 {
                     System.Console.WriteLine("Error! Unknown exception.");
+                    Debug.WriteLine(e.ToString());
                 }
             }
         }

@@ -2,7 +2,54 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="main">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-7 col-12">
+                <div class="logo">
+                    <div class="row">
+                        <span class="col-md-3 col-4">
+                            <img src="assets/images/logo.svg" alt="">
+                        </span>
+                        <span class="col-md-9 col-8">
+                            <h1>Static analysis</h1>
+                            <h2>Report PE info, Strings, Hashes, VirusTotal, Behavior patterns</h2>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 col-12">
+                <div class="file-upload card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Upload file to analyse
+                        </h5>
+
+                        <form method="post" enctype="multipart/form-data" asp-controller="FileAnalysis" asp-action="Index" autocomplete="off">
+                            <div class="card-upload">
+                                <input type="file" class="custom-file-input form-control" id="file" name="file" onchange="sendData()">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+
+                            @Html.AntiForgeryToken()
+                        </form>
+
+                        <div class="spinner" style="display: none">
+                            <div class="double-bounce1"></div>
+                            <div class="double-bounce2"></div>
+                        </div>
+                        <div class="output"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-7 col-12 text-right">
+                <div class="row">
+                    <div class="col-6 text-left">Automatic static analysis tool.</div>
+                    <div class="col-6 text-right">Author <a href="https://github.com/Zelvar" target="?blank">&#64;Zelvar</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

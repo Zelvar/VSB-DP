@@ -23,7 +23,7 @@ namespace StaticAnalysisProject.Modules
         private string[] _yaraRules = null;
 
         //YaraContext ctx = new YaraContext();
-        private Rules _compiledRules = null;
+        //private Rules _compiledRules = null;
         private IList<string> _results = new List<string>();
         #endregion
         #region Default props

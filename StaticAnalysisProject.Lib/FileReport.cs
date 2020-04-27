@@ -3,10 +3,12 @@ using System;
 using System.Collections.Generic;
 using StaticAnalysisProject.Modules;
 using System.Text;
+using HeyRed.Mime;
 
 namespace StaticAnalysisProject
 {
-    public class FileReport : IFileReport
+    public class FileReport 
+        : IFileReport
     {
         #region DATA
         private string _filePath = null;
@@ -25,30 +27,35 @@ namespace StaticAnalysisProject
             /// </summary>
             public string Class { get; private set; }
 
-            #region PE file
-            public IList<string> Exports => peInstance.GetExports();
-            public IList<string> Directories => peInstance.GetDirectories();
-            public IDictionary<string, IList<string>> Imports => peInstance.GetImportedDllsAndFunctions();
-            public IDictionary<string, IList<string>> Sections => peInstance.GetSectionsWithCharacteristics();
+            /// <summary>
+            /// Mime type of file
+            /// </summary>
+            public string MimeType { get; private set; }
 
-            public bool Is32b => peInstance.Is32b();
-            public bool Is64b => peInstance.Is64b();
-            public bool IsDotNet => peInstance.IsDotNet();
-            public bool IsDriver => peInstance.IsDriver();
-            public bool IsExe => peInstance.IsExe();
-            public bool IsDll => peInstance.IsDll();
+            #region PE file
+            public IList<string> Exports => (peInstance.ISPeFile()) ? peInstance.GetExports() : null;
+            public IList<string> Directories => (peInstance.ISPeFile()) ? peInstance.GetDirectories() : null;
+            public IDictionary<string, IList<string>> Imports => (peInstance.ISPeFile()) ? peInstance.GetImportedDllsAndFunctions() : null;
+            public IDictionary<string, IList<string>> Sections => (peInstance.ISPeFile()) ? peInstance.GetSectionsWithCharacteristics() : null;
+
+            public bool Is32b => (peInstance.ISPeFile()) ? peInstance.Is32b() : false;
+            public bool Is64b => (peInstance.ISPeFile()) ? peInstance.Is64b() : false;
+            public bool IsDotNet => (peInstance.ISPeFile()) ? peInstance.IsDotNet() : false;
+            public bool IsDriver => (peInstance.ISPeFile()) ? peInstance.IsDriver() : false;
+            public bool IsExe => (peInstance.ISPeFile()) ? peInstance.IsExe() : false;
+            public bool IsDll => (peInstance.ISPeFile()) ? peInstance.IsDll() : false;
 
             public string Filename => Path.GetFileName(this._filePath);
-            public string Machine => peInstance.GetMachine();
+            public string Machine => (peInstance.ISPeFile()) ? peInstance.GetMachine() : "Not PE file";
 
-            public DateTime DateTime => peInstance.GetDateTime();
+            public DateTime DateTime => (peInstance.ISPeFile()) ? peInstance.GetDateTime() : File.GetCreationTime(this._filePath);
 
-            public string ImportHash => peInstance.GetImportHash();
+            public string ImportHash => (peInstance.ISPeFile()) ? peInstance.GetImportHash() : "";
 
-            public uint EntryPoint => peInstance.GetEntryPoint();
-            public ulong ImageBase => peInstance.GetImageBase();
+            public uint EntryPoint => (peInstance.ISPeFile()) ? peInstance.GetEntryPoint() : 0;
+            public ulong ImageBase => (peInstance.ISPeFile()) ? peInstance.GetImageBase() : 0;
 
-            public long FileSize => peInstance.GetFileSize();
+            public long FileSize => (peInstance.ISPeFile()) ? peInstance.GetFileSize() : _fileLoaded.Length;
             #endregion
             #region Strings
             public IList<string> IPAddrs => stringsInstance.GetIPs();
@@ -97,7 +104,7 @@ namespace StaticAnalysisProject
         /// <summary>
         /// Constructur that load byte array of file
         /// </summary>
-        public FileReport(byte[] file, string filePath = "", string className = "")
+        private FileReport(byte[] file, string filePath = "", string className = "")
         {
             if (file != null) {
                 _fileLoaded = file;
@@ -115,6 +122,8 @@ namespace StaticAnalysisProject
         /// </summary>
         private void LoadInstances()
         {
+            // Detect MIME type
+            MimeType = MimeGuesser.GuessFileType(this._filePath).MimeType;
             peInstance = new PE(this._fileLoaded);
             hashesInstance = new Hashes(this._fileLoaded);
             stringsInstance = new Strings(this._fileLoaded);

@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 
 namespace StaticAnalysisProject.Helpers
 {
-    static class ExtensionHelpers
+    public static class ExtensionHelpers
     {
         /// <summary>
         /// Converts Camel Case to Words (CamelCase -> Camel Case)
@@ -55,5 +57,18 @@ namespace StaticAnalysisProject.Helpers
         /// Return list of from hashset objects of IPESubclass
         /// </summary>
         public static IList<string> GetList<IPESubclass>(this HashSet<IPESubclass> exports) => exports.Select(x => x.ToString()).ToList();
+
+        /// <summary>
+        /// Return JSON format of File report object
+        /// </summary>
+        public static string ToJson(this IFileReport obj) => JsonSerializer.Serialize(obj);
+
+        /// <summary>
+        /// Return IFileReport from JSON file
+        /// </summary>
+        public static IFileReport FromJson(string json)
+        {
+            return JsonSerializer.Deserialize<IFileReport>(json);
+        }
     }
 }

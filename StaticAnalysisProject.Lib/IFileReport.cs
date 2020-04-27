@@ -11,6 +11,11 @@ namespace StaticAnalysisProject
         public string Class { get; }
 
         /// <summary>
+        /// MIME format
+        /// </summary>
+        public string MimeType { get; }
+
+        /// <summary>
         /// Props from static analysis
         /// </summary>
         #region PE file

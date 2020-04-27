@@ -4,6 +4,7 @@ using StaticAnalysisProject.Helpers;
 using StaticAnalysisProject.Modules.Subclasses;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -43,12 +44,18 @@ namespace StaticAnalysisProject.Modules
         {
             this._file = file;
             this._filename = filename;
-            this._pefile = new PeFile(_file);
+            try
+            {
+                this._pefile = new PeFile(_file);
 
-            LoadImports();      //Load list of imports
-            LoadExports();      //Load list of exports
-            LoadDirectories();  //Load list of directories
-            LoadSections();     //Import sections
+                LoadImports();      //Load list of imports
+                LoadExports();      //Load list of exports
+                LoadDirectories();  //Load list of directories
+                LoadSections();     //Import sections
+            } catch ( Exception e)
+            {
+                Debug.WriteLine(e.ToString());
+            }
         }
         #endregion
         #region Getters
@@ -97,7 +104,7 @@ namespace StaticAnalysisProject.Modules
         /// Returns _filename if file was loaded by this class
         /// </summary>
         public string GetFilename() => (_filename == null) ? "" : _filename;
-
+        #region IS helper
         /// <summary>
         /// Dll boolean flag
         /// </summary>
@@ -127,6 +134,12 @@ namespace StaticAnalysisProject.Modules
         /// .NET boolean flag
         /// </summary>
         public bool IsDotNet() => _pefile.IsDotNet;
+
+        /// <summary>
+        /// Is PE file
+        /// </summary>
+        public bool ISPeFile() => _pefile != null;
+        #endregion
         #region SECTIONS
         /// <summary>
         /// Returns list of sections
@@ -279,7 +292,9 @@ namespace StaticAnalysisProject.Modules
                         );
                         sb.AppendLine();
                     }
-                } catch(Exception e) { } //Skip errors while parsing
+                } catch(Exception e) {
+                    Debug.WriteLine(e.ToString());
+                } //Skip errors while parsing
             }
 
             return sb.ToString();
