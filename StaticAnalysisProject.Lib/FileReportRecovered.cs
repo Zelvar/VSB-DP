@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace StaticAnalysisProject
 {
-    class FileReportRecovered 
+    public class FileReportRecovered 
         : IFileReport
     {
         /// <summary>

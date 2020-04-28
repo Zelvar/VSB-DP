@@ -64,11 +64,24 @@ namespace StaticAnalysisProject.Helpers
         public static string ToJson(this IFileReport obj) => JsonSerializer.Serialize(obj);
 
         /// <summary>
+        /// Return JSON format of List with File report objects
+        /// </summary>
+        public static string ToJson(this IList<IFileReport> obj) => JsonSerializer.Serialize(obj);
+
+        /// <summary>
         /// Return IFileReport from JSON file
         /// </summary>
-        public static IFileReport FromJson(string json)
+        public static FileReportRecovered ReportFromJson(string json)
         {
-            return JsonSerializer.Deserialize<IFileReport>(json);
+            return JsonSerializer.Deserialize<FileReportRecovered>(json);
+        }
+
+        /// <summary>
+        /// Return list of IFileReports from JSON file
+        /// </summary>
+        public static IList<FileReportRecovered> ListFromJson(string json)
+        {
+            return JsonSerializer.Deserialize<IList<FileReportRecovered>>(json);
         }
     }
 }
