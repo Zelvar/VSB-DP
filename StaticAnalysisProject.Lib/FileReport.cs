@@ -75,10 +75,10 @@ namespace StaticAnalysisProject
             public IList<string> Behavior => yaraInstance.GetResults();
             #endregion
             #region VirusTotal
-            public int PositiveTests => virusTotalInstance.GetPositiveTests();
-            public int TotalTests => virusTotalInstance.GetTotalTests();
-            public string ScanId => virusTotalInstance.ScanID;
-            public string Status => virusTotalInstance.GetResponseCode.ToString();
+            public int PositiveTests => (virusTotalInstance == null) ? 0 : virusTotalInstance.GetPositiveTests();
+            public int TotalTests => (virusTotalInstance == null) ? 0 : virusTotalInstance.GetTotalTests();
+            public string ScanId => (virusTotalInstance == null) ? "" : virusTotalInstance.ScanID;
+            public string Status => (virusTotalInstance == null) ? "" : virusTotalInstance.GetResponseCode.ToString();
         #endregion
         #endregion
 

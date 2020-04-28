@@ -67,35 +67,42 @@ namespace StaticAnalysisProject.Modules
             this._yaraRules = Directory.GetFiles(this._pathToRules, "*.yara", SearchOption.AllDirectories).ToArray();
             this._results.Clear();
 
-            using (var ctx = new YaraContext())
+            try
             {
-                Rules rules = null;
-
-                // Rules and Compiler objects must be disposed.
-                using (var compiler = new Compiler())
+                using (var ctx = new YaraContext())
                 {
-                    //string path = Path.Combine(this._pathToRules, "packer.yara");
+                    Rules rules = null;
 
-                    foreach (var path in _yaraRules)
+                    // Rules and Compiler objects must be disposed.
+                    using (var compiler = new Compiler())
                     {
-                        //Console.WriteLine(path);
-                        compiler.AddRuleFile(path);
+                        //string path = Path.Combine(this._pathToRules, "packer.yara");
+
+                        foreach (var path in _yaraRules)
+                        {
+                            //Console.WriteLine(path);
+                            compiler.AddRuleFile(path);
+                        }
+
+                        rules = compiler.GetRules();
                     }
-                    
-                    rules = compiler.GetRules();
-                }
 
-                // Scanner and ScanResults do not need to be disposed.
-                var scanner = new Scanner();
-                var results = scanner.ScanFile(this._filename, rules);
+                    // Scanner and ScanResults do not need to be disposed.
+                    var scanner = new Scanner();
+                    var results = scanner.ScanFile(this._filename, rules);
 
-                foreach(var a in results)
-                {
-                    //Console.WriteLine(a.MatchingRule.Identifier);
-                    this._results.Add(a.MatchingRule.Identifier.ToString());
+                    foreach (var a in results)
+                    {
+                        //Console.WriteLine(a.MatchingRule.Identifier);
+                        this._results.Add(a.MatchingRule.Identifier.ToString());
+                    }
+                    // Rules and Compiler objects must be disposed.
+                    if (rules != null) rules.Dispose();
                 }
-                // Rules and Compiler objects must be disposed.
-                if (rules != null) rules.Dispose();
+            }
+            catch( Exception e )
+            {
+                Debug.WriteLine(e.ToString());
             }
         }
 

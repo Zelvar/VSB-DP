@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using StaticAnalysisProject;
 
@@ -53,33 +54,45 @@ namespace StaticAnalysisProject.BuildTraningSet
         /// </summary>
         private static void Process(string path)
         {
-            string[] files = Directory.GetFiles(path, "*", SearchOption.AllDirectories);
+            string[] files = Directory
+                .GetFiles(path, "*", SearchOption.AllDirectories)
+                .OrderBy(f => new FileInfo(f).Length)
+                .ToArray();
+
             IList<IFileReport> fileReports = new List<IFileReport>();
+             Object myLock = new Object();
 
             if (files.Length > 1)
             {
                 Console.WriteLine("Found {0} files for analysis.", files.Length);
 
                 int i = 0;
-                Object myLock = new Object();
 
                 Parallel.ForEach(files, (file) =>
                 {
+                //foreach (var file in files) {
                     Stopwatch sw = new Stopwatch();
+                    Console.WriteLine("{0} started", Path.GetFileName(file));
+
                     sw.Start();
                     var report = new FileReport(file);
                     sw.Stop();
-
                     lock (myLock)   // APPEND SAFE TO FILE
                     {
                         fileReports.Add(report);
-                        Console.WriteLine("{0}/{1} done - {2} - after {3}", 
-                            ++i, 
-                            files.Length, 
-                            Path.GetFileName(file), 
+                        Console.WriteLine("{0}/{1} done - {2} - after {3}",
+                            ++i,
+                            files.Length,
+                            Path.GetFileName(file),
                             sw.Elapsed
                         );
+
+                        if (i % 2 == 0) //Write all data in case of crash
+                        {
+                            WriteToFile(fileReports);
+                        }
                     }
+                    //}
                 });
             }
             else
@@ -87,11 +100,20 @@ namespace StaticAnalysisProject.BuildTraningSet
                 throw new Exception("There is no file to scan.");
             }
 
+            WriteToFile(fileReports);
+        }
+
+        /// <summary>
+        /// Write data to file
+        /// </summary>
+        private static void WriteToFile(IList<IFileReport> fileReports)
+        {
             try
             {
                 File.WriteAllText("report.json", Helpers.ExtensionHelpers.ToJson(fileReports));
+                Console.WriteLine("Writing data.");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw new Exception("Cannot write data.");
             }
