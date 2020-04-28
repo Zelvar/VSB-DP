@@ -1,8 +1,0 @@
-W:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson/lib/janssonv.lib
-W:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson/include/jansson_config.h
-W:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson/include/jansson.h
-W:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson/lib/pkgconfig/jansson.pc
-W:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson/cmake/janssonConfig.cmake
-W:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson/cmake/janssonConfigVersion.cmake
-W:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson/cmake/janssonTargets.cmake
-W:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson/cmake/janssonTargets-release.cmake

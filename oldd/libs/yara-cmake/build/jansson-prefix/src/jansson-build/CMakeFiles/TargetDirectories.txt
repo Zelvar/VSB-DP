@@ -1,4 +1,0 @@
-W:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson-prefix/src/jansson-build/CMakeFiles/jansson.dir
-W:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson-prefix/src/jansson-build/CMakeFiles/INSTALL.dir
-W:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson-prefix/src/jansson-build/CMakeFiles/ALL_BUILD.dir
-W:/DP-Vystup/SW/DP/libs/yara-cmake/build/jansson-prefix/src/jansson-build/CMakeFiles/ZERO_CHECK.dir
