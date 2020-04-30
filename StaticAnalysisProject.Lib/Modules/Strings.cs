@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using StaticAnalysisProject.Helpers;
@@ -303,19 +304,21 @@ namespace StaticAnalysisProject.Modules
             _rawFileString = ConvertToString(_rawFile);
             StringBuilder sb = new StringBuilder();
 
+            object myLock = new object();
             //First basic analysis
             foreach (var item in _rawFile.Split(new byte[] { 0 }))
+            //Parallel.ForEach(_rawFile.Split(new byte[] { 0 }), (item) =>
             {
-                if(item.Length > MIN_LENGTH)
+                if (item.Length > MIN_LENGTH)
                 {
                     bool add = true;
-                    foreach(var c in item)
+                    foreach (var c in item)
                     {
                         if (
                             //!this.ContainsFileName(ConvertToString(item)) && //this operation is too slow
-                            !this.ContainsEmail(ConvertToString(item)) &&
-                            !this.ContainsURL(ConvertToString(item)) &&
-                            !this.ContainsIP(ConvertToString(item)) &&
+                            //!this.ContainsEmail(ConvertToString(item)) && //this operation can take tooo long
+                            //!this.ContainsURL(ConvertToString(item)) &&
+                            //!this.ContainsIP(ConvertToString(item)) &&
                             !READABLE_ASCII_CHARS.Contains((char)c)
                            )
                         {
@@ -326,11 +329,14 @@ namespace StaticAnalysisProject.Modules
 
                     if (add)
                     {
-                        separetedFile.Add(item);
-                        sb.AppendLine(ConvertToString(item));
+                        lock (myLock)
+                        {
+                            separetedFile.Add(item);
+                            sb.AppendLine(ConvertToString(item));
+                        }
                     }
                 }
-            }
+            }//);
             this._rawFileSplitedByZero = separetedFile.ToArray();
 
             //Second part load known stuffs
@@ -396,10 +402,7 @@ namespace StaticAnalysisProject.Modules
                 _knownmethodslist = new List<string>();
                 foreach (var key in this._knownmethods)
                 {
-                    foreach (var value in this._knownmethods)
-                    {
-                        _knownmethodslist.Add(string.Format("{0}: {1}", key, value));
-                    }
+                    _knownmethodslist.Add(string.Format("{0}: {1}", key.Key, string.Join(", ", key.Value.ToArray())));
                 }
             }
 
@@ -487,7 +490,7 @@ namespace StaticAnalysisProject.Modules
                 sb.AppendLine("Found known methods:");
                 foreach (var file in this.GetKnownMethods())
                 {
-                    sb.AppendLine(string.Format("Known methods: {0}", file.ToString()));
+                    sb.AppendLine(string.Format("Known methods: {0}", file));
                 }
             }
 

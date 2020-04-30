@@ -9,14 +9,13 @@ namespace StaticAnalysisProject.Modules.Subclasses
     {
         private ExportFunction _export;
 
-        public string Name { get; private set; }
+        public string? Name { get; private set; }
 
         public uint Addr { get; set; }
 
         public Export(ExportFunction fce)
             :this(fce.Name, fce.Address)
         {
-            this._export = fce;
         }
 
         public Export(string name, uint addr)
@@ -27,7 +26,7 @@ namespace StaticAnalysisProject.Modules.Subclasses
 
         public override string ToString()
         {
-            return this.Name.ToString();
+            return (this.Name == null ? "" : this.Name.ToString());
         }
     }
 }

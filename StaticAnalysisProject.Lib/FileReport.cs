@@ -19,13 +19,16 @@ namespace StaticAnalysisProject
         private VirusTotal virusTotalInstance = null;
         private PE peInstance = null;
         private DetectWithYara yaraInstance = null;
+
+        private bool _runVirusTotal = true;
+        private bool _runYara = true;
         #endregion
 
         #region Public DATA
-            /// <summary>
-            /// Classification informations
-            /// </summary>
-            public string Class { get; private set; }
+        /// <summary>
+        /// Classification informations
+        /// </summary>
+        public string Class { get; private set; }
 
             /// <summary>
             /// Mime type of file
@@ -88,24 +91,30 @@ namespace StaticAnalysisProject
         /// </summary>
         public FileReport(string filePath) 
             : this(File.ReadAllBytes(filePath), filePath)
-        {
-            this._filePath = filePath;
-        }
+        {}
 
         /// <summary>
         /// Constructor for training classification
         /// </summary>
         public FileReport(string filePath, string className)
             : this(File.ReadAllBytes(filePath), filePath, className)
-        {
-            this.Class = className;
-        }
+        {}
+
+        /// <summary>
+        /// Constructor for optinional turning off virus total or yara
+        /// </summary>
+        public FileReport(string filePath, string className, bool runVT, bool runYARA)
+            : this(File.ReadAllBytes(filePath), filePath, className, runVT, runYARA)
+        { }
 
         /// <summary>
         /// Constructur that load byte array of file
         /// </summary>
-        private FileReport(byte[] file, string filePath = "", string className = "")
+        private FileReport(byte[] file, string filePath = "", string className = "", bool runVT = true, bool runYARA = true)
         {
+            this._runYara = runYARA;
+            this._runVirusTotal = runVT;
+
             if (file != null) {
                 _fileLoaded = file;
                 _filePath = filePath;
@@ -124,11 +133,21 @@ namespace StaticAnalysisProject
         {
             // Detect MIME type
             MimeType = MimeGuesser.GuessFileType(this._filePath).MimeType;
-            peInstance = new PE(this._fileLoaded);
+
+            // Get hashes
             hashesInstance = new Hashes(this._fileLoaded);
+
+            if(_runVirusTotal)    // Can be disable to not run
+                virusTotalInstance = new VirusTotal(this._fileLoaded);
+
+            // Get PE analysis
+            peInstance = new PE(this._fileLoaded);
+
+            //Run string analysis
             stringsInstance = new Strings(this._fileLoaded);
-            virusTotalInstance = new VirusTotal(this._fileLoaded);
-            yaraInstance = new DetectWithYara(this._filePath);
+
+            if(_runYara)    // Can be disable to not run
+                yaraInstance = new DetectWithYara(this._filePath);
         }
         #endregion
         #region Basic methods

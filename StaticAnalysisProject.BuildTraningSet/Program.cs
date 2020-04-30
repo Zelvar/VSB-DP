@@ -68,17 +68,17 @@ namespace StaticAnalysisProject.BuildTraningSet
 
                 int i = 0;
 
-                Parallel.ForEach(files, (file) =>
-                {
-                //foreach (var file in files) {
+                //Parallel.ForEach(files, (file) =>
+                //{
+                foreach (var file in files) {
                     Stopwatch sw = new Stopwatch();
                     Console.WriteLine("{0} started", Path.GetFileName(file));
 
                     sw.Start();
-                    var report = new FileReport(file);
+                    var report = new FileReport(file, "", true, true);
                     sw.Stop();
-                    lock (myLock)   // APPEND SAFE TO FILE
-                    {
+                    //lock (myLock)   // APPEND SAFE TO FILE
+                    //{
                         fileReports.Add(report);
                         Console.WriteLine("{0}/{1} done - {2} - after {3}",
                             ++i,
@@ -87,13 +87,13 @@ namespace StaticAnalysisProject.BuildTraningSet
                             sw.Elapsed
                         );
 
-                        if (i % 2 == 0) //Write all data in case of crash
+                        if (i % 3 == 0) //Write all data in case of crash
                         {
                             WriteToFile(fileReports);
                         }
-                    }
                     //}
-                });
+                }
+                //});
             }
             else
             {
@@ -115,7 +115,7 @@ namespace StaticAnalysisProject.BuildTraningSet
             }
             catch (Exception e)
             {
-                throw new Exception("Cannot write data.");
+                Console.WriteLine("Cannot write data. {0}", e.ToString());
             }
         }
     }
