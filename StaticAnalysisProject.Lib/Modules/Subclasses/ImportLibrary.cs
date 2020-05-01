@@ -23,6 +23,9 @@ namespace StaticAnalysisProject.Modules.Subclasses
         /// </summary>
         public IList<string> Functions { get; private set; }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public ImportLibrary( string name , IList<string> list = null) {
             this.Name = name;
             this.Functions = (list != null ? list : new List<string>());

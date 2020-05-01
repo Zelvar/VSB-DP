@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -82,6 +83,28 @@ namespace StaticAnalysisProject.Helpers
         public static IList<FileReportRecovered> ListFromJson(string json)
         {
             return JsonSerializer.Deserialize<IList<FileReportRecovered>>(json);
+        }
+
+        /// <summary>
+        /// Calc bits per byte entropy of byte array
+        /// https://kennethghartman.com/calculate-file-entropy/
+        /// </summary>
+        public static double Entropy(this byte[] data)
+        {
+            var counts = data.GroupBy(n => n)
+                    .Select(c => new { Key = c.Key, Total = c.Count() });
+
+            double ent = 0;
+
+            foreach( var freq in counts)
+            {
+                double f = (double)freq.Total / data.Length;
+
+                if (f > 0)
+                    ent -= f * (Math.Log(f) / Math.Log(2)); // Math.Log(f, 2);
+            }
+
+            return Math.Abs(ent);
         }
     }
 }

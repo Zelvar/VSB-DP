@@ -25,7 +25,7 @@ namespace StaticAnalysisProject.Modules
         /// </summary>
         /// <param name="filename">Path to file</param>
         public Hashes(string filename) 
-            : this(File.ReadAllBytes(filename)) 
+            : this(File.ReadAllBytes(filename), filename) 
         {
             this._filename = filename;
         }
@@ -34,7 +34,7 @@ namespace StaticAnalysisProject.Modules
         /// Constructor that load byte array and calc hashes
         /// </summary>
         /// <param name="file">Input byte array of file</param>
-        public Hashes(byte[] file, string filename = "")
+        private Hashes(byte[] file, string filename = "")
         {
             this._file = file;
             this._filename = filename;
@@ -62,7 +62,7 @@ namespace StaticAnalysisProject.Modules
                 hashes.Add(hash.GetType().Name.ToString(), invoke);
             }
         }
-#endregion
+        #endregion
         #region Modul code
         /// <summary>
         /// Getter for list of hashes

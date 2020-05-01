@@ -149,7 +149,8 @@ namespace StaticAnalysisProject.Modules
         /// <summary>
         /// Returns list of sections with its characteristics
         /// </summary>
-        public IDictionary<string, IList<string>> GetSectionsWithCharacteristics() => _sections.ToDictionary(x => x.Name, x => x.Characteristcs);
+        public IList<KeyValuePair<string, IList<string>>> GetSectionsWithCharacteristics() => _sections.Select(x => x.GetKeyValuePair()).ToList(); 
+        //(x => x.Name, x => x.Characteristcs);
         #endregion
         #region IMPORTS
         /// <summary>

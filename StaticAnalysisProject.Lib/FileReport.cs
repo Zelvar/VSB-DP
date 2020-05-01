@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using StaticAnalysisProject.Modules;
 using System.Text;
 using HeyRed.Mime;
+using System.Diagnostics;
 
 namespace StaticAnalysisProject
 {
@@ -28,18 +29,18 @@ namespace StaticAnalysisProject
         /// <summary>
         /// Classification informations
         /// </summary>
-        public string Class { get; private set; }
+        public string Class { get; set; }
 
-            /// <summary>
-            /// Mime type of file
-            /// </summary>
-            public string MimeType { get; private set; }
+        /// <summary>
+        /// Mime type of file
+        /// </summary>
+        public string MimeType { get; private set; }
 
             #region PE file
             public IList<string> Exports => (peInstance.ISPeFile()) ? peInstance.GetExports() : null;
             public IList<string> Directories => (peInstance.ISPeFile()) ? peInstance.GetDirectories() : null;
             public IDictionary<string, IList<string>> Imports => (peInstance.ISPeFile()) ? peInstance.GetImportedDllsAndFunctions() : null;
-            public IDictionary<string, IList<string>> Sections => (peInstance.ISPeFile()) ? peInstance.GetSectionsWithCharacteristics() : null;
+            public IList<KeyValuePair<string, IList<string>>> Sections => (peInstance.ISPeFile()) ? peInstance.GetSectionsWithCharacteristics() : null;
 
             public bool Is32b => (peInstance.ISPeFile()) ? peInstance.Is32b() : false;
             public bool Is64b => (peInstance.ISPeFile()) ? peInstance.Is64b() : false;
@@ -132,13 +133,22 @@ namespace StaticAnalysisProject
         private void LoadInstances()
         {
             // Detect MIME type
-            MimeType = MimeGuesser.GuessFileType(this._filePath).MimeType;
+            MimeType = new Mime(this._filePath).GetMime();
 
             // Get hashes
-            hashesInstance = new Hashes(this._fileLoaded);
+            hashesInstance = new Hashes(this._filePath);
 
-            if(_runVirusTotal)    // Can be disable to not run
-                virusTotalInstance = new VirusTotal(this._fileLoaded);
+            if (_runVirusTotal)    // Can be disable to not run
+            {
+                try
+                {
+                    virusTotalInstance = new VirusTotal(this._fileLoaded);
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e.Message.ToString());
+                }
+            }
 
             // Get PE analysis
             peInstance = new PE(this._fileLoaded);

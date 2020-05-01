@@ -1,4 +1,4 @@
-﻿using StaticAnalysisProject.Helpers;
+﻿using Microsoft.ML.Data;
 using System;
 using System.Collections.Generic;
 
@@ -24,7 +24,7 @@ namespace StaticAnalysisProject
         public IList<string> Exports { get; set; }
         public IList<string> Directories { get; set; }
         public IDictionary<string, IList<string>> Imports { get; set; }
-        public IDictionary<string, IList<string>> Sections { get; set; }
+        public IList<KeyValuePair<string, IList<string>>> Sections { get; set; }
 
         public bool Is32b { get; set; }
         public bool Is64b { get; set; }

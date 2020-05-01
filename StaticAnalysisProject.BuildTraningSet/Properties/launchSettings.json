@@ -2,7 +2,7 @@
   "profiles": {
     "StaticAnalysisProject.BuildTraningSet": {
       "commandName": "Project",
-      "commandLineArgs": "\"malwares\""
+      "commandLineArgs": "\"malwares\" malware"
     }
   }
 }

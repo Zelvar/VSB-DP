@@ -14,9 +14,24 @@ namespace StaticAnalysisProject.Modules.Subclasses
         public uint PhysicalSize { get; private set; }
         public uint PhysicalAddr { get; private set; }
 
+        public double Entropy { get; private set; }
+
         public IList<string> Characteristcs { get; private set; }
 
         public bool IsEmpty => VirtualSize == 0;
+
+        /// <summary>
+        /// Helper to get KeyValuePair
+        /// </summary>
+        public KeyValuePair<string, IList<string>> GetKeyValuePair()
+        {
+            return new KeyValuePair<string, IList<string>>(this.Name, this.Characteristcs);
+        }
+
+        private void CalcEntropy()
+        {
+
+        }
 
         #region Constructors
         public Section(
@@ -44,6 +59,8 @@ namespace StaticAnalysisProject.Modules.Subclasses
             this.PhysicalAddr = rAddr;
             this.PhysicalSize = rSize;
             this.Characteristcs = characteristics;
+
+            this.CalcEntropy();
         }
         #endregion
         #region Overrided methods

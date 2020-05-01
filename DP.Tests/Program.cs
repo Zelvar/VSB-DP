@@ -9,6 +9,8 @@ using StaticAnalysisProject.Modules;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
+using StaticAnalysisProject.Helpers;
+
 namespace DP.Tests
 {
     class Program
@@ -121,10 +123,18 @@ namespace DP.Tests
             //IFileReport a = new FileReport(@"E:\Steam\steamapps\common\Grand Theft Auto V\GTA5.exe");
             //IFileReport a = new FileReport(@"E:\Steam\steamapps\common\Grand Theft Auto V\GTA5.exe");
             //IFileReport a = new FileReport(@"E:\Steam\steamapps\common\Grand Theft Auto V\GTA5.exe");
-            IFileReport a = new FileReport(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\HookLibrary.dll", "malware");
-            string json = JsonSerializer.Serialize(a);
+            //IFileReport a = new FileReport(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\HookLibrary.dll", "malware");
+            //string json = JsonSerializer.Serialize(a);
 
-            Console.WriteLine(json);
+            //Console.WriteLine(json);
+
+            byte[] a = File.ReadAllBytes(@"E:\Steam\steamapps\common\Grand Theft Auto V\GTA5.exe");
+
+            Console.WriteLine(a.Entropy());
+
+            byte[] b = new byte[] { (byte)'A',(byte)'h',(byte)'o',(byte)'j',(byte)' ',(byte)'j',(byte)'a',(byte)'k',(byte)' ',(byte)'s',(byte)'e',(byte)' ',(byte)'m',(byte)'a',(byte)'s'};
+
+            Console.WriteLine(b.Entropy());
         }
     }
 }
