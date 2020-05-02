@@ -256,47 +256,52 @@ namespace StaticAnalysisProject.Modules
                 .Where(x => x.Name.CompareTo("GetType") != 0)             //Default prop by .NET class
                 .Where(x => x.Name.CompareTo("GetHashCode") != 0)        //Default prop by .NET class
                 .Where(x => x.Name.CompareTo("GetImportedDllsAndFunctions") != 0); //Complicated function for ML.NET
-                //.Where(x => !x.ReturnType.IsGenericType);               //Limit lists / dictionaries etc.
+                                                                                   //.Where(x => !x.ReturnType.IsGenericType);               //Limit lists / dictionaries etc.
 
-            foreach(var prop in props)
-            {
-                try
+            if (this.ISPeFile())
+                foreach (var prop in props)
                 {
-                    var value = prop.Invoke(this, null);
-                    string output = "";
-                    if (value != null)
+                    try
                     {
-                        if (prop.ReturnType.IsGenericType)
+                        var value = prop.Invoke(this, null);
+                        string output = "";
+                        if (value != null)
                         {
-                            if (value.GetType().Name.Contains("Dictionary"))
+                            if (prop.ReturnType.IsGenericType)
                             {
-                                output = ((IDictionary<string, string>)value).ToStringExtended();
+                                if (value.GetType().Name.Contains("Dictionary"))
+                                {
+                                    output = ((IDictionary<string, string>)value).ToStringExtended();
+                                }
+                                else if (value.GetType().Name.Contains("List"))
+                                {
+                                    output = ((IList<string>)value).ToStringExtended();
+                                }
                             }
-                            else if (value.GetType().Name.Contains("List"))
+                            else
                             {
-                                output = ((IList<string>)value).ToStringExtended();
+                                output = string.Format("{0}", value);
                             }
-                        }
-                        else
-                        {
-                            output = string.Format("{0}", value);
-                        }
 
-                        sb.AppendFormat("{0}: {1}",
-                            prop
-                            .Name
-                            .Replace("Get", "")
-                            .Replace("Is", "")
-                            .ToWords()
-                            .ToLower(),
-                            output
-                        );
-                        sb.AppendLine();
+                            sb.AppendFormat("{0}: {1}",
+                                prop
+                                .Name
+                                .Replace("Get", "")
+                                .Replace("Is", "")
+                                .ToWords()
+                                .ToLower(),
+                                output
+                            );
+                            sb.AppendLine();
+                        }
                     }
-                } catch(Exception e) {
-                    Debug.WriteLine(e.ToString());
-                } //Skip errors while parsing
-            }
+                    catch (Exception e)
+                    {
+                        Debug.WriteLine(e.ToString());
+                    } //Skip errors while parsing
+                }
+            else
+                sb.AppendLine("File is not in PE format");
 
             return sb.ToString();
         }

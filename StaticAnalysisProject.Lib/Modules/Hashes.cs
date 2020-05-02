@@ -26,9 +26,7 @@ namespace StaticAnalysisProject.Modules
         /// <param name="filename">Path to file</param>
         public Hashes(string filename) 
             : this(File.ReadAllBytes(filename), filename) 
-        {
-            this._filename = filename;
-        }
+        {}
 
         /// <summary>
         /// Constructor that load byte array and calc hashes

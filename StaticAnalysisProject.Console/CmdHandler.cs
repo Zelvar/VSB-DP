@@ -18,9 +18,9 @@ namespace StaticAnalysisProject.Console
             string ret = "";
             switch (cmd)
             {
-                case "strings(2)": //Strings options
-                    ret = "filePath (type[all|urls|files|ips])"; 
-                    break;
+                //case "strings(2)": //Strings options
+                //    ret = "filePath (type[all|urls|files|ips])"; 
+                //    break;
                 case "hashes(2)":
                     ret = "filePath (type[md5|sha1|sha384|sha256|sha512])";
                     break;
@@ -83,6 +83,10 @@ namespace StaticAnalysisProject.Console
         /// </summary>
         internal static void RunCommand(string[] command)
         {
+
+            if (commands.Length == 0)
+                LoadCommands();
+
             MethodInfo cmd = _listCommands
                 .Where(x => x.Name.ToLower().Equals(string.Format("{0}{1}", "cmd", command.First())))
                 .Where(x => x.GetParameters().Length == command.Length - 1)
@@ -163,13 +167,13 @@ namespace StaticAnalysisProject.Console
         /// </summary>
         public static void CmdStrings(string filePath)
         {
-            System.Console.WriteLine(new Strings(filePath).ToString());
+            System.Console.WriteLine(new Strings(filePath).ToString(false));
         }
-
+        /*
         public static void CmdStrings(string filePath, string type)
         {
             System.Console.WriteLine(new Strings(filePath).ToString());
-        }
+        }*/
 
         /// <summary>
         /// Check PE file details
@@ -211,9 +215,20 @@ namespace StaticAnalysisProject.Console
             System.Console.WriteLine(new FileReport(filePath).ToString());
         }
 
+        /// <summary>
+        /// Get results of yara analysis (behaviors)
+        /// </summary>
         public static void CmdBehavior(string filePath)
         {
             System.Console.WriteLine(new DetectWithYara(filePath).ToString());
+        }
+
+        /// <summary>
+        /// Get entropy info about file
+        /// </summary>
+        public static void CmdEntropy(string filePath)
+        {
+            System.Console.WriteLine(new Entropy(filePath).ToString());
         }
         #endregion
     }

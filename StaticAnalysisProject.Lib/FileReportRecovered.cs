@@ -18,6 +18,11 @@ namespace StaticAnalysisProject
         public string MimeType { get; set; }
 
         /// <summary>
+        /// Shannon entropy of file
+        /// </summary>
+        public double Entropy { get; set; }
+
+        /// <summary>
         /// Getters from static analysis
         /// </summary>
         #region PE file

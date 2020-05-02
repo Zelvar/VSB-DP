@@ -428,15 +428,15 @@ namespace StaticAnalysisProject.Modules
         /// <summary>
         /// Overrided ToString method to get report simply
         /// </summary>
-        public override string ToString()
+        public string ToString(bool filtredStrings = true)
         {
             StringBuilder sb = new StringBuilder();
 
             //Filtered string
-            if (this.GetFilteredString() != "")
+            if (filtredStrings && this.GetFilteredString() != "")
             {
                 sb.AppendLine("Filtered string:");
-                sb.AppendLine(this.GetFilteredString());
+                sb.AppendLine(string.Format("{0}", this.GetFilteredString()));
             }
 
             //List of IPs
@@ -495,6 +495,11 @@ namespace StaticAnalysisProject.Modules
             }
 
             return sb.ToString();//this.ConvertToString(this._rawFile);
+        }
+
+        public override string ToString()
+        {
+            return this.ToString(true);
         }
         #endregion
     }

@@ -20,6 +20,7 @@ namespace StaticAnalysisProject
         private VirusTotal virusTotalInstance = null;
         private PE peInstance = null;
         private DetectWithYara yaraInstance = null;
+        private Entropy entropyInstance = null;
 
         private bool _runVirusTotal = true;
         private bool _runYara = true;
@@ -35,6 +36,11 @@ namespace StaticAnalysisProject
         /// Mime type of file
         /// </summary>
         public string MimeType { get; private set; }
+
+        /// <summary>
+        /// Shannon entropy of file
+        /// </summary>
+        public double Entropy => entropyInstance.Value;
 
             #region PE file
             public IList<string> Exports => (peInstance.ISPeFile()) ? peInstance.GetExports() : null;
@@ -150,6 +156,9 @@ namespace StaticAnalysisProject
                 }
             }
 
+            //Calculate entropy
+            entropyInstance = new Entropy(this._filePath);
+
             // Get PE analysis
             peInstance = new PE(this._fileLoaded);
 
@@ -167,6 +176,7 @@ namespace StaticAnalysisProject
 
             sb.AppendLine(hashesInstance.ToString());
             sb.AppendLine(virusTotalInstance.ToString());
+            sb.AppendLine(entropyInstance.ToString());
             sb.AppendLine(peInstance.ToString());
             sb.AppendLine(stringsInstance.ToString());
             sb.AppendLine(yaraInstance.ToString());

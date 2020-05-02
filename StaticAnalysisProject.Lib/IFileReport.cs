@@ -7,11 +7,15 @@ namespace StaticAnalysisProject
     public interface IFileReport
     {
         /// <summary>
-        /// Classify
+        /// Classify class
         /// </summary>
         [LoadColumn(0)]
         public string Class { get; set; }
 
+        /// <summary>
+        /// Props from static analysis
+        /// </summary>
+        
         /// <summary>
         /// MIME format
         /// </summary>
@@ -19,8 +23,11 @@ namespace StaticAnalysisProject
         public string MimeType { get; }
 
         /// <summary>
-        /// Props from static analysis
+        /// Shannon entropy of file
         /// </summary>
+        [LoadColumn(34)]
+        public double Entropy { get; }
+
         #region PE file
         [LoadColumn(2)]
         public IList<string> Exports { get; }

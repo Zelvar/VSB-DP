@@ -128,13 +128,16 @@ namespace DP.Tests
 
             //Console.WriteLine(json);
 
-            byte[] a = File.ReadAllBytes(@"E:\Steam\steamapps\common\Grand Theft Auto V\GTA5.exe");
+            //byte[] a = File.ReadAllBytes(@"E:\Steam\steamapps\common\Grand Theft Auto V\GTA5.exe");
 
-            Console.WriteLine(a.Entropy());
+            //Console.WriteLine(a.Entropy());
 
-            byte[] b = new byte[] { (byte)'A',(byte)'h',(byte)'o',(byte)'j',(byte)' ',(byte)'j',(byte)'a',(byte)'k',(byte)' ',(byte)'s',(byte)'e',(byte)' ',(byte)'m',(byte)'a',(byte)'s'};
+            var ent = new Entropy(@"E:\Steam\steamapps\common\Grand Theft Auto V\GTA5.exe");
+            Console.WriteLine("Val: {0} Efc: {1}", ent.Value, ent.Efficiency);
 
-            Console.WriteLine(b.Entropy());
+            //byte[] b = new byte[] { (byte)'A',(byte)'h',(byte)'o',(byte)'j',(byte)' ',(byte)'j',(byte)'a',(byte)'k',(byte)' ',(byte)'s',(byte)'e',(byte)' ',(byte)'m',(byte)'a',(byte)'s'};
+
+            //Console.WriteLine(b.Entropy());
         }
     }
 }
