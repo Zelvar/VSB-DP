@@ -10,6 +10,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 
 using StaticAnalysisProject.Helpers;
+using StaticAnalysisProject.ML;
 
 namespace DP.Tests
 {
@@ -132,8 +133,10 @@ namespace DP.Tests
 
             //Console.WriteLine(a.Entropy());
 
-            var ent = new Entropy(@"E:\Steam\steamapps\common\Grand Theft Auto V\GTA5.exe");
-            Console.WriteLine("Val: {0} Efc: {1}", ent.Value, ent.Efficiency);
+            var ent = new MachineLearning(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\HookLibrary.dll");
+            //Console.WriteLine("Val: {0} Efc: {1}", ent.Value, ent.Efficiency);
+
+            Console.WriteLine(ent.ToString());
 
             //byte[] b = new byte[] { (byte)'A',(byte)'h',(byte)'o',(byte)'j',(byte)' ',(byte)'j',(byte)'a',(byte)'k',(byte)' ',(byte)'s',(byte)'e',(byte)' ',(byte)'m',(byte)'a',(byte)'s'};
 

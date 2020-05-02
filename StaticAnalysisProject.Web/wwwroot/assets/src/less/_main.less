@@ -4,7 +4,7 @@
 	display: flex;
 	align-items: center;
 
-	.card{
+	.card {
 		overflow-x: auto;
 	}
 
@@ -12,10 +12,17 @@
 		max-width: 100%;
 		word-wrap: break-word;
 		overflow-x: auto;
+		table-layout: fixed;
 
-		td {
-			max-width: 33.3333333%
+		td:first-child {
+			width: 33%;
 		}
+	}
+
+	.output {
+		display: block;
+		position: relative;
+		overflow-x: auto;
 	}
 
 	.logo {

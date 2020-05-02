@@ -34,6 +34,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Data\ML\malware-training-set-entropy.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\ML\software-training-set-entropy.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Data\Yara\antidebug_antivm.yara">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

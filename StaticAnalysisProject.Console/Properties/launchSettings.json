@@ -1,8 +1,7 @@
 {
   "profiles": {
     "StaticAnalysisProject.Console": {
-      "commandName": "Project",
-      "commandLineArgs": "strings Microsoft.ML.Data.dll"
+      "commandName": "Project"
     }
   }
 }

@@ -28,8 +28,9 @@
 
                 if (typeof (value) != "object") {
                     row.append($("<td>").text(key))
-                        .append($("<td>").text(value != "" || (typeof (value) == "boolean" || typeof (value) == "number") ? value : "N/A"));
-
+                        .append($("<td>")
+                            .attr("colspan", 2)
+                            .text(value != "" || (typeof (value) == "boolean" || typeof (value) == "number") ? value : "N/A"));
 
                     $(table).append(row).show('slow');
                 } else {
@@ -43,18 +44,27 @@
                                 )
                         ).show('slow');
 
-
                         $.each(value, function (key2, value2) {
 
-                            var row2 = $("<tr>")
+                            var row2 = $("<tr>").addClass("data-row")
 
-                            if (typeof (key2) != "number")
+                            if (key == "Sections")
                                 row2
-                                    .append($("<td>").text(key2))
-                                    .append($("<td>").text(value2 != "" ? value2 : "N/A"))
+                                    .append($("<td>").text(value2.Key != "" ? value2.Key : "N/A"))
+                                    .append($("<td>").text(value2.Value != "" ? value2.Value.join(", ") : "N/A"))
+                            else if (typeof (key2) != "number")
+                                if ( typeof(value2) == "object" ) {
+                                    row2
+                                        .append($("<td>").text(key2))
+                                        .append($("<td>").text(value2 != "" ? value2.join(", ") : "N/A"))
+                                }else {
+                                    row2
+                                        .append($("<td>").text(key2))
+                                        .append($("<td>").text(value2 != "" ? value2 : "N/A"))
+                                }
                             else
                                 row2
-                                    .append($("<td>").text(value2 != "" ? value2 : "N/A"))
+                                    .append($("<td>").attr("colspan", 2).text(value2 != "" ? value2 : "N/A"))
 
                             $(table).append(row2).show('slow');
                         });
