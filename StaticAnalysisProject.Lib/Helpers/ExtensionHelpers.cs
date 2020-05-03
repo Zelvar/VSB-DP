@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StaticAnalysisProject.ML;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -105,6 +106,14 @@ namespace StaticAnalysisProject.Helpers
             }
 
             return Math.Abs(ent);
+        }
+
+        /// <summary>
+        /// Converts FileReport to ML.NET format
+        /// </summary>
+        public static FileReportML ConvertML(this IFileReport report)
+        {
+            return FileReportML.Convert(report);
         }
     }
 }

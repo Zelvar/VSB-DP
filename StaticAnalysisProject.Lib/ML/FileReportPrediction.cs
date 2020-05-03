@@ -4,7 +4,7 @@ namespace StaticAnalysisProject.ML
 {
     class FileReportPrediction
     {
-        [ColumnName("PredictedLabel")]
-        public string Class;
+        [ColumnName("PredictedClass")]
+        public string Class { get; set; }
     }
 }
