@@ -12,7 +12,7 @@ namespace StaticAnalysisProject.ML
         /// Info about classification
         /// </summary>
         [LoadColumn(1), ColumnName("Label")]
-        public string Class { get; set; }
+        public bool IsMalware { get; set; }
 
         /// <summary>
         /// Mime type
@@ -65,7 +65,7 @@ namespace StaticAnalysisProject.ML
         {
             return new FileReportML()
             {
-                Class = file.Class,
+                IsMalware = file.Class == "malware",
                 MimeType = file.MimeType,
                 Entropy = (float)file.Entropy,
                 Exports = file.Exports != null ? (file.Exports as List<string>).ToArray() : null,

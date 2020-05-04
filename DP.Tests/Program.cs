@@ -133,10 +133,23 @@ namespace DP.Tests
 
             //Console.WriteLine(a.Entropy());
 
-            var ent = new MachineLearning(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\HookLibrary.dll");
+
+            //Build model
+            var ent = new MachineLearning();
+
+            
+            Console.WriteLine("Is malware: {0}", ent.Predict(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\HookLibrary.dll").IsMalware);
+            Console.WriteLine("Is malware: {0}", ent.Predict(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\App.exe").IsMalware);
+            Console.WriteLine("Is malware: {0}", ent.Predict(@"C:\Users\Zelvar\source\repos\FontCreator\FontCreator\bin\Debug\FontCreator.exe").IsMalware);
+            //Console.WriteLine("Is malware: {0}", ent.Predict(@"E:\Steam\steamapps\common\Grand Theft Auto V\GTA5.exe").IsMalware);
+            Console.WriteLine("Is malware: {0}", ent.Predict(@"C:\Users\Zelvar\source\repos\DLLInjection\x64\Release\Dll-compresed.dll").IsMalware);
+            Console.WriteLine("Is malware: {0}", ent.Predict(@"C:\Users\Zelvar\source\repos\DLLInjection\x64\Release\Dll.dll").IsMalware);
+            //Console.WriteLine("Is malware: {0}", ent.Predict(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\HookLibrary.dll").IsMalware);
+            //Console.WriteLine("Is malware: {0}", ent.Predict(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\HookLibrary.dll").IsMalware);
+
             //Console.WriteLine("Val: {0} Efc: {1}", ent.Value, ent.Efficiency);
 
-            Console.WriteLine(ent.ToString());
+            //Console.WriteLine(ent.ToString());
 
             //byte[] b = new byte[] { (byte)'A',(byte)'h',(byte)'o',(byte)'j',(byte)' ',(byte)'j',(byte)'a',(byte)'k',(byte)' ',(byte)'s',(byte)'e',(byte)' ',(byte)'m',(byte)'a',(byte)'s'};
 

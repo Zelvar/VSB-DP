@@ -18,46 +18,52 @@ namespace StaticAnalysisProject.ML
         private IList<IFileReport> _fileReports = new List<IFileReport>();
         private IList<FileReportML> _fileReportsConverted = new List<FileReportML>();
 
+        ITransformer _model = null;
+
         private static MLContext _mlContext;
 
         private string _pathToTrainingSet = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Data\ML\");
         private string[] _trainingDataSetFiles = null;
 
-        public MachineLearning(string fileName)
+        public MachineLearning()
         {
-            //Analyse current file
-            fr = new FileReport(fileName);
-
-
-
             _mlContext = new MLContext(seed: 0);
             LoadData();
 
             var trainingDataView = _mlContext.Data.LoadFromEnumerable<FileReportML>(_fileReportsConverted);
-            /*using (FileStream stream = File.OpenWrite("output.data")) {
-                _mlContext.Data.SaveAsText(trainingDataView, stream);
-            }*/
+            var experiment = _mlContext.Auto().CreateBinaryClassificationExperiment(60);
 
-            var experimentSettings = new MulticlassExperimentSettings();
+            var progress = new Progress<RunDetail<Microsoft.ML.Data.BinaryClassificationMetrics>>(p => { 
+                if(p.ValidationMetrics != null)
+                {
+                    Console.WriteLine("Current result: {0} {1}", p.TrainerName, p.ValidationMetrics.Accuracy);
+                }
+            });
 
-            var cts = new CancellationTokenSource();
-            experimentSettings.MaxExperimentTimeInSeconds = 120;
-            experimentSettings.CancellationToken = cts.Token;
+            var result = experiment.Execute(trainingDataView, labelColumnName: "Label", progressHandler: progress);
 
-            var classExperiment = _mlContext.Auto().CreateMulticlassClassificationExperiment(experimentSettings);
 
-            var metrics = classExperiment.Execute(trainingDataView, "Label");
 
-            Console.WriteLine(metrics.BestRun.ValidationMetrics.ConfusionMatrix.NumberOfClasses);
+            Console.WriteLine("Best run: ");
+            Console.WriteLine(result.BestRun.TrainerName);
 
-            //metrics.BestRun.Model.Save();
+            _model = result.BestRun.Model;
 
-            
-            var predictor = _mlContext.Model.CreatePredictionEngine<FileReportML, FileReportPrediction>(metrics.BestRun.Model);
+            using (FileStream fs = File.OpenWrite("Output.zip"))
+                _mlContext.Model.Save(_model, trainingDataView.Schema, fs);
+        }
 
+        public FileReportPrediction Predict(string fileName)
+        {
+            //Analyse current file
+            fr = new FileReport(fileName);
+
+            var predictor = _mlContext.Model.CreatePredictionEngine<FileReportML, FileReportPrediction>(_model);
             var prediction = predictor.Predict(fr.ConvertML());
 
-            Console.WriteLine("Predicted class: {0}", prediction.Class);
+            //Debug.WriteLine("Predicted class: {0}", prediction.IsMalware);
+
+            return prediction;
         }
 
         public void LoadData()

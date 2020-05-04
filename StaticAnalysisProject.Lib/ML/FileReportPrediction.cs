@@ -2,9 +2,9 @@
 
 namespace StaticAnalysisProject.ML
 {
-    class FileReportPrediction
+    public class FileReportPrediction
     {
         [ColumnName("PredictedClass")]
-        public string Class { get; set; }
+        public bool IsMalware { get; set; }
     }
 }
