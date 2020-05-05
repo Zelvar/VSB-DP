@@ -17,8 +17,19 @@ namespace StaticAnalysisProject.ML
         #region DATA
         [LoadColumn(1), ColumnName("Label")]
         public bool IsMalware { get; set; }
+
+        /// <summary>
+        /// Mime type
+        /// </summary>
+        [LoadColumn(2)]
+        public string MimeType { get; set; }
+
         [LoadColumn(3)]
         public float Entropy { get; set; }
+        [LoadColumn(4)]
+        public bool Is32b { get; set; }
+        [LoadColumn(5)]
+        public bool Is64b { get; set; }
         [LoadColumn(6)]
         public bool IsDotNet { get; set; }
         [LoadColumn(7)]
@@ -27,24 +38,61 @@ namespace StaticAnalysisProject.ML
         public bool IsExe { get; set; }
         [LoadColumn(9)]
         public bool IsDll { get; set; }
+
+        [LoadColumn(10)]
+        public string ImportHash { get; set; }
+        [LoadColumn(11)]
+        public string SHA256 { get; set; }
         [LoadColumn(12)]
         public bool IsInjectThread { get; set; }
         [LoadColumn(13)]
         public bool IsHijackNetwork { get; set; }
         [LoadColumn(14)]
         public bool IsCreateService { get; set; }
+        [LoadColumn(15)]
+        public bool IsCreateComService { get; set; }
         [LoadColumn(16)]
-        public bool IsUsingNetwork { get; set; }
+        public bool IsNetworkUdpSock { get; set; }
+        [LoadColumn(17)]
+        public bool IsNetworkTcpListen { get; set; }
+        [LoadColumn(18)]
+        public bool IsNetworkDyndns { get; set; }
+        [LoadColumn(19)]
+        public bool IsNetworkToredo { get; set; }
+        [LoadColumn(20)]
+        public bool IsNetworkSmtpDotNet { get; set; }
+        [LoadColumn(21)]
+        public bool IsNetworkSmtpRaw { get; set; }
+        [LoadColumn(22)]
+        public bool IsNetworkSmtpVb { get; set; }
+        [LoadColumn(23)]
+        public bool IsNetworkP2pWin { get; set; }
+        [LoadColumn(24)]
+        public bool IsNetworkTor { get; set; }
+        [LoadColumn(25)]
+        public bool IsNetworkIrc { get; set; }
+        [LoadColumn(26)]
+        public bool IsNetworkHttp { get; set; }
+        [LoadColumn(27)]
+        public bool IsNetworkDropper { get; set; }
+        [LoadColumn(28)]
+        public bool IsNetworkFtp { get; set; }
+        [LoadColumn(29)]
+        public bool IsNetworkTcpSocket { get; set; }
+        [LoadColumn(30)]
+        public bool IsNetworkDns { get; set; }
+        [LoadColumn(31)]
+        public bool IsNetworkSsl { get; set; }
+        [LoadColumn(32)]
+        public bool IsNetworkDga { get; set; }
         [LoadColumn(33)]
         public bool IsBitcoin { get; set; }
         [LoadColumn(34)]
         public bool IsCertificate { get; set; }
         [LoadColumn(35)]
         public bool IsEscalatePriv { get; set; }
-
         [LoadColumn(36)]
-        public bool IsHavingSuspiciousBehavior { get; set; }
-
+        public bool IsScreenshot { get; set; }
         [LoadColumn(37)]
         public bool IsLookupip { get; set; }
         [LoadColumn(38)]
@@ -65,14 +113,20 @@ namespace StaticAnalysisProject.ML
         public bool IsCredIe7 { get; set; }
         [LoadColumn(46)]
         public bool IsSniffLan { get; set; }
-
         [LoadColumn(47)]
         public bool IsMigrateApc { get; set; }
         [LoadColumn(48)]
         public bool IsSpreadingFile { get; set; }
         [LoadColumn(49)]
         public bool IsSpreadingShare { get; set; }
-
+        [LoadColumn(50)]
+        public bool IsRatVnc { get; set; }
+        [LoadColumn(51)]
+        public bool IsRatRdp { get; set; }
+        [LoadColumn(52)]
+        public bool IsRatTelnet { get; set; }
+        [LoadColumn(53)]
+        public bool IsRatWebcam { get; set; }
         [LoadColumn(54)]
         public bool IsWinMutex { get; set; }
         [LoadColumn(55)]
@@ -84,7 +138,13 @@ namespace StaticAnalysisProject.ML
         [LoadColumn(58)]
         public bool IsWinFilesOperation { get; set; }
         [LoadColumn(59)]
-        public bool IsStrWin32Api { get; set; }
+        public bool IsStrWin32Winsock2Library { get; set; }
+        [LoadColumn(60)]
+        public bool IsStrWin32WininetLibrary { get; set; }
+        [LoadColumn(61)]
+        public bool IsStrWin32InternetAPI { get; set; }
+        [LoadColumn(62)]
+        public bool IsStrWin32HttpAPI { get; set; }
         [LoadColumn(63)]
         public bool IsLdpreload { get; set; }
         [LoadColumn(64)]
@@ -95,23 +155,36 @@ namespace StaticAnalysisProject.ML
         public bool IsContainsRETools { get; set; }
         [LoadColumn(67)]
         public bool IsContainsAntivirus { get; set; }
-
-
         [LoadColumn(68)]
-        public bool IsContainsVMDetection { get; set; }
-
+        public bool IsContainsVMGenericDetection { get; set; }
+        [LoadColumn(69)]
+        public bool IsContainsVMWareDetection { get; set; }
         [LoadColumn(70)]
-        public bool PositiveTestsVT { get; }
-
-
+        public bool IsContainsSandboxieDetection { get; set; }
+        [LoadColumn(71)]
+        public bool IsContainsVirtualPCDetection { get; set; }
+        [LoadColumn(72)]
+        public bool IsContainsVirtualBoxDetection { get; set; }
+        [LoadColumn(73)]
+        public bool IsContainsParallelsDetection { get; set; }
+        [LoadColumn(74)]
+        public bool IsContainsQemuDetection { get; set; }
+        [LoadColumn(75)]
+        public bool IsContainsDropperStrings { get; set; }
         [LoadColumn(76)]
         public bool IsContainsAutoITCompiledScript { get; set; }
         [LoadColumn(77)]
         public bool IsContainsWMIStrings { get; set; }
+        [LoadColumn(78)]
+        public bool IsContainsObfuscatedStrings { get; set; }
+        [LoadColumn(79)]
+        public bool IsContainsBase64dPE { get; set; }
         [LoadColumn(80)]
         public bool IsContainsMiscSuspiciousStrings { get; set; }
         [LoadColumn(81)]
         public bool IsContainsBITSCLSID { get; set; }
+        [LoadColumn(82)]
+        public bool IsContainsHexEncodedTextPE { get; set; }
 
         [LoadColumn(83)]
         public string AntiVMOrDebug { get; set; }
@@ -128,15 +201,19 @@ namespace StaticAnalysisProject.ML
             return new FileReportML()
             {
                 IsMalware = file.Class == "malware",
+                MimeType = file.MimeType,
                 Entropy = (float)file.Entropy,
                 //Exports = file.Exports != null ? (file.Exports as List<string>).ToArray() : null,
                 //Directories = file.Directories != null ? (file.Directories as List<string>).ToArray() : null,
                 //Imports =  file.Imports != null && file.Imports.Count > 0 && file.Imports.Keys != null ? (file.Imports.Keys.ToArray()).Concat(file.Imports.Values.SelectMany(x => x).ToArray()).Select(x => x).Where(x => x != "" && x != null).ToArray() : null,
                 //Sections = file.Sections != null ? file.Sections.Select(x => x.Key).ToArray() : null,
+                Is32b = file.Is32b,
+                Is64b = file.Is64b,
                 IsDotNet = file.IsDotNet,
                 IsDriver = file.IsDriver,
                 IsExe = file.IsExe,
                 IsDll = file.IsDll,
+                ImportHash = file.ImportHash != null ? "" : "",
                 //IPAddrs = file.IPAddrs != null ? (file.IPAddrs as List<string>).ToArray() : null,
                 //Urls = file.Urls != null ? (file.Urls as List<string>).ToArray() : null,
                 //Mails = file.Mails != null ? (file.Mails as List<string>).ToArray() : null,
@@ -147,19 +224,31 @@ namespace StaticAnalysisProject.ML
                 //REPLACE WITH IS PARAMETERS
                 IsInjectThread = (Array.IndexOf(file.Behavior.ToArray(), "inject_thread") > -1),
                 IsHijackNetwork = (Array.IndexOf(file.Behavior.ToArray(), "hijack_network") > -1),
-
-                IsCreateService = (Array.IndexOf(file.Behavior.ToArray(), "create_service") > -1) || (Array.IndexOf(file.Behavior.ToArray(), "create_com_service") > -1),
-                IsUsingNetwork = (Array.IndexOf(file.Behavior.ToArray(), "network_udp_sock") > -1)|| (Array.IndexOf(file.Behavior.ToArray(), "network_tcp_listen") > -1)|| (Array.IndexOf(file.Behavior.ToArray(), "network_dyndns") > -1)|| (Array.IndexOf(file.Behavior.ToArray(), "network_toredo") > -1)|| (Array.IndexOf(file.Behavior.ToArray(), "network_smtp_dotNet") > -1)|| (Array.IndexOf(file.Behavior.ToArray(), "network_smtp_raw") > -1)|| (Array.IndexOf(file.Behavior.ToArray(), "network_smtp_vb") > -1)|| (Array.IndexOf(file.Behavior.ToArray(), "network_p2p_win") > -1)|| (Array.IndexOf(file.Behavior.ToArray(), "network_tor") > -1)|| (Array.IndexOf(file.Behavior.ToArray(), "network_irc") > -1)|| (Array.IndexOf(file.Behavior.ToArray(), "network_http") > -1)|| (Array.IndexOf(file.Behavior.ToArray(), "network_dropper") > -1)|| (Array.IndexOf(file.Behavior.ToArray(), "network_ftp") > -1) || (Array.IndexOf(file.Behavior.ToArray(), "network_tcp_socket") > -1)|| (Array.IndexOf(file.Behavior.ToArray(), "network_dns") > -1)|| (Array.IndexOf(file.Behavior.ToArray(), "network_ssl") > -1) || (Array.IndexOf(file.Behavior.ToArray(), "network_dga") > -1),
-
-                IsDyndns = (Array.IndexOf(file.Behavior.ToArray(), "dyndns") > -1),
+                IsCreateService = (Array.IndexOf(file.Behavior.ToArray(), "create_service") > -1),
+                IsCreateComService = (Array.IndexOf(file.Behavior.ToArray(), "create_com_service") > -1),
+                IsNetworkUdpSock = (Array.IndexOf(file.Behavior.ToArray(), "network_udp_sock") > -1),
+                IsNetworkTcpListen = (Array.IndexOf(file.Behavior.ToArray(), "network_tcp_listen") > -1),
+                IsNetworkDyndns = (Array.IndexOf(file.Behavior.ToArray(), "network_dyndns") > -1),
+                IsNetworkToredo = (Array.IndexOf(file.Behavior.ToArray(), "network_toredo") > -1),
+                IsNetworkSmtpDotNet = (Array.IndexOf(file.Behavior.ToArray(), "network_smtp_dotNet") > -1),
+                IsNetworkSmtpRaw = (Array.IndexOf(file.Behavior.ToArray(), "network_smtp_raw") > -1),
+                IsNetworkSmtpVb = (Array.IndexOf(file.Behavior.ToArray(), "network_smtp_vb") > -1),
+                IsNetworkP2pWin = (Array.IndexOf(file.Behavior.ToArray(), "network_p2p_win") > -1),
+                IsNetworkTor = (Array.IndexOf(file.Behavior.ToArray(), "network_tor") > -1),
+                IsNetworkIrc = (Array.IndexOf(file.Behavior.ToArray(), "network_irc") > -1),
+                IsNetworkHttp = (Array.IndexOf(file.Behavior.ToArray(), "network_http") > -1),
+                IsNetworkDropper = (Array.IndexOf(file.Behavior.ToArray(), "network_dropper") > -1),
+                IsNetworkFtp = (Array.IndexOf(file.Behavior.ToArray(), "network_ftp") > -1),
+                IsNetworkTcpSocket = (Array.IndexOf(file.Behavior.ToArray(), "network_tcp_socket") > -1),
+                IsNetworkDns = (Array.IndexOf(file.Behavior.ToArray(), "network_dns") > -1),
+                IsNetworkSsl = (Array.IndexOf(file.Behavior.ToArray(), "network_ssl") > -1),
+                IsNetworkDga = (Array.IndexOf(file.Behavior.ToArray(), "network_dga") > -1),
                 IsBitcoin = (Array.IndexOf(file.Behavior.ToArray(), "bitcoin") > -1),
                 IsCertificate = (Array.IndexOf(file.Behavior.ToArray(), "certificate") > -1),
-
-                //BehaviorIsHavingSuspiciousBehavior
-                IsHavingSuspiciousBehavior = (Array.IndexOf(file.Behavior.ToArray(), "escalate_priv") > -1) || (Array.IndexOf(file.Behavior.ToArray(), "screenshot") > -1) || (Array.IndexOf(file.Behavior.ToArray(), "rat_vnc") > -1) || (Array.IndexOf(file.Behavior.ToArray(), "rat_rdp") > -1) || (Array.IndexOf(file.Behavior.ToArray(), "rat_telnet") > -1) || (Array.IndexOf(file.Behavior.ToArray(), "rat_webcam") > -1) || (Array.IndexOf(file.Behavior.ToArray(), "sniff_lan") > -1),
-                IsStrWin32Api = (Array.IndexOf(file.Behavior.ToArray(), "Str_Win32_Winsock2_Library") > -1) || (Array.IndexOf(file.Behavior.ToArray(), "Str_Win32_Wininet_Library") > -1) || (Array.IndexOf(file.Behavior.ToArray(), "Str_Win32_Internet_API") > -1) || (Array.IndexOf(file.Behavior.ToArray(), "Str_Win32_Http_API") > -1),
-
+                IsEscalatePriv = (Array.IndexOf(file.Behavior.ToArray(), "escalate_priv") > -1),
+                IsScreenshot = (Array.IndexOf(file.Behavior.ToArray(), "screenshot") > -1),
                 IsLookupip = (Array.IndexOf(file.Behavior.ToArray(), "lookupip") > -1),
+                IsDyndns = (Array.IndexOf(file.Behavior.ToArray(), "dyndns") > -1),
                 IsLookupgeo = (Array.IndexOf(file.Behavior.ToArray(), "lookupgeo") > -1),
                 IsKeylogger = (Array.IndexOf(file.Behavior.ToArray(), "keylogger") > -1),
                 IsCredLocal = (Array.IndexOf(file.Behavior.ToArray(), "cred_local") > -1),
@@ -167,33 +256,46 @@ namespace StaticAnalysisProject.ML
                 IsCredFf = (Array.IndexOf(file.Behavior.ToArray(), "cred_ff") > -1),
                 IsCredVnc = (Array.IndexOf(file.Behavior.ToArray(), "cred_vnc") > -1),
                 IsCredIe7 = (Array.IndexOf(file.Behavior.ToArray(), "cred_ie7") > -1),
+                IsSniffLan = (Array.IndexOf(file.Behavior.ToArray(), "sniff_lan") > -1),
                 IsMigrateApc = (Array.IndexOf(file.Behavior.ToArray(), "migrate_apc") > -1),
                 IsSpreadingFile = (Array.IndexOf(file.Behavior.ToArray(), "spreading_file") > -1),
                 IsSpreadingShare = (Array.IndexOf(file.Behavior.ToArray(), "spreading_share") > -1),
-
+                IsRatVnc = (Array.IndexOf(file.Behavior.ToArray(), "rat_vnc") > -1),
+                IsRatRdp = (Array.IndexOf(file.Behavior.ToArray(), "rat_rdp") > -1),
+                IsRatTelnet = (Array.IndexOf(file.Behavior.ToArray(), "rat_telnet") > -1),
+                IsRatWebcam = (Array.IndexOf(file.Behavior.ToArray(), "rat_webcam") > -1),
                 IsWinMutex = (Array.IndexOf(file.Behavior.ToArray(), "win_mutex") > -1),
                 IsWinRegistry = (Array.IndexOf(file.Behavior.ToArray(), "win_registry") > -1),
                 IsWinToken = (Array.IndexOf(file.Behavior.ToArray(), "win_token") > -1),
                 IsWinPrivateProfile = (Array.IndexOf(file.Behavior.ToArray(), "win_private_profile") > -1),
                 IsWinFilesOperation = (Array.IndexOf(file.Behavior.ToArray(), "win_files_operation") > -1),
-
-                
+                IsStrWin32Winsock2Library = (Array.IndexOf(file.Behavior.ToArray(), "Str_Win32_Winsock2_Library") > -1),
+                IsStrWin32WininetLibrary = (Array.IndexOf(file.Behavior.ToArray(), "Str_Win32_Wininet_Library") > -1),
+                IsStrWin32InternetAPI = (Array.IndexOf(file.Behavior.ToArray(), "Str_Win32_Internet_API") > -1),
+                IsStrWin32HttpAPI = (Array.IndexOf(file.Behavior.ToArray(), "Str_Win32_Http_API") > -1),
                 IsLdpreload = (Array.IndexOf(file.Behavior.ToArray(), "ldpreload") > -1),
                 IsContainsSystemTools = (Array.IndexOf(file.Behavior.ToArray(), "System_Tools") > -1),
                 IsContainsBrowsers = (Array.IndexOf(file.Behavior.ToArray(), "Browsers") > -1),
                 IsContainsRETools = (Array.IndexOf(file.Behavior.ToArray(), "RE_Tools") > -1),
-
                 IsContainsAntivirus = (Array.IndexOf(file.Behavior.ToArray(), "Antivirus") > -1),
-                IsContainsVMDetection = (Array.IndexOf(file.Behavior.ToArray(), "VM_Generic_Detection") > -1) || (Array.IndexOf(file.Behavior.ToArray(), "VMWare_Detection") > -1) || (Array.IndexOf(file.Behavior.ToArray(), "Sandboxie_Detection") > -1) || (Array.IndexOf(file.Behavior.ToArray(), "VirtualPC_Detection") > -1) ||(Array.IndexOf(file.Behavior.ToArray(), "VirtualBox_Detection") > -1) || (Array.IndexOf(file.Behavior.ToArray(), "Parallels_Detection") > -1) || (Array.IndexOf(file.Behavior.ToArray(), "Qemu_Detection") > -1),
-                IsContainsMiscSuspiciousStrings = (Array.IndexOf(file.Behavior.ToArray(), "Dropper_Strings") > -1) || (Array.IndexOf(file.Behavior.ToArray(), "Obfuscated_Strings") > -1) || (Array.IndexOf(file.Behavior.ToArray(), "Base64d_PE") > -1) || (Array.IndexOf(file.Behavior.ToArray(), "Misc_Suspicious_Strings") > -1) || (Array.IndexOf(file.Behavior.ToArray(), "HexEncodedTextPE") > -1),
-
-
+                IsContainsVMGenericDetection = (Array.IndexOf(file.Behavior.ToArray(), "VM_Generic_Detection") > -1),
+                IsContainsVMWareDetection = (Array.IndexOf(file.Behavior.ToArray(), "VMWare_Detection") > -1),
+                IsContainsSandboxieDetection = (Array.IndexOf(file.Behavior.ToArray(), "Sandboxie_Detection") > -1),
+                IsContainsVirtualPCDetection = (Array.IndexOf(file.Behavior.ToArray(), "VirtualPC_Detection") > -1),
+                IsContainsVirtualBoxDetection = (Array.IndexOf(file.Behavior.ToArray(), "VirtualBox_Detection") > -1),
+                IsContainsParallelsDetection = (Array.IndexOf(file.Behavior.ToArray(), "Parallels_Detection") > -1),
+                IsContainsQemuDetection = (Array.IndexOf(file.Behavior.ToArray(), "Qemu_Detection") > -1),
+                IsContainsDropperStrings = (Array.IndexOf(file.Behavior.ToArray(), "Dropper_Strings") > -1),
                 IsContainsAutoITCompiledScript = (Array.IndexOf(file.Behavior.ToArray(), "AutoIT_compiled_script") > -1),
                 IsContainsWMIStrings = (Array.IndexOf(file.Behavior.ToArray(), "WMI_strings") > -1),
+                IsContainsObfuscatedStrings = (Array.IndexOf(file.Behavior.ToArray(), "Obfuscated_Strings") > -1),
+                IsContainsBase64dPE = (Array.IndexOf(file.Behavior.ToArray(), "Base64d_PE") > -1),
+                IsContainsMiscSuspiciousStrings = (Array.IndexOf(file.Behavior.ToArray(), "Misc_Suspicious_Strings") > -1),
                 IsContainsBITSCLSID = (Array.IndexOf(file.Behavior.ToArray(), "BITS_CLSID") > -1),
+                IsContainsHexEncodedTextPE = (Array.IndexOf(file.Behavior.ToArray(), "HexEncodedTextPE") > -1),
 
-                AntiVMOrDebug = file.Behavior.ToArray().Intersect(FileReportMLData.AntiVMAndDebug).FirstOrDefault() ?? "",
-                PackersCompilers = file.Behavior.ToArray().Intersect(FileReportMLData.PackersCompilers).FirstOrDefault() ?? "",
+                AntiVMOrDebug = file.Behavior.ToArray().Intersect(FileReportMLData.AntiVMAndDebug).FirstOrDefault(),
+                PackersCompilers = file.Behavior.ToArray().Intersect(FileReportMLData.PackersCompilers).FirstOrDefault(),
                 Packer = file.Behavior.ToArray().Intersect(FileReportMLData.PackerDB).FirstOrDefault() ?? "",
                 #endregion
             };
