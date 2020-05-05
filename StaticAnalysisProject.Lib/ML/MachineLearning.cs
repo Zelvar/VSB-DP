@@ -62,7 +62,7 @@ namespace StaticAnalysisProject.ML
             var predictModel = fr.ConvertML();
             var prediction = predictor.Predict(predictModel);
 
-            //Debug.WriteLine("Predicted class: {0}", prediction.IsMalware);
+            //Debug.WriteLine("Predicted class: {0} {1}", prediction.IsMalware);
 
             return prediction;
         }

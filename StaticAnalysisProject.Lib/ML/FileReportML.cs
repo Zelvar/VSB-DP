@@ -15,11 +15,11 @@ namespace StaticAnalysisProject.ML
     public class FileReportML
     {
         #region DATA
-        [LoadColumn(1), ColumnName("PredictedClass")]
+        [LoadColumn(1), ColumnName("Label")]
         public bool IsMalware { get; set; }
-        //[LoadColumn(3)]
-        //public float Entropy { get; set; }
-        /*[LoadColumn(6)]
+        [LoadColumn(3)]
+        public float Entropy { get; set; }
+        [LoadColumn(6)]
         public bool IsDotNet { get; set; }
         [LoadColumn(7)]
         public bool IsDriver { get; set; }
@@ -98,11 +98,11 @@ namespace StaticAnalysisProject.ML
 
 
         [LoadColumn(68)]
-        public bool IsContainsVMDetection { get; set; }*/
+        public bool IsContainsVMDetection { get; set; }
 
-        [LoadColumn(2)]
-        public bool PositiveTestsVT { get; set; }
-        /*
+        [LoadColumn(70)]
+        public bool PositiveTestsVT { get; }
+
 
         [LoadColumn(76)]
         public bool IsContainsAutoITCompiledScript { get; set; }
@@ -120,7 +120,7 @@ namespace StaticAnalysisProject.ML
         public string PackersCompilers { get; set; }
 
         [LoadColumn(85)]
-        public string Packer { get; set; }*/
+        public string Packer { get; set; }
         #endregion
 
         public static FileReportML Convert(IFileReport file) 
@@ -128,26 +128,24 @@ namespace StaticAnalysisProject.ML
             return new FileReportML()
             {
                 IsMalware = file.Class == "malware",
-                //Entropy = (float)file.Entropy,
+                Entropy = (float)file.Entropy,
                 //Exports = file.Exports != null ? (file.Exports as List<string>).ToArray() : null,
                 //Directories = file.Directories != null ? (file.Directories as List<string>).ToArray() : null,
                 //Imports =  file.Imports != null && file.Imports.Count > 0 && file.Imports.Keys != null ? (file.Imports.Keys.ToArray()).Concat(file.Imports.Values.SelectMany(x => x).ToArray()).Select(x => x).Where(x => x != "" && x != null).ToArray() : null,
                 //Sections = file.Sections != null ? file.Sections.Select(x => x.Key).ToArray() : null,
-                /*IsDotNet = file.IsDotNet,
+                IsDotNet = file.IsDotNet,
                 IsDriver = file.IsDriver,
                 IsExe = file.IsExe,
-                IsDll = file.IsDll,*/
+                IsDll = file.IsDll,
                 //IPAddrs = file.IPAddrs != null ? (file.IPAddrs as List<string>).ToArray() : null,
                 //Urls = file.Urls != null ? (file.Urls as List<string>).ToArray() : null,
                 //Mails = file.Mails != null ? (file.Mails as List<string>).ToArray() : null,
                 //Files = file.Files != null ? (file.Files as List<string>).ToArray() : null,
                 //KnownMethods = file.KnownMethods != null && file.KnownMethods.Count > 0 && file.KnownMethods.Values != null ? file.KnownMethods.Values.SelectMany(x => x).ToArray() : null,
 
-                PositiveTestsVT = file.PositiveTests >= 1,
-
                 #region Yara data
                 //REPLACE WITH IS PARAMETERS
-                /*IsInjectThread = (Array.IndexOf(file.Behavior.ToArray(), "inject_thread") > -1),
+                IsInjectThread = (Array.IndexOf(file.Behavior.ToArray(), "inject_thread") > -1),
                 IsHijackNetwork = (Array.IndexOf(file.Behavior.ToArray(), "hijack_network") > -1),
 
                 IsCreateService = (Array.IndexOf(file.Behavior.ToArray(), "create_service") > -1) || (Array.IndexOf(file.Behavior.ToArray(), "create_com_service") > -1),
@@ -196,7 +194,7 @@ namespace StaticAnalysisProject.ML
 
                 AntiVMOrDebug = file.Behavior.ToArray().Intersect(FileReportMLData.AntiVMAndDebug).FirstOrDefault() ?? "",
                 PackersCompilers = file.Behavior.ToArray().Intersect(FileReportMLData.PackersCompilers).FirstOrDefault() ?? "",
-                Packer = file.Behavior.ToArray().Intersect(FileReportMLData.PackerDB).FirstOrDefault() ?? "",*/
+                Packer = file.Behavior.ToArray().Intersect(FileReportMLData.PackerDB).FirstOrDefault() ?? "",
                 #endregion
             };
         }
