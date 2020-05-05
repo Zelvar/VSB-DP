@@ -11,6 +11,7 @@ using System.Text.Json.Serialization;
 
 using StaticAnalysisProject.Helpers;
 using StaticAnalysisProject.ML;
+using System.Linq;
 
 namespace DP.Tests
 {
@@ -135,17 +136,25 @@ namespace DP.Tests
 
 
             //Build model
-            var ent = new MachineLearning();
+             var ent = new MachineLearning();
 
-            
-            Console.WriteLine("Is malware: {0}", ent.Predict(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\HookLibrary.dll").IsMalware);
+            var data = Directory.GetFiles(@"W:\DP-Vystup\malware\malware", "*", SearchOption.AllDirectories).ToArray();
+
+            foreach(var file in data)
+            {
+                Console.WriteLine("{1} is malware: {0}", ent.Predict(file).IsMalware, file);
+            }
+
+            //Console.WriteLine("Is malware: {0}", ent.Predict(@"W:\DP-Vystup\malware\Adobe, Acrobat PDF Writer 3._exe").IsMalware);
+
+            /*Console.WriteLine("Is malware: {0}", ent.Predict(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\HookLibrary.dll").IsMalware);
             Console.WriteLine("Is malware: {0}", ent.Predict(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\App.exe").IsMalware);
             Console.WriteLine("Is malware: {0}", ent.Predict(@"C:\Users\Zelvar\source\repos\FontCreator\FontCreator\bin\Debug\FontCreator.exe").IsMalware);
-            //Console.WriteLine("Is malware: {0}", ent.Predict(@"E:\Steam\steamapps\common\Grand Theft Auto V\GTA5.exe").IsMalware);
+            Console.WriteLine("Is malware: {0}", ent.Predict(@"E:\Steam\steamapps\common\Grand Theft Auto V\GTA5.exe").IsMalware);
             Console.WriteLine("Is malware: {0}", ent.Predict(@"C:\Users\Zelvar\source\repos\DLLInjection\x64\Release\Dll-compresed.dll").IsMalware);
             Console.WriteLine("Is malware: {0}", ent.Predict(@"C:\Users\Zelvar\source\repos\DLLInjection\x64\Release\Dll.dll").IsMalware);
-            //Console.WriteLine("Is malware: {0}", ent.Predict(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\HookLibrary.dll").IsMalware);
-            //Console.WriteLine("Is malware: {0}", ent.Predict(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\HookLibrary.dll").IsMalware);
+            Console.WriteLine("Is malware: {0}", ent.Predict(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\HookLibrary.dll").IsMalware);
+            Console.WriteLine("Is malware: {0}", ent.Predict(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\HookLibrary.dll").IsMalware);*/
 
             //Console.WriteLine("Val: {0} Efc: {1}", ent.Value, ent.Efficiency);
 
@@ -154,6 +163,32 @@ namespace DP.Tests
             //byte[] b = new byte[] { (byte)'A',(byte)'h',(byte)'o',(byte)'j',(byte)' ',(byte)'j',(byte)'a',(byte)'k',(byte)' ',(byte)'s',(byte)'e',(byte)' ',(byte)'m',(byte)'a',(byte)'s'};
 
             //Console.WriteLine(b.Entropy());
+
+
+            /*var hs = new HashSet<string>();
+            IList<IFileReport> _fileReports = new List<IFileReport>();
+
+            IList<FileReportRecovered> list = ExtensionHelpers.ListFromJson(File.ReadAllText("malware.json"));
+            //IList<FileReportRecovered> list = ExtensionHelpers.ListFromJson(File.ReadAllText("software.json"));
+            _fileReports = _fileReports.Concat(list).ToList();
+            //_fileReports = _fileReports.Concat(list2).ToList();
+
+            foreach (var a in _fileReports) {
+
+                if(a.Behavior.Contains(""))
+
+                foreach (var b in a.Behavior)
+                {
+                    hs.Add(b.ToString());
+                }
+            }
+
+            foreach(var a in hs)
+            {
+                Console.WriteLine(a);
+            }*/
+
+
         }
     }
 }

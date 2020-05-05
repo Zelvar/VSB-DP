@@ -31,7 +31,7 @@ namespace StaticAnalysisProject.ML
             LoadData();
 
             var trainingDataView = _mlContext.Data.LoadFromEnumerable<FileReportML>(_fileReportsConverted);
-            var experiment = _mlContext.Auto().CreateBinaryClassificationExperiment(60);
+            var experiment = _mlContext.Auto().CreateBinaryClassificationExperiment(10);
 
             var progress = new Progress<RunDetail<Microsoft.ML.Data.BinaryClassificationMetrics>>(p => { 
                 if(p.ValidationMetrics != null)
@@ -40,7 +40,7 @@ namespace StaticAnalysisProject.ML
                 }
             });
 
-            var result = experiment.Execute(trainingDataView, labelColumnName: "Label", progressHandler: progress);
+            var result = experiment.Execute(trainingDataView, labelColumnName: "PredictedClass", progressHandler: progress);
 
 
 
@@ -59,7 +59,8 @@ namespace StaticAnalysisProject.ML
             fr = new FileReport(fileName);
 
             var predictor = _mlContext.Model.CreatePredictionEngine<FileReportML, FileReportPrediction>(_model);
-            var prediction = predictor.Predict(fr.ConvertML());
+            var predictModel = fr.ConvertML();
+            var prediction = predictor.Predict(predictModel);
 
             //Debug.WriteLine("Predicted class: {0}", prediction.IsMalware);
 

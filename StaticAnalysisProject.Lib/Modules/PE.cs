@@ -85,6 +85,22 @@ namespace StaticAnalysisProject.Modules
         public uint GetTimeDateStamp() => _pefile.ImageNtHeaders.FileHeader.TimeDateStamp;
 
         /// <summary>
+        /// Check if is it Signed with Certificate
+        /// </summary>
+        public bool IsSigned() => _pefile.Authenticode.IsAuthenticodeValid;
+
+        /// <summary>
+        /// Check sign issuer
+        /// </summary>
+        public string GetSignIssuer() => this.IsSigned() ? _pefile.Authenticode.SigningCertificate.Issuer : "";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public string GetSignSubject() => this.IsSigned() ? _pefile.Authenticode.SigningCertificate.Subject : "";
+
+        /// <summary>
         /// Convert time stamp to .NET DateTime
         /// </summary>
         public DateTime GetDateTime() {
