@@ -7,6 +7,7 @@ using System.Threading;
 using Microsoft.ML;
 using Microsoft.ML.AutoML;
 using StaticAnalysisProject.Helpers;
+using Tensorflow.Keras.Engine;
 
 namespace StaticAnalysisProject.ML
 {
@@ -40,12 +41,12 @@ namespace StaticAnalysisProject.ML
                 }
             });
 
+
             var result = experiment.Execute(trainingDataView, labelColumnName: "PredictedClass", progressHandler: progress);
 
 
 
             Console.WriteLine("Best run: ");
-            Console.WriteLine(result.BestRun.TrainerName);
 
             _model = result.BestRun.Model;
 

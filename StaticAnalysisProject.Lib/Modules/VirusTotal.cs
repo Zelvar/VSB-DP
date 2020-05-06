@@ -27,7 +27,7 @@ namespace StaticAnalysisProject.Modules
     public class VirusTotal : IModul
     {
         //Constructor for lib - parameter is API KEY
-        VirusTotalNet.VirusTotal virusTotal = new VirusTotalNet.VirusTotal("f22b0933cc2a457845ea9f3a00245a9e1fba87d5adaf81b0a367629205bbdf9d");
+        VirusTotalNet.VirusTotal virusTotal = new VirusTotalNet.VirusTotal("db0b54c917cc3ef141b894cd4231bf2fd471e93a3f6732184e3557c385494b9c");
 
         #region DATA
         private string _filename = null;

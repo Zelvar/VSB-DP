@@ -11,18 +11,18 @@ namespace StaticAnalysisProject.ML
         /// <summary>
         /// Info about classification
         /// </summary>
-        [LoadColumn(1), ColumnName("Label")]
+        [LoadColumn(1), ColumnName("PredictedClass")]
         public bool IsMalware { get; set; }
 
         /// <summary>
         /// Mime type
         /// </summary>
-        [LoadColumn(2)]
-        public string MimeType { get; set; }
+        /*[LoadColumn(2)]
+        public string MimeType { get; set; }*/
 
         [LoadColumn(3)]
         public float Entropy { get; set; }
-        [LoadColumn(4)]
+        /*[LoadColumn(4)]
         public string[] Exports { get; set; }
         [LoadColumn(5)]
         public string[] Directories { get; set; }
@@ -55,20 +55,20 @@ namespace StaticAnalysisProject.ML
         [LoadColumn(18)]
         public string[] Files { get; set; }
         [LoadColumn(19)]
-        public string[] KnownMethods { get; set; }
-        [LoadColumn(20)]
-        public string SHA256 { get; set; }
+        public string[] KnownMethods { get; set; }*/
+        /*[LoadColumn(20)]
+        public string[] Behavior { get; set; }*/
         [LoadColumn(21)]
-        public string[] Behavior { get; set; }
+        public bool VirusTotal { get; set; }
 
         public static FileReportML Convert(IFileReport file) 
         {
             return new FileReportML()
             {
                 IsMalware = file.Class == "malware",
-                MimeType = file.MimeType,
+                //MimeType = file.MimeType,
                 Entropy = (float)file.Entropy,
-                Exports = file.Exports != null ? (file.Exports as List<string>).ToArray() : null,
+                /*Exports = file.Exports != null ? (file.Exports as List<string>).ToArray() : null,
                 Directories = file.Directories != null ? (file.Directories as List<string>).ToArray() : null,
                 Imports =  file.Imports != null && file.Imports.Count > 0 && file.Imports.Keys != null ? (file.Imports.Keys.ToArray()).Concat(file.Imports.Values.SelectMany(x => x).ToArray()).Select(x => x).Where(x => x != "" && x != null).ToArray() : null,
                 Sections = file.Sections != null ? file.Sections.Select(x => x.Key).ToArray() : null,
@@ -83,8 +83,9 @@ namespace StaticAnalysisProject.ML
                 Urls = file.Urls != null ? (file.Urls as List<string>).ToArray() : null,
                 Mails = file.Mails != null ? (file.Mails as List<string>).ToArray() : null,
                 Files = file.Files != null ? (file.Files as List<string>).ToArray() : null,
-                KnownMethods = file.KnownMethods != null && file.KnownMethods.Count > 0 && file.KnownMethods.Values != null ? file.KnownMethods.Values.SelectMany(x => x).ToArray() : null,
-                Behavior = file.Behavior != null ? (file.Behavior as List<string>).ToArray() : null,
+                KnownMethods = file.KnownMethods != null && file.KnownMethods.Count > 0 && file.KnownMethods.Values != null ? file.KnownMethods.Values.SelectMany(x => x).ToArray() : null,*/
+                //Behavior = file.Behavior != null ? (file.Behavior as List<string>).ToArray() : null,
+                VirusTotal = file.PositiveTests >= 1
             };
         }
     }
