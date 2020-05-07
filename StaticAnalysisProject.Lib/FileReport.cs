@@ -55,6 +55,12 @@ namespace StaticAnalysisProject
             public bool IsExe => (peInstance.ISPeFile()) ? peInstance.IsExe() : false;
             public bool IsDll => (peInstance.ISPeFile()) ? peInstance.IsDll() : false;
 
+            public bool IsSigned => (peInstance.ISPeFile()) ? peInstance.IsSigned() : false;
+
+            public string SignIssuer => (peInstance.ISPeFile()) ? peInstance.GetSignIssuer() : "";
+
+            public string SignSubject => (peInstance.ISPeFile()) ? peInstance.GetSignSubject() : "";
+
             public string Filename => Path.GetFileName(this._filePath);
             public string Machine => (peInstance.ISPeFile()) ? peInstance.GetMachine() : "Not PE file";
 

@@ -7,7 +7,7 @@ using System.Threading;
 using Microsoft.ML;
 using Microsoft.ML.AutoML;
 using StaticAnalysisProject.Helpers;
-using Tensorflow.Keras.Engine;
+using static Microsoft.ML.DataOperationsCatalog;
 
 namespace StaticAnalysisProject.ML
 {
@@ -22,6 +22,7 @@ namespace StaticAnalysisProject.ML
         ITransformer _model = null;
 
         private static MLContext _mlContext;
+        IDataView trainingDataView;
 
         private string _pathToTrainingSet = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Data\ML\");
         private string[] _trainingDataSetFiles = null;
@@ -31,8 +32,9 @@ namespace StaticAnalysisProject.ML
             _mlContext = new MLContext(seed: 0);
             LoadData();
 
-            var trainingDataView = _mlContext.Data.LoadFromEnumerable<FileReportML>(_fileReportsConverted);
-            var experiment = _mlContext.Auto().CreateBinaryClassificationExperiment(10);
+            trainingDataView = _mlContext.Data.LoadFromEnumerable<FileReportML>(_fileReportsConverted);
+            #region ML Auto
+            /*var experiment = _mlContext.Auto().CreateBinaryClassificationExperiment(10);
 
             var progress = new Progress<RunDetail<Microsoft.ML.Data.BinaryClassificationMetrics>>(p => { 
                 if(p.ValidationMetrics != null)
@@ -41,17 +43,156 @@ namespace StaticAnalysisProject.ML
                 }
             });
 
-
             var result = experiment.Execute(trainingDataView, labelColumnName: "PredictedClass", progressHandler: progress);
-
-
-
             Console.WriteLine("Best run: ");
+            _model = result.BestRun.Model;*/
+            #endregion
 
-            _model = result.BestRun.Model;
 
-            using (FileStream fs = File.OpenWrite("Output.zip"))
-                _mlContext.Model.Save(_model, trainingDataView.Schema, fs);
+            TrainTestData splitDataView = _mlContext.Data.TrainTestSplit(trainingDataView, testFraction: 0.3);
+
+            var dataProcessPipeline = 
+                _mlContext.Transforms.NormalizeBinning("Entropy", maximumBinCount: 16)
+                .Append(_mlContext.Transforms.Categorical.OneHotEncoding("IsExeEncoded", "IsExe"))
+                .Append(_mlContext.Transforms.Categorical.OneHotEncoding("IsDllEncoded", "IsDll"))
+                .Append(_mlContext.Transforms.Categorical.OneHotEncoding("IsIsDotNetEncoded", "IsDotNet"))
+
+                .Append(_mlContext.Transforms.Categorical.OneHotEncoding("ContainsIPEncoded", "ContainsIP"))
+                .Append(_mlContext.Transforms.Categorical.OneHotEncoding("ContainsFilesEncoded", "ContainsFiles"))
+                .Append(_mlContext.Transforms.Categorical.OneHotEncoding("ContainsEmailEncoded", "ContainsEmail"))
+                .Append(_mlContext.Transforms.Categorical.OneHotEncoding("ContainsURLEncoded", "ContainsURL"))
+
+                .Append(_mlContext.Transforms.Categorical.OneHotEncoding("FeaturedBehavior", "Behavior", Microsoft.ML.Transforms.OneHotEncodingEstimator.OutputKind.Bag))
+                .Append(_mlContext.Transforms.Categorical.OneHotEncoding("FeaturedKnownMethods", "KnownMethods", Microsoft.ML.Transforms.OneHotEncodingEstimator.OutputKind.Bag))
+                .Append(_mlContext.Transforms.Categorical.OneHotEncoding("FeaturedImports", "Imports", Microsoft.ML.Transforms.OneHotEncodingEstimator.OutputKind.Bag))
+
+                .Append(
+                    _mlContext.Transforms.Concatenate("Features", 
+                        "FeaturedBehavior",
+                        //"VirusTotal", 
+                        "FeaturedKnownMethods",
+                        "FeaturedImports",
+                        "Entropy",
+
+                        "IsExeEncoded",
+                        "IsDllEncoded",
+                        "IsIsDotNetEncoded",
+
+                        "ContainsIPEncoded",
+                        "ContainsFilesEncoded",
+                        "ContainsEmailEncoded",
+                        "ContainsURLEncoded"
+                    )
+                )
+                .Append(_mlContext.BinaryClassification.Trainers
+                    .SdcaLogisticRegression(
+                        labelColumnName: "IsMalware",
+                        featureColumnName: "Features"
+                    ));
+
+            #region workin
+            /*var dataProcessPipeline = _mlContext.Transforms
+                .Concatenate("Features", //Column name
+                    "IsInjectThread",
+                    "IsHijackNetwork",
+                    "IsCreateService",
+                    "IsCreateComService",
+                    "IsNetworkUdpSock",
+                    "IsNetworkTcpListen",
+                    "IsNetworkDyndns",
+                    "IsNetworkToredo",
+                    "IsNetworkSmtpDotNet",
+                    "IsNetworkSmtpRaw",
+                    "IsNetworkSmtpVb",
+                    "IsNetworkP2pWin",
+                    "IsNetworkTor",
+                    "IsNetworkIrc",
+                    "IsNetworkHttp",
+                    "IsNetworkDropper",
+                    "IsNetworkFtp",
+                    "IsNetworkTcpSocket",
+                    "IsNetworkDns",
+                    "IsNetworkSsl",
+                    "IsNetworkDga",
+                    "IsBitcoin",
+                    "IsCertificate",
+                    "IsEscalatePriv",
+                    "IsScreenshot",
+                    "IsLookupip",
+                    "IsDyndns",
+                    "IsLookupgeo",
+                    "IsKeylogger",
+                    "IsCredLocal",
+                    "IsSniffAudio",
+                    "IsCredFf",
+                    "IsCredVnc",
+                    "IsCredIe7",
+                    "IsSniffLan",
+                    "IsMigrateApc",
+                    "IsSpreadingFile",
+                    "IsSpreadingShare",
+                    "IsRatVnc",
+                    "IsRatRdp",
+                    "IsRatTelnet",
+                    "IsRatWebcam",
+                    "IsWinMutex",
+                    "IsWinRegistry",
+                    "IsWinToken",
+                    "IsWinPrivateProfile",
+                    "IsWinFilesOperation",
+                    "IsStrWin32Winsock2Library",
+                    "IsStrWin32WininetLibrary",
+                    "IsStrWin32InternetAPI",
+                    "IsStrWin32HttpAPI",
+                    "IsLdpreload",
+                    "IsContainsSystemTools",
+                    "IsContainsBrowsers",
+                    "IsContainsRETools",
+                    "IsContainsAntivirus",
+                    "IsContainsVMGenericDetection",
+                    "IsContainsVMWareDetection",
+                    "IsContainsSandboxieDetection",
+                    "IsContainsVirtualPCDetection",
+                    "IsContainsVirtualBoxDetection",
+                    "IsContainsParallelsDetection",
+                    "IsContainsQemuDetection",
+                    "IsContainsDropperStrings",
+                    "IsContainsAutoITCompiledScript",
+                    "IsContainsWMIStrings",
+                    "IsContainsObfuscatedStrings",
+                    "IsContainsBase64dPE",
+                    "IsContainsMiscSuspiciousStrings",
+                    "IsContainsBITSCLSID",
+                    "IsContainsHexEncodedTextPE"
+                ).Append(_mlContext.BinaryClassification.Trainers
+                    .FastTree(
+                        labelColumnName: "IsMalware", 
+                        featureColumnName: "Features"
+                    )
+                );*/
+            #endregion
+
+            _model = dataProcessPipeline.Fit(splitDataView.TrainSet);
+            var predictions = _model.Transform(splitDataView.TestSet);
+            var metrics = _mlContext.BinaryClassification.Evaluate(
+                data: predictions, 
+                labelColumnName: "IsMalware"
+            );
+
+            // Now run the 5-fold cross-validation experiment, using the same pipeline.
+            var cvResults = _mlContext.BinaryClassification.CrossValidate(
+                data: trainingDataView, 
+                estimator: dataProcessPipeline, 
+                numberOfFolds: 10,
+                labelColumnName: "IsMalware"
+            );
+
+            var accuracies = cvResults.Select(r => r.Metrics.Accuracy);
+            Console.WriteLine(accuracies.Average());
+            Console.WriteLine(metrics.Accuracy);
+
+            /*using (FileStream fs = File.OpenWrite("Output.zip"))
+                _mlContext.Model.Save(_model, trainingDataView.Schema, fs);*/
         }
 
         public FileReportPrediction Predict(string fileName)
@@ -66,6 +207,7 @@ namespace StaticAnalysisProject.ML
             //Debug.WriteLine("Predicted class: {0} {1}", prediction.IsMalware);
 
             return prediction;
+
         }
 
         public void LoadData()
@@ -87,23 +229,6 @@ namespace StaticAnalysisProject.ML
             {
                 _fileReportsConverted.Add(item.ConvertML());
             }
-        }
-
-        private IEstimator<ITransformer> GetTrainingPipeline(MLContext mlContext, IEstimator<ITransformer> pipeline)
-        {
-            return pipeline
-                .Append(GetScadaTrainer(mlContext))
-                .Append(mlContext.Transforms.Conversion.MapKeyToValue("PredictedClass"));
-        }
-
-        private IEstimator<ITransformer> GetScadaTrainer(MLContext mlContext)
-        {
-            return mlContext.MulticlassClassification.Trainers.SdcaMaximumEntropy("Label", "Features");
-        }
-
-        private IEstimator<ITransformer> LoadDataProcessPipeline(MLContext mlContext)
-        {
-            return mlContext.Transforms.Concatenate("", "", "");
         }
     }
 }

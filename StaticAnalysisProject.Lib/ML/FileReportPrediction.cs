@@ -4,7 +4,7 @@ namespace StaticAnalysisProject.ML
 {
     public class FileReportPrediction
     {
-        [ColumnName("PredictedClass")]
+        [ColumnName("PredictedLabel")]
         public bool IsMalware { get; set; }
     }
 }

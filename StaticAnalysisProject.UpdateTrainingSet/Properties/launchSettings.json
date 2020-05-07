@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "StaticAnalysisProject.UpdateTrainingSet": {
+      "commandName": "Project",
+      "commandLineArgs": "\"W:\\DP-Vystup\\SW\\training\""
+    }
+  }
+}

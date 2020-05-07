@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace StaticAnalysisProject.Modules
 {
@@ -87,7 +88,7 @@ namespace StaticAnalysisProject.Modules
         /// <summary>
         /// Check if is it Signed with Certificate
         /// </summary>
-        public bool IsSigned() => _pefile.Authenticode.IsAuthenticodeValid;
+        public bool IsSigned() => _pefile != null && _pefile.Authenticode != null ? _pefile.Authenticode.IsAuthenticodeValid : false;
 
         /// <summary>
         /// Check sign issuer
@@ -299,15 +300,17 @@ namespace StaticAnalysisProject.Modules
                                 output = string.Format("{0}", value);
                             }
 
+                            var methodName = prop.Name;
+                            methodName = Regex.Replace(methodName, "^Is", "");
+                            methodName = Regex.Replace(methodName, "^Get", "");
+
                             sb.AppendFormat("{0}: {1}",
-                                prop
-                                .Name
-                                .Replace("Get", "")
-                                .Replace("Is", "")
+                                methodName
                                 .ToWords()
                                 .ToLower(),
                                 output
                             );
+
                             sb.AppendLine();
                         }
                     }
