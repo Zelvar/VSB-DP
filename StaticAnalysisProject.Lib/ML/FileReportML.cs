@@ -13,13 +13,6 @@ namespace StaticAnalysisProject.ML
         /// </summary>
         [LoadColumn(0)]
         public bool IsMalware { get; set; }
-
-        /// <summary>
-        /// Mime type
-        /// </summary>
-        /*[LoadColumn(2)]
-        public string MimeType { get; set; }*/
-
         [LoadColumn(1)]
         public float Entropy { get; set; }
         [LoadColumn(2)]
@@ -49,6 +42,11 @@ namespace StaticAnalysisProject.ML
         public bool ContainsFiles { get; set; }
         [LoadColumn(13)]
         public string[] Imports { get; set; }
+        [LoadColumn(14)]
+        public bool IsSigned { get; set; }
+        [LoadColumn(15)]
+        public string MimeType { get; set; }
+
 
         /*[LoadColumn(4)]
         public string[] Exports { get; set; }
@@ -86,7 +84,7 @@ namespace StaticAnalysisProject.ML
             return new FileReportML()
             {
                 IsMalware = file.Class == "malware",
-                //MimeType = file.MimeType,
+                MimeType = file.MimeType,
                 Entropy = (float)file.Entropy,
                 /*Exports = file.Exports != null ? (file.Exports as List<string>).ToArray() : null,
                 Directories = file.Directories != null ? (file.Directories as List<string>).ToArray() : null,
@@ -98,6 +96,7 @@ namespace StaticAnalysisProject.ML
                 IsDriver = file.IsDriver,
                 IsExe = file.IsExe,
                 IsDll = file.IsDll,
+                IsSigned = file.IsSigned,
                 /*ImportHash = file.ImportHash != null ? "" : "",
                 IPAddrs = file.IPAddrs != null ? (file.IPAddrs as List<string>).ToArray() : null,
                 Urls = file.Urls != null ? (file.Urls as List<string>).ToArray() : null,
