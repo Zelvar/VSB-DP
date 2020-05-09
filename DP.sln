@@ -15,9 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StaticAnalysisProject.Build
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StaticAnalysisProject.UpdateTrainingSet", "StaticAnalysisProject.UpdateTrainingSet\StaticAnalysisProject.UpdateTrainingSet.csproj", "{16B4B372-57DA-4237-BE8C-3E7728703AEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MalwareSample.Keylogger", "MalwareSample.Keylogger\MalwareSample.Keylogger.csproj", "{6D9A97CD-7BEC-424C-A29E-455CC602E313}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MalwareSample.Keylogger", "MalwareSample.Keylogger\MalwareSample.Keylogger.csproj", "{6D9A97CD-7BEC-424C-A29E-455CC602E313}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MalwareSample.BotnetListener", "MalwareSample.BotnetListener\MalwareSample.BotnetListener.csproj", "{F6A17014-4B52-4279-8D82-3A0E2EE5FDE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MalwareSample.BotnetListener", "MalwareSample.BotnetListener\MalwareSample.BotnetListener.csproj", "{F6A17014-4B52-4279-8D82-3A0E2EE5FDE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaticAnalysisProject.MalwareStats", "StaticAnalysisProject.MalwareStats\StaticAnalysisProject.MalwareStats.csproj", "{FC49C594-CF76-4864-833B-D6F43037855A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -159,6 +161,22 @@ Global
 		{F6A17014-4B52-4279-8D82-3A0E2EE5FDE9}.RelWithDebInfo|Any CPU.Build.0 = Release|Any CPU
 		{F6A17014-4B52-4279-8D82-3A0E2EE5FDE9}.RelWithDebInfo|x64.ActiveCfg = Release|Any CPU
 		{F6A17014-4B52-4279-8D82-3A0E2EE5FDE9}.RelWithDebInfo|x64.Build.0 = Release|Any CPU
+		{FC49C594-CF76-4864-833B-D6F43037855A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC49C594-CF76-4864-833B-D6F43037855A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC49C594-CF76-4864-833B-D6F43037855A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FC49C594-CF76-4864-833B-D6F43037855A}.Debug|x64.Build.0 = Debug|Any CPU
+		{FC49C594-CF76-4864-833B-D6F43037855A}.MinSizeRel|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC49C594-CF76-4864-833B-D6F43037855A}.MinSizeRel|Any CPU.Build.0 = Debug|Any CPU
+		{FC49C594-CF76-4864-833B-D6F43037855A}.MinSizeRel|x64.ActiveCfg = Debug|Any CPU
+		{FC49C594-CF76-4864-833B-D6F43037855A}.MinSizeRel|x64.Build.0 = Debug|Any CPU
+		{FC49C594-CF76-4864-833B-D6F43037855A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC49C594-CF76-4864-833B-D6F43037855A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC49C594-CF76-4864-833B-D6F43037855A}.Release|x64.ActiveCfg = Release|Any CPU
+		{FC49C594-CF76-4864-833B-D6F43037855A}.Release|x64.Build.0 = Release|Any CPU
+		{FC49C594-CF76-4864-833B-D6F43037855A}.RelWithDebInfo|Any CPU.ActiveCfg = Release|Any CPU
+		{FC49C594-CF76-4864-833B-D6F43037855A}.RelWithDebInfo|Any CPU.Build.0 = Release|Any CPU
+		{FC49C594-CF76-4864-833B-D6F43037855A}.RelWithDebInfo|x64.ActiveCfg = Release|Any CPU
+		{FC49C594-CF76-4864-833B-D6F43037855A}.RelWithDebInfo|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -24,7 +24,7 @@ namespace StaticAnalysisProject.UpdateTrainingSet
             if (args.Length < 1) throw new Exception("Missing parameter");
 
             //Search for training data set files
-            var jsonFiles = Directory.GetFiles("Data/ML/", "*.json", SearchOption.AllDirectories).ToArray();
+            var jsonFiles = Directory.GetFiles(DataHelper.MLDataPath, "*.json", SearchOption.AllDirectories).ToArray();
             IList<IFileReport> _fileReports = new List<IFileReport>();
 
             string[] files = Directory

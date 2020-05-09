@@ -15,7 +15,7 @@ namespace StaticAnalysisProject.ML
     {
         //https://jkdev.me/simple-machine-learning-classification/
 
-        public const string SaveModelPath = @"Data\ML\Model.zip";
+        public static string SaveModelPath = DataHelper.MLDataModelPath;
 
         private IFileReport fr = null;
         private IList<IFileReport> _fileReports = new List<IFileReport>();
@@ -26,7 +26,7 @@ namespace StaticAnalysisProject.ML
         private static MLContext _mlContext;
         IDataView trainingDataView;
 
-        private string _pathToTrainingSet = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Data\ML\");
+        private string _pathToTrainingSet = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), DataHelper.MLDataPath);
         private string[] _trainingDataSetFiles = null;
 
         public MachineLearning()

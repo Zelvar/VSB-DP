@@ -90,7 +90,7 @@ namespace StaticAnalysisProject.Modules
         /// </summary>
         private void LoadFileExtensions()
         {
-            using (StreamReader sr = new StreamReader(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Data\file-types.json")))
+            using (StreamReader sr = new StreamReader(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), DataHelper.DataFileTypesPath)))
             {
                 string json = sr.ReadToEnd();
                 var data = ((JObject)JsonConvert.DeserializeObject(json)).Properties().Select(x => x.Name).ToList();
@@ -118,7 +118,7 @@ namespace StaticAnalysisProject.Modules
         private void LoadKnownMethods()
         {
             var dic = new Dictionary<string, IList<string>>();
-            using(StreamReader sr = new StreamReader(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Data\known-methods.json"))) 
+            using(StreamReader sr = new StreamReader(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), DataHelper.DataKnownMethodsPath))) 
             {
                 string json = sr.ReadToEnd();
                 var data = (JObject)JsonConvert.DeserializeObject(json);

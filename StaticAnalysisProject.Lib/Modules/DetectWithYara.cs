@@ -1,5 +1,6 @@
 ﻿//using dnYara;
 using libyaraNET;
+using StaticAnalysisProject.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,7 +20,7 @@ namespace StaticAnalysisProject.Modules
         private string _filename = null;
         private byte[] _file = null;
 
-        private string _pathToRules = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Data\Yara\");
+        private string _pathToRules = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), DataHelper.YaraDataPath);
         private string[] _yaraRules = null;
 
         //YaraContext ctx = new YaraContext();

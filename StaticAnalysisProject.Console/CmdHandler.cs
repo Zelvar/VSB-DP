@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using StaticAnalysisProject.ML;
 using StaticAnalysisProject.Modules;
 
 namespace StaticAnalysisProject.Console
@@ -229,6 +230,14 @@ namespace StaticAnalysisProject.Console
         public static void CmdEntropy(string filePath)
         {
             System.Console.WriteLine(new Entropy(filePath).ToString());
+        }
+
+        /// <summary>
+        /// Get malware prediction
+        /// </summary>
+        public static void CmdPredict(string filePath)
+        {
+            System.Console.WriteLine(new MachineLearning().Predict(filePath).ToString());
         }
         #endregion
     }
