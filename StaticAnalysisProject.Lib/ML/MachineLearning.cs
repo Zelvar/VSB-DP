@@ -34,7 +34,9 @@ namespace StaticAnalysisProject.ML
             _mlContext = new MLContext(seed: 0);
             LoadData();
 
-            if (!File.Exists(SaveModelPath))
+            var loc = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), SaveModelPath);
+
+            if (!File.Exists(loc))
             {
                 trainingDataView = _mlContext.Data.LoadFromEnumerable<FileReportML>(_fileReportsConverted);
                 #region ML Auto
@@ -76,7 +78,8 @@ namespace StaticAnalysisProject.ML
                     .Append(
                         _mlContext.Transforms.Concatenate("Features",
                             "FeaturedBehavior",
-                            //"VirusTotal", 
+
+                            "VirusTotal", 
                             "FeaturedKnownMethods",
                             "FeaturedImports",
                             "Entropy",
@@ -214,15 +217,17 @@ namespace StaticAnalysisProject.ML
         {
             //Analyse current file
             fr = new FileReport(fileName);
+            return Predict(fr);
+        }
+
+        public FileReportPrediction Predict (IFileReport fr)
+        {
 
             var predictor = _mlContext.Model.CreatePredictionEngine<FileReportML, FileReportPrediction>(_model);
             var predictModel = fr.ConvertML();
             var prediction = predictor.Predict(predictModel);
 
-            //Debug.WriteLine("Predicted class: {0} {1}", prediction.IsMalware);
-
             return prediction;
-
         }
 
         public void LoadData()

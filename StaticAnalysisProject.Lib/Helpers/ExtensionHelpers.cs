@@ -63,6 +63,11 @@ namespace StaticAnalysisProject.Helpers
         /// <summary>
         /// Return JSON format of File report object
         /// </summary>
+        public static string ToJson(this FileReportPrediction obj) => JsonSerializer.Serialize(obj);
+
+        /// <summary>
+        /// Return JSON format of File report object
+        /// </summary>
         public static string ToJson(this IFileReport obj) => JsonSerializer.Serialize(obj);
 
         /// <summary>

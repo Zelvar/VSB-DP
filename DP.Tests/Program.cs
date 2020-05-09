@@ -143,26 +143,35 @@ namespace DP.Tests
 
             foreach(var file in data)
             {
-                Console.WriteLine("{1} is malware: {0}", ent.Predict(file).IsMalware, file);
+                var predicted = ent.Predict(file);
+                Console.WriteLine("{1} is malware: {0} {2}", predicted.IsMalware, file, predicted.Probability);
             }
 
             //Console.WriteLine("Is malware: {0}", ent.Predict(@"W:\DP-Vystup\malware\Adobe, Acrobat PDF Writer 3._exe").IsMalware);
+            var abc = ent.Predict(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\HookLibrary.dll");
+            Console.WriteLine("Is malware: {0} {1}", abc.IsMalware, abc.Probability);
+            abc = ent.Predict(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\App.exe");
+            Console.WriteLine("Is malware: {0} {1}", abc.IsMalware, abc.Probability);
+            abc = ent.Predict(@"C:\Users\Zelvar\source\repos\FontCreator\FontCreator\bin\Debug\FontCreator.exe");
+            Console.WriteLine("Is malware: {0} {1}", abc.IsMalware, abc.Probability);
 
-            Console.WriteLine("Is malware: {0}", ent.Predict(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\HookLibrary.dll").IsMalware);
-            Console.WriteLine("Is malware: {0}", ent.Predict(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\App.exe").IsMalware);
-            Console.WriteLine("Is malware: {0}", ent.Predict(@"C:\Users\Zelvar\source\repos\FontCreator\FontCreator\bin\Debug\FontCreator.exe").IsMalware);
-            
             //Console.WriteLine("Is malware: {0}", ent.Predict(@"E:\Steam\steamapps\common\Grand Theft Auto V\GTA5.exe").IsMalware);
-            
-            Console.WriteLine("Is malware: {0}", ent.Predict(@"C:\Users\Zelvar\source\repos\DLLInjection\x64\Release\Dll-compresed.dll").IsMalware);
-            Console.WriteLine("Is malware: {0}", ent.Predict(@"C:\Users\Zelvar\source\repos\DLLInjection\x64\Release\Dll.dll").IsMalware);
-            Console.WriteLine("Is malware: {0}", ent.Predict(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\HookLibrary.dll").IsMalware);
+            abc = ent.Predict(@"C:\Users\Zelvar\source\repos\DLLInjection\x64\Release\Dll-compresed.dll");
+            Console.WriteLine("Is malware: {0} {1}", abc.IsMalware, abc.Probability);
+            abc = ent.Predict(@"C:\Users\Zelvar\source\repos\DLLInjection\x64\Release\Dll.dll");
+            Console.WriteLine("Is malware: {0} {1}", abc.IsMalware, abc.Probability);
+            abc = ent.Predict(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\HookLibrary.dll");
+            Console.WriteLine("Is malware: {0} {1}", abc.IsMalware, abc.Probability);
 
-            Console.WriteLine("Is malware: {0}", ent.Predict(@"W:\DP-Vystup\SW\DP\MalwareSample.BotnetListener\bin\Release\netcoreapp3.1\MalwareSample.BotnetListener.exe").IsMalware);
-            Console.WriteLine("Is malware: {0}", ent.Predict(@"W:\DP-Vystup\SW\DP\MalwareSample.BotnetListener\bin\Release\netcoreapp3.1\MalwareSample.BotnetListener.dll").IsMalware);
+            abc = ent.Predict(@"W:\DP-Vystup\SW\DP\MalwareSample.BotnetListener\bin\Release\netcoreapp3.1\MalwareSample.BotnetListener.exe");
+            Console.WriteLine("Is malware: {0} {1}", abc.IsMalware, abc.Probability);
+            abc = ent.Predict(@"W:\DP-Vystup\SW\DP\MalwareSample.BotnetListener\bin\Release\netcoreapp3.1\MalwareSample.BotnetListener.dll");
+            Console.WriteLine("Is malware: {0} {1}", abc.IsMalware, abc.Probability);
 
-            Console.WriteLine("Is malware: {0}", ent.Predict(@"W:\DP-Vystup\SW\DP\MalwareSample.Keylogger\bin\Release\netcoreapp3.1\MalwareSample.Keylogger.exe").IsMalware);
-            Console.WriteLine("Is malware: {0}", ent.Predict(@"W:\DP-Vystup\SW\DP\MalwareSample.Keylogger\bin\Release\netcoreapp3.1\MalwareSample.Keylogger.dll").IsMalware);
+            abc = ent.Predict(@"W:\DP-Vystup\SW\DP\MalwareSample.Keylogger\bin\Release\netcoreapp3.1\MalwareSample.Keylogger.exe");
+            Console.WriteLine("Is malware: {0} {1}", abc.IsMalware, abc.Probability);
+            abc = ent.Predict(@"W:\DP-Vystup\SW\DP\MalwareSample.Keylogger\bin\Release\netcoreapp3.1\MalwareSample.Keylogger.dll");
+            Console.WriteLine("Is malware: {0} {1}", abc.IsMalware, abc.Probability);
 
             //Console.WriteLine("Val: {0} Efc: {1}", ent.Value, ent.Efficiency);
 

@@ -12,4 +12,10 @@
     <ProjectReference Include="..\StaticAnalysisProject.Lib\StaticAnalysisProject.Lib.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Data\ML\Model.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

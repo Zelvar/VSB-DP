@@ -6,5 +6,8 @@ namespace StaticAnalysisProject.ML
     {
         [ColumnName("PredictedLabel")]
         public bool IsMalware { get; set; }
+
+        [ColumnName("Probability")]
+        public float Probability { get; set; }
     }
 }
