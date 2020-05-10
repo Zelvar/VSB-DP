@@ -84,6 +84,7 @@ namespace StaticAnalysisProject.ML
                             "FeaturedImports",
                             "Entropy",
                             "MimeTypeEncoded",
+                            //"Sections",
 
                             "IsExeEncoded",
                             "IsDllEncoded",
