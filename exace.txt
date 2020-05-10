@@ -1,4 +1,0 @@
-C:\Users\Zelvar\source\repos\FontCreator\FontCreator\bin\Debug\FontCreator.exe
-C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\App.exe
-C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\HookLibrary.dll
-"E:\Steam\steamapps\common\Grand Theft Auto V\GTA5.exe"
