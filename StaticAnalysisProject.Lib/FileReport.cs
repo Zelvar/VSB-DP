@@ -6,6 +6,10 @@ using System.Text;
 using HeyRed.Mime;
 using System.Diagnostics;
 
+/// <summary>
+/// Static analysis LIB
+/// </summary>
+
 namespace StaticAnalysisProject
 {
     public class FileReport 

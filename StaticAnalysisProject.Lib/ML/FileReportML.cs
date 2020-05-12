@@ -60,10 +60,12 @@ namespace StaticAnalysisProject.ML
                 IsSigned = file.IsSigned,
                 Behavior = file.Behavior != null ? (file.Behavior as List<string>).ToArray() : new string[] { },
                 VirusTotal = file.PositiveTests,
-                ContainsEmail = file.Mails != null &&  (file.Mails as List<string>).ToArray().Length > 0,
-                ContainsFiles = file.Files != null && (file.Files as List<string>).ToArray().Length > 0 ,
+                ContainsEmail = file.Mails != null && (file.Mails as List<string>).ToArray().Length > 0,
+                ContainsFiles = file.Files != null && (file.Files as List<string>).ToArray().Length > 0,
                 ContainsIP = file.IPAddrs != null && (file.Files as List<string>).ToArray().Length > 0,
                 Sections = file.Sections != null ? file.Sections.Count() : 0,
+                Imports = file.Imports != null ? file.Imports.Keys.Select(x => x).ToArray() : null,
+                KnownMethods = file.KnownMethods != null ?  file.KnownMethods.Values.SelectMany(x => x).ToArray() : null
             };
         }
     }

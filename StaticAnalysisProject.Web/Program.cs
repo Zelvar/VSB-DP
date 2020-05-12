@@ -7,6 +7,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
+/// <summary>
+/// Just simple WEB app
+/// </summary>
 namespace StaticAnalysisProject.Web
 {
     public class Program

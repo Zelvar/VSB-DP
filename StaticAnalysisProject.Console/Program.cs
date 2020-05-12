@@ -3,6 +3,9 @@ using System.Diagnostics;
 
 namespace StaticAnalysisProject.Console
 {
+    /// <summary>
+    /// Simple interactive console APP
+    /// </summary>
     class Program
     {
         static void Main(string[] args)

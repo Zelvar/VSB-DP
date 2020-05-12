@@ -7,6 +7,11 @@ using System.Threading;
 
 namespace StaticAnalysisProject.BuildTraningSet
 {
+    /// <summary>
+    /// App to build training dataset
+    /// 
+    /// To run in CMD > program.exe "Path to your data" ["class"]
+    /// </summary>
     class Program
     {
         #region Output data / info
