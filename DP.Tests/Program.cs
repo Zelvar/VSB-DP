@@ -178,7 +178,7 @@ namespace DP.Tests
             }
 
             //Console.WriteLine("Is malware: {0}", ent.Predict(@"W:\DP-Vystup\malware\Adobe, Acrobat PDF Writer 3._exe").IsMalware);
-            var abc = ent.Predict(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\HookLibrary.dll");
+            /*var abc = ent.Predict(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\HookLibrary.dll");
             Console.WriteLine("Is malware: {0} {1}", abc.IsMalware, abc.Probability);
             abc = ent.Predict(@"C:\Users\Zelvar\source\repos\KeyLoggerVSB\KeyLoggerVSB\bin\Release\App.exe");
             Console.WriteLine("Is malware: {0} {1}", abc.IsMalware, abc.Probability);
@@ -201,7 +201,7 @@ namespace DP.Tests
             abc = ent.Predict(@"W:\DP-Vystup\SW\DP\MalwareSample.Keylogger\bin\Release\netcoreapp3.1\MalwareSample.Keylogger.exe");
             Console.WriteLine("Is malware: {0} {1}", abc.IsMalware, abc.Probability);
             abc = ent.Predict(@"W:\DP-Vystup\SW\DP\MalwareSample.Keylogger\bin\Release\netcoreapp3.1\MalwareSample.Keylogger.dll");
-            Console.WriteLine("Is malware: {0} {1}", abc.IsMalware, abc.Probability);
+            Console.WriteLine("Is malware: {0} {1}", abc.IsMalware, abc.Probability);*/
         }
     }
 }
